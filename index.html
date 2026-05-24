@@ -120,7 +120,11 @@
       flex-direction: column;
       gap: 5px;
       cursor: pointer;
-      padding: 4px;
+      padding: 8px;
+      min-width: 44px;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
     }
     .hamburger span {
       display: block;
@@ -889,43 +893,127 @@
     }
 
     /* ─── RESPONSIVE ─── */
+
+    /* Tablet (≤ 900px) */
     @media (max-width: 900px) {
-      nav { padding: 1.25rem 5%; }
+      nav { padding: 1.25rem 6%; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
 
+      section { padding: 5rem 6%; }
+      #contact { padding: 6rem 6%; }
+      #language { padding: 3.5rem 6%; }
+
       .hero-illustration {
-        opacity: 0.12 !important;
+        opacity: 0.1 !important;
         right: 0;
-        width: 70vw;
+        width: 65vw;
         bottom: 0;
       }
-      .hero-illustration.visible {
-        opacity: 0.12 !important;
-      }
+      .hero-illustration.visible { opacity: 0.1 !important; }
 
       .about-grid,
-      .services-grid,
       .workshops-grid,
       .how-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
       }
-      .services-right { position: static; }
-      .who-cards { grid-template-columns: 1fr; }
-      .about-photo-wrap img { height: 400px; }
 
-      .contact-ctas { flex-direction: column; }
+      /* Services: tiles full-width, info card below */
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .services-right { position: static; }
+
+      /* About: shorter image, hide decorative border */
+      .about-photo-wrap img { height: 420px; }
+      .about-photo-deco { display: none; }
+
+      /* Who: 2 columns on tablet */
+      .who-cards { grid-template-columns: repeat(2, 1fr); }
+
+      /* How: un-stick the quote */
+      .how-quote-wrap { position: static; margin-bottom: 2rem; }
+
       footer {
         flex-direction: column;
         text-align: center;
+        gap: 0.75rem;
       }
     }
 
+    /* Mobile (≤ 600px) */
     @media (max-width: 600px) {
-      section { padding: 4rem 5%; }
-      .hero-content { padding-top: 5rem; }
+      section { padding: 3.5rem 5%; }
+      #contact { padding: 5rem 5%; }
+      #language { padding: 3rem 5%; }
+
+      /* Hero */
+      .hero-content { padding-top: 5.5rem; }
+      .hero-heading { font-size: clamp(2.8rem, 13vw, 4.5rem); line-height: 1.05; }
+      .hero-sub { font-size: 0.85rem; }
+      .hero-ctas {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+      }
+      .hero-ctas .btn-primary { justify-content: center; }
+      .hero-ctas .btn-ghost { text-align: center; padding-bottom: 4px; }
+
+      /* Marquee */
+      .marquee-inner span { font-size: 0.65rem; padding: 0 1.5rem; }
+
+      /* About */
+      .about-photo-wrap img { height: auto; max-height: 320px; object-fit: cover; }
+      .about-intro { font-size: 0.95rem; }
+
+      /* Who: single column */
+      .who-cards { grid-template-columns: 1fr; }
+      .who-card { padding: 2rem 1.5rem; }
+
+      /* Services: single column tiles */
       .services-tiles { grid-template-columns: 1fr; }
+      .service-tile { padding: 1.1rem 1rem; }
+      .services-info-card { padding: 2rem 1.5rem; }
+
+      /* Workshops */
+      .workshop-card { padding: 1.75rem 1.5rem; }
+      .workshop-card-header { flex-direction: column; gap: 0.75rem; }
+      .workshop-modes { flex-direction: row; flex-wrap: wrap; }
+
+      /* How I Work */
+      .how-principle { padding: 1.5rem 0; }
+      .how-principle h3 { font-size: 1.25rem; }
+
+      /* Language strip */
+      .language-flags { gap: 1rem; }
+      .lang-sep { display: none; }
+      .language-flags .lang-item { font-size: 0.9rem; }
+
+      /* Contact */
+      #contact .section-title { font-size: clamp(2rem, 10vw, 3rem); }
+      .contact-ctas {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+      }
+      .contact-ctas .btn-primary,
+      .contact-ctas .btn-primary-outline {
+        justify-content: center;
+        width: 100%;
+      }
+
+      /* Footer */
+      footer { padding: 2rem 5%; gap: 0.5rem; }
+      .footer-credentials { display: none; }
+    }
+
+    /* Small mobile (≤ 400px) */
+    @media (max-width: 400px) {
+      .hero-heading { font-size: clamp(2.4rem, 12vw, 3rem); }
+      .section-title { font-size: clamp(1.9rem, 9vw, 2.5rem); }
+      nav { padding: 1rem 5%; }
     }
   </style>
 </head>
