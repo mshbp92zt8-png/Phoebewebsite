@@ -66,67 +66,6 @@
       line-height: 1.1;
     }
 
-    /* ─── CUSTOM CURSOR (Change 1) ─── */
-    @media (pointer: fine) {
-      html, body, a, button {
-        cursor: none;
-      }
-    }
-    #cursor-dot {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--gold);
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.15s ease, background 0.15s ease;
-      will-change: transform, left, top;
-    }
-    #cursor-dot.cursor-hover {
-      transform: translate(-50%, -50%) scale(1.8);
-    }
-    #cursor-ring {
-      position: fixed;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1.5px solid var(--gold);
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
-      will-change: transform, left, top;
-    }
-    #cursor-ring.cursor-hover {
-      transform: translate(-50%, -50%) scale(1.6);
-      background: rgba(196, 168, 130, 0.2);
-    }
-    .cursor-trail-dot {
-      position: fixed;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--gold);
-      pointer-events: none;
-      z-index: 9997;
-      transform: translate(-50%, -50%);
-    }
-    @keyframes cursor-ripple {
-      0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.7; }
-      100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
-    }
-    .cursor-ripple {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 1.5px solid var(--gold);
-      pointer-events: none;
-      z-index: 9996;
-      animation: cursor-ripple 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
 
     /* ─── PAGE LOAD CURTAIN (Change 3) ─── */
     #page-curtain {
@@ -634,6 +573,94 @@
       background: transparent;
     }
 
+    /* ─── ABOUT CV BLOCKS ─── */
+    .about-cv {
+      max-width: 1200px;
+      margin: 4rem auto 0;
+      padding-top: 3.5rem;
+      border-top: 1px solid var(--beige);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .cv-block-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .cv-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--beige);
+    }
+    .cv-item:first-of-type { padding-top: 0; }
+    .cv-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .cv-institution {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 0.2rem;
+    }
+    .cv-role {
+      font-size: 0.83rem;
+      color: var(--text-light);
+      font-style: italic;
+    }
+    .about-training {
+      max-width: 1200px;
+      margin: 3rem auto 0;
+      padding-top: 3rem;
+      border-top: 1px solid var(--beige);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .training-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+    }
+    .training-pill {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      background: var(--beige);
+      padding: 0.38rem 0.9rem;
+      border-radius: 100px;
+      line-height: 1.4;
+    }
+    .training-orgs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-top: 0.25rem;
+    }
+    .training-org {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      line-height: 1.5;
+    }
+    .training-org::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      margin-top: 0.55rem;
+    }
+    @media (max-width: 900px) {
+      .about-cv, .about-training {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
     /* ─── WHO I WORK WITH ─── */
     #who {
       background: var(--beige);
@@ -1135,6 +1162,55 @@
       cursor: pointer;
     }
 
+    /* ─── LANGUAGE SWITCHER ─── */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(250,248,245,0.25);
+      border-radius: 100px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: rgba(250,248,245,0.55);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.38rem 0.72rem;
+      cursor: pointer;
+      transition: background var(--transition-fast), color var(--transition-fast);
+      line-height: 1;
+    }
+    .lang-btn.active {
+      background: var(--gold);
+      color: var(--charcoal);
+    }
+    .lang-btn:hover:not(.active) { color: var(--cream); }
+    .lang-switcher-mobile {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .lang-btn-mobile {
+      background: none;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: rgba(250,248,245,0.45);
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: color var(--transition-fast);
+    }
+    .lang-btn-mobile.active { color: var(--gold); }
+    .lang-sep-mobile { color: rgba(250,248,245,0.2); }
+
     /* ─── RESPONSIVE ─── */
 
     /* Tablet (≤ 900px) */
@@ -1303,7 +1379,7 @@
 
   <!-- ─── PAGE LOAD CURTAIN (Change 3) ─── -->
   <div id="page-curtain">
-    <span id="curtain-brand"><img src="assets/photos/Logo 4.png" alt="BodyMindOT" /></span>
+    <span id="curtain-brand"><img src="assets/photos/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" /></span>
     <div id="curtain-line"></div>
   </div>
 
@@ -1313,20 +1389,20 @@
   <!-- ─── SCROLL PROGRESS (Change 4) ─── -->
   <div id="scroll-progress" aria-hidden="true"></div>
 
-  <!-- ─── CUSTOM CURSOR ELEMENTS (Change 1) ─── -->
-  <div id="cursor-dot" aria-hidden="true"></div>
-  <div id="cursor-ring" aria-hidden="true"></div>
-
-  <!-- ─── NAV ─── -->
+<!-- ─── NAV ─── -->
   <nav id="navbar">
-    <a href="#hero" class="nav-logo"><img src="assets/photos/Logo 4.png" alt="BodyMindOT" /></a>
+    <a href="#hero" class="nav-logo"><img src="assets/photos/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" /></a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#workshops">Workshops</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="mailto:hello@phoebeot.com" class="nav-cta">Book a Consultation</a></li>
+      <li><a href="#about" data-i18n="nav-about">About</a></li>
+      <li><a href="#services" data-i18n="nav-services">Services</a></li>
+      <li><a href="#workshops" data-i18n="nav-workshops">Workshops</a></li>
+      <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
+      <li><a href="mailto:hello@phoebeot.com" class="nav-cta" data-i18n="nav-book">Book a Consultation</a></li>
     </ul>
+    <div class="lang-switcher" id="langSwitcher" aria-label="Language / 語言">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="zh">中</button>
+    </div>
     <div class="hamburger" id="hamburger" aria-label="Open menu">
       <span></span>
       <span></span>
@@ -1337,44 +1413,43 @@
   <!-- Mobile nav -->
   <div class="nav-mobile" id="mobileNav">
     <button class="nav-mobile-close" id="mobileClose">&times;</button>
-    <a href="#about" class="mobile-link">About</a>
-    <a href="#services" class="mobile-link">Services</a>
-    <a href="#workshops" class="mobile-link">Workshops</a>
-    <a href="#contact" class="mobile-link">Contact</a>
-    <a href="mailto:hello@phoebeot.com" class="mobile-link mobile-cta">Book a Consultation</a>
+    <a href="#about" class="mobile-link" data-i18n="nav-about">About</a>
+    <a href="#services" class="mobile-link" data-i18n="nav-services">Services</a>
+    <a href="#workshops" class="mobile-link" data-i18n="nav-workshops">Workshops</a>
+    <a href="#contact" class="mobile-link" data-i18n="nav-contact">Contact</a>
+    <a href="mailto:hello@phoebeot.com" class="mobile-link mobile-cta" data-i18n="nav-book">Book a Consultation</a>
+    <div class="lang-switcher-mobile" id="langSwitcherMobile">
+      <button class="lang-btn-mobile active" data-lang="en">English</button>
+      <span class="lang-sep-mobile">·</span>
+      <button class="lang-btn-mobile" data-lang="zh">中文</button>
+    </div>
   </div>
 
   <!-- ─── HERO ─── -->
   <section id="hero">
-    <div class="hero-watermark">OT</div>
-
-    <div class="hero-content">
+<div class="hero-content">
       <div class="hero-tag" id="heroTag">
         <div class="hero-tag-line"></div>
-        <span class="hero-tag-text">HCPC Registered &nbsp;·&nbsp; Occupational Therapist</span>
+        <span class="hero-tag-text" data-i18n="hero-tag">HCPC Registered &nbsp;·&nbsp; Occupational Therapist</span>
       </div>
 
       <h1 class="hero-heading">
-        <span class="line"><span id="line1">Occupational</span></span>
-        <span class="line"><span id="line2"><em>Therapy</em> for</span></span>
-        <span class="line"><span id="line3">your life.</span></span>
+        <span class="line"><span id="line1" data-i18n="hero-line1">Occupational</span></span>
+        <span class="line"><span id="line2" data-i18n="hero-line2"><em>Therapy</em> for</span></span>
+        <span class="line"><span id="line3" data-i18n="hero-line3">your life.</span></span>
       </h1>
 
-      <p class="hero-sub" id="heroSub">
+      <p class="hero-sub" id="heroSub" data-i18n="hero-sub">
         Online mental health &amp; wellbeing consultations<br>
         in English and Mandarin &nbsp;·&nbsp; 中文
       </p>
 
       <div class="hero-ctas" id="heroCtas">
-        <a href="mailto:hello@phoebeot.com" class="btn-primary">Book a Consultation</a>
-        <a href="#services" class="btn-ghost">Explore Services</a>
+        <a href="mailto:hello@phoebeot.com" class="btn-primary" data-i18n="hero-cta1">Book a Consultation</a>
+        <a href="#services" class="btn-ghost" data-i18n="hero-cta2">Explore Services</a>
       </div>
     </div>
 
-    <!-- Change 15: eager load hero illustration, with explicit dimensions -->
-    <div class="hero-illustration" id="heroIllustration">
-      <img src="assets/photos/Phoebe cartoon photo.png" alt="Phoebe illustration" width="420" height="600" />
-    </div>
   </section>
 
   <!-- ─── MARQUEE ─── -->
@@ -1413,24 +1488,76 @@
         <img src="assets/photos/Phoebe photo.jpeg" alt="BodyMindOT — Occupational Therapist" loading="lazy" width="600" height="540" />
       </div>
       <div class="about-content">
-        <p class="section-label fade-up">About</p>
-        <h2 class="section-title fade-up">
+        <p class="section-label fade-up" data-i18n="about-label">About</p>
+        <h2 class="section-title fade-up" data-i18n="about-heading">
           Hi, I'm Phoebe —<br>your OT for a more<br>fulfilling daily life.
         </h2>
-        <p class="about-intro fade-up">
+        <p class="about-intro fade-up" data-i18n="about-intro">
           I am an HCPC-registered occupational therapist specialising in mental health and wellbeing. Through online one-to-one consultations, I support adults in navigating life's challenges — whether that's burnout, adjustment to living abroad, managing stress, or finding a sustainable rhythm in your everyday.
         </p>
-        <!-- Change 16: wrap Chinese text with lang attribute -->
-        <p class="about-bilingual fade-up">
+        <p class="about-bilingual fade-up" data-i18n="about-bilingual">
           I work with both English-speaking and Mandarin-speaking clients, offering a bilingual space where you can express yourself fully.<br>
           <strong><span lang="zh-Hant">我提供中英雙語諮詢服務，歡迎中文使用者。</span></strong>
         </p>
         <div class="credential-tags fade-up">
-          <span class="credential-tag">HCPC Registered</span>
-          <span class="credential-tag">Occupational Therapist</span>
-          <span class="credential-tag">Mental Health</span>
-          <span class="credential-tag">Online Consultations</span>
-          <span class="credential-tag">English &amp; <span lang="zh-Hant">中文</span></span>
+          <span class="credential-tag" data-i18n="tag-hcpc">HCPC Registered</span>
+          <span class="credential-tag" data-i18n="tag-ot">Occupational Therapist</span>
+          <span class="credential-tag" data-i18n="tag-mh">Mental Health</span>
+          <span class="credential-tag" data-i18n="tag-online">Online Consultations</span>
+          <span class="credential-tag" data-i18n="tag-lang">English &amp; <span lang="zh-Hant">中文</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education & Experience -->
+    <div class="about-cv fade-up">
+      <div class="cv-block">
+        <p class="cv-block-label" data-i18n="cv-edu-label">Education</p>
+        <div class="cv-item">
+          <p class="cv-institution" data-i18n="edu1-inst">National Taiwan University</p>
+          <p class="cv-role" data-i18n="edu1-degree">BSc Occupational Therapy</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-institution" data-i18n="edu2-inst">Goldsmiths, University of London</p>
+          <p class="cv-role" data-i18n="edu2-degree">MA Dance Movement Psychotherapy</p>
+        </div>
+      </div>
+      <div class="cv-block">
+        <p class="cv-block-label" data-i18n="cv-exp-label">Experience</p>
+        <div class="cv-item">
+          <p class="cv-institution" data-i18n="exp1-inst">NHS mental health inpatient and community services, UK</p>
+          <p class="cv-role" data-i18n="exp1-role">Occupational Therapist</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-institution" data-i18n="exp2-inst">National Cheng Kung University Hospital, Taiwan</p>
+          <p class="cv-role" data-i18n="exp2-role">Occupational Therapist — Rehabilitation &amp; Children's Development</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Professional Development -->
+    <div class="about-training fade-up">
+      <div>
+        <p class="cv-block-label" data-i18n="cv-training-label">Professional Development</p>
+        <div class="training-pills">
+          <span class="training-pill" data-i18n="train1">Motivational Interviewing</span>
+          <span class="training-pill" data-i18n="train2">Systemic &amp; Family-Informed Approaches</span>
+          <span class="training-pill" data-i18n="train3">Sensory Modulation</span>
+          <span class="training-pill" data-i18n="train4">Neurodiversity-Informed Practice</span>
+          <span class="training-pill" data-i18n="train5">Cultural Competence &amp; Cross-Cultural Mental Health</span>
+          <span class="training-pill" data-i18n="train6">Risk Assessment &amp; Management</span>
+          <span class="training-pill" data-i18n="train7">Taiwan Health Professional Post Graduate Year</span>
+        </div>
+      </div>
+      <div>
+        <p class="cv-block-label" data-i18n="cv-orgs-label">Additional Training Through</p>
+        <div class="training-orgs">
+          <span class="training-org" data-i18n="org1">The Tavistock and Portman NHS Foundation Trust, UK</span>
+          <span class="training-org" data-i18n="org2">Anna Freud, UK</span>
+          <span class="training-org" data-i18n="org3">National Autistic Society, UK</span>
+          <span class="training-org" data-i18n="org4">The Association for Psychological Therapies, UK</span>
+          <span class="training-org" data-i18n="org5">NHS mental health services, UK</span>
+          <span class="training-org" data-i18n="org6">National Cheng Kung University Hospital, Taiwan</span>
         </div>
       </div>
     </div>
@@ -1439,11 +1566,11 @@
   <!-- ─── WHO I WORK WITH ─── -->
   <section id="who">
     <div class="who-header">
-      <p class="section-label fade-up">Who I Work With</p>
-      <h2 class="section-title fade-up">
+      <p class="section-label fade-up" data-i18n="who-label">Who I Work With</p>
+      <h2 class="section-title fade-up" data-i18n="who-heading">
         Support tailored<br>to your world.
       </h2>
-      <p class="section-body fade-up">
+      <p class="section-body fade-up" data-i18n="who-body">
         Whether you're navigating the pressures of study, career, or family life — I offer a space to reflect, re-centre, and take steps toward change.
       </p>
     </div>
@@ -1451,20 +1578,20 @@
       <div class="who-card fade-up">
         <div class="who-card-num">01</div>
         <div class="who-card-icon">&#127891;</div>
-        <h3>Students</h3>
-        <p>Adjusting to a new country, managing academic pressure, or finding balance between study and life — I support students through transitions and the unique challenges of being away from home.</p>
+        <h3 data-i18n="card1-title">Students</h3>
+        <p data-i18n="card1-body">Adjusting to a new country, managing academic pressure, or finding balance between study and life — I support students through transitions and the unique challenges of being away from home.</p>
       </div>
       <div class="who-card fade-up">
         <div class="who-card-num">02</div>
         <div class="who-card-icon">&#128188;</div>
-        <h3>Working Professionals</h3>
-        <p>Feeling stretched thin, burned out, or disconnected from your sense of purpose? I help working adults recalibrate their routines, manage stress, and create a sustainable work-life rhythm.</p>
+        <h3 data-i18n="card2-title">Working Professionals</h3>
+        <p data-i18n="card2-body">Feeling stretched thin, burned out, or disconnected from your sense of purpose? I help working adults recalibrate their routines, manage stress, and create a sustainable work-life rhythm.</p>
       </div>
       <div class="who-card fade-up">
         <div class="who-card-num">03</div>
         <div class="who-card-icon">&#128106;</div>
-        <h3>Parents &amp; Families</h3>
-        <p>Parenting brings profound joy and profound difficulty. I provide a compassionate space to explore the emotional and practical challenges of family life, including the pressures of raising children abroad.</p>
+        <h3 data-i18n="card3-title">Parents &amp; Families</h3>
+        <p data-i18n="card3-body">Parenting brings profound joy and profound difficulty. I provide a compassionate space to explore the emotional and practical challenges of family life, including the pressures of raising children abroad.</p>
       </div>
     </div>
   </section>
@@ -1473,79 +1600,49 @@
   <section id="services">
     <div class="services-grid">
       <div class="services-left">
-        <p class="section-label fade-up">Individual Services</p>
-        <h2 class="section-title fade-up">
+        <p class="section-label fade-up" data-i18n="services-label">Individual Services</p>
+        <h2 class="section-title fade-up" data-i18n="services-heading">
           Online 1:1<br>Consultations.
         </h2>
         <div class="services-tiles fade-up">
-          <div class="service-tile">
-            Stress Management
-            <span class="tile-arrow">&#8599;</span>
-          </div>
-          <div class="service-tile">
-            Burnout Support
-            <span class="tile-arrow">&#8599;</span>
-          </div>
-          <div class="service-tile">
-            Daily Functioning
-            <span class="tile-arrow">&#8599;</span>
-          </div>
-          <div class="service-tile">
-            Life / Work Balance
-            <span class="tile-arrow">&#8599;</span>
-          </div>
-          <div class="service-tile">
-            Emotional Regulation
-            <span class="tile-arrow">&#8599;</span>
-          </div>
-          <div class="service-tile">
-            Overseas Adjustment
-            <span class="tile-arrow">&#8599;</span>
-          </div>
-          <div class="service-tile">
-            Life Roles Transition
-            <span class="tile-arrow">&#8599;</span>
-          </div>
-          <div class="service-tile">
-            Routines &amp; Sustainable Living
-            <span class="tile-arrow">&#8599;</span>
-          </div>
-          <div class="service-tile">
-            Parenting &amp; Family Functioning
-            <span class="tile-arrow">&#8599;</span>
-          </div>
-          <div class="service-tile">
-            Value Clarification
-            <span class="tile-arrow">&#8599;</span>
-          </div>
+          <div class="service-tile"><span data-i18n="tile-stress">Stress Management</span><span class="tile-arrow">&#8599;</span></div>
+          <div class="service-tile"><span data-i18n="tile-burnout">Burnout Support</span><span class="tile-arrow">&#8599;</span></div>
+          <div class="service-tile"><span data-i18n="tile-daily">Daily Functioning</span><span class="tile-arrow">&#8599;</span></div>
+          <div class="service-tile"><span data-i18n="tile-balance">Life / Work Balance</span><span class="tile-arrow">&#8599;</span></div>
+          <div class="service-tile"><span data-i18n="tile-emotional">Emotional Regulation</span><span class="tile-arrow">&#8599;</span></div>
+          <div class="service-tile"><span data-i18n="tile-overseas">Overseas Adjustment</span><span class="tile-arrow">&#8599;</span></div>
+          <div class="service-tile"><span data-i18n="tile-roles">Life Roles Transition</span><span class="tile-arrow">&#8599;</span></div>
+          <div class="service-tile"><span data-i18n="tile-routines">Routines &amp; Sustainable Living</span><span class="tile-arrow">&#8599;</span></div>
+          <div class="service-tile"><span data-i18n="tile-parenting">Parenting &amp; Family Functioning</span><span class="tile-arrow">&#8599;</span></div>
+          <div class="service-tile"><span data-i18n="tile-values">Value Clarification</span><span class="tile-arrow">&#8599;</span></div>
         </div>
       </div>
 
       <div class="services-right fade-up">
         <div class="services-info-card">
-          <h3>Online Sessions</h3>
-          <p>
+          <h3 data-i18n="info-heading">Online Sessions</h3>
+          <p data-i18n="info-body">
             All individual sessions take place online, making it easy to access support wherever you are in the world. Sessions are held via a secure video platform at a time that suits you.
           </p>
           <div class="services-meta">
             <div class="services-meta-item">
               <div class="services-meta-dot"></div>
-              <span><strong>Format</strong> &nbsp; Secure video call</span>
+              <span data-i18n="meta-format"><strong>Format</strong> &nbsp; Secure video call</span>
             </div>
             <div class="services-meta-item">
               <div class="services-meta-dot"></div>
-              <span><strong>Language</strong> &nbsp; English or <span lang="zh-Hant">中文</span></span>
+              <span data-i18n="meta-language"><strong>Language</strong> &nbsp; English or <span lang="zh-Hant">中文</span></span>
             </div>
             <div class="services-meta-item">
               <div class="services-meta-dot"></div>
-              <span><strong>Availability</strong> &nbsp; Flexible scheduling</span>
+              <span data-i18n="meta-availability"><strong>Availability</strong> &nbsp; Flexible scheduling</span>
             </div>
             <div class="services-meta-item">
               <div class="services-meta-dot"></div>
-              <span><strong>First step</strong> &nbsp; Free 15-min intro call</span>
+              <span data-i18n="meta-first"><strong>First step</strong> &nbsp; Free 15-min intro call</span>
             </div>
           </div>
-          <a href="mailto:hello@phoebeot.com" class="btn-primary">Book a Consultation</a>
+          <a href="mailto:hello@phoebeot.com" class="btn-primary" data-i18n="info-book">Book a Consultation</a>
         </div>
       </div>
     </div>
@@ -1555,37 +1652,37 @@
   <section id="workshops">
     <div class="workshops-grid">
       <div class="workshops-left">
-        <p class="section-label fade-up">Group Workshops</p>
-        <h2 class="section-title fade-up">
+        <p class="section-label fade-up" data-i18n="workshops-label">Group Workshops</p>
+        <h2 class="section-title fade-up" data-i18n="workshops-heading">
           Creativity for<br>everyday life.
         </h2>
-        <p class="section-body fade-up">
+        <p class="section-body fade-up" data-i18n="workshops-body">
           My workshops explore how creativity can be a meaningful part of your daily life — not as an artistic skill, but as a way of connecting with yourself, building resilience, and finding enjoyment in the everyday.
         </p>
         <div class="location-tags fade-up">
-          <span class="location-tag active">Online</span>
-          <span class="location-tag active">London · In Person</span>
+          <span class="location-tag active" data-i18n="tag-online-loc">Online</span>
+          <span class="location-tag active" data-i18n="tag-london">London · In Person</span>
         </div>
-        <a href="#contact" class="btn-primary-outline fade-up">Find Upcoming Workshops</a>
+        <a href="#contact" class="btn-primary-outline fade-up" data-i18n="workshops-cta">Find Upcoming Workshops</a>
       </div>
 
       <div class="workshop-card fade-up">
         <div class="workshop-card-header">
-          <h3>Creativity &amp; Daily Life Workshops</h3>
+          <h3 data-i18n="workshop-card-title">Creativity &amp; Daily Life Workshops</h3>
           <div class="workshop-modes">
-            <span class="mode-badge online">Online</span>
-            <span class="mode-badge in-person">London</span>
+            <span class="mode-badge online" data-i18n="badge-online">Online</span>
+            <span class="mode-badge in-person" data-i18n="badge-london">London</span>
           </div>
         </div>
-        <p>
+        <p data-i18n="workshop-card-body">
           A small-group experience designed to help you tap into creativity as a resource for wellbeing. Suitable for anyone curious about occupational therapy approaches to living more fully.
         </p>
         <div class="workshop-divider"></div>
-        <p class="workshop-detail">
+        <p class="workshop-detail" data-i18n="workshop-detail1">
           Sessions held online via video &amp; in person in London &nbsp;·&nbsp; Suitable for adults &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span> welcome
         </p>
         <div class="workshop-divider"></div>
-        <p class="workshop-detail">
+        <p class="workshop-detail" data-i18n="workshop-detail2">
           Contact for upcoming dates &nbsp;·&nbsp; hello@phoebeot.com
         </p>
       </div>
@@ -1596,27 +1693,27 @@
   <section id="how">
     <div class="how-grid">
       <div class="how-quote-wrap fade-up">
-        <blockquote class="how-quote">
+        <blockquote class="how-quote" data-i18n="how-quote">
           "Your voice matters —<br>and your goals<br><span>shape the path</span><br>we take together."
         </blockquote>
-        <p class="how-quote-attr">— Phoebe's approach</p>
+        <p class="how-quote-attr" data-i18n="how-attr">— Phoebe's approach</p>
       </div>
 
       <div class="how-principles">
         <div class="how-principle fade-up">
           <p class="how-principle-num">01</p>
-          <h3>Your Voice Comes First</h3>
-          <p>I deeply value what matters to you. Sessions are led by your priorities — there is no agenda imposed from the outside. You decide what we focus on and the pace at which we move.</p>
+          <h3 data-i18n="p1-title">Your Voice Comes First</h3>
+          <p data-i18n="p1-body">I deeply value what matters to you. Sessions are led by your priorities — there is no agenda imposed from the outside. You decide what we focus on and the pace at which we move.</p>
         </div>
         <div class="how-principle fade-up">
           <p class="how-principle-num">02</p>
-          <h3>Goals as a Compass</h3>
-          <p>Together, we look into what you want from your life and find realistic, meaningful ways toward those goals. Progress doesn't have to be dramatic — small shifts often make the biggest difference.</p>
+          <h3 data-i18n="p2-title">Goals as a Compass</h3>
+          <p data-i18n="p2-body">Together, we look into what you want from your life and find realistic, meaningful ways toward those goals. Progress doesn't have to be dramatic — small shifts often make the biggest difference.</p>
         </div>
         <div class="how-principle fade-up">
           <p class="how-principle-num">03</p>
-          <h3>A More Satisfying Daily Life</h3>
-          <p>The aim of occupational therapy is practical and grounded: helping you participate in the activities that give your day meaning. Better routines, clearer values, more sustainable living — that is the work.</p>
+          <h3 data-i18n="p3-title">A More Satisfying Daily Life</h3>
+          <p data-i18n="p3-body">The aim of occupational therapy is practical and grounded: helping you participate in the activities that give your day meaning. Better routines, clearer values, more sustainable living — that is the work.</p>
         </div>
       </div>
     </div>
@@ -1636,32 +1733,32 @@
         <span lang="zh-Hant">中文</span>
       </span>
     </div>
-    <p class="language-note fade-up">
+    <p class="language-note fade-up" data-i18n="lang-note">
       Sessions are available in both English and Traditional Chinese (<span lang="zh-Hant">中文</span>), providing a fully bilingual space where you can express yourself in the language you feel most comfortable in.
     </p>
   </div>
 
   <!-- ─── CONTACT ─── -->
   <section id="contact">
-    <p class="section-label fade-up">Get in Touch</p>
-    <h2 class="section-title fade-up">
+    <p class="section-label fade-up" data-i18n="contact-label">Get in Touch</p>
+    <h2 class="section-title fade-up" data-i18n="contact-heading">
       Ready to take<br>the first step?
     </h2>
-    <p class="section-body fade-up">
+    <p class="section-body fade-up" data-i18n="contact-body">
       Start with a free 15-minute introductory call — a relaxed, no-pressure conversation to see if we're a good fit.
     </p>
     <div class="contact-ctas fade-up">
-      <a href="mailto:hello@phoebeot.com" class="btn-primary">Book an Intro Call</a>
-      <a href="mailto:hello@phoebeot.com" class="btn-primary-outline">Send an Email</a>
+      <a href="mailto:hello@phoebeot.com" class="btn-primary" data-i18n="contact-cta1">Book an Intro Call</a>
+      <a href="mailto:hello@phoebeot.com" class="btn-primary-outline" data-i18n="contact-cta2">Send an Email</a>
     </div>
-    <p class="contact-note fade-up">hello@phoebeot.com &nbsp;·&nbsp; HCPC Registered Occupational Therapist</p>
+    <p class="contact-note fade-up" data-i18n="contact-note">hello@phoebeot.com &nbsp;·&nbsp; HCPC Registered Occupational Therapist</p>
   </section>
 
   <!-- ─── FOOTER ─── -->
   <footer>
-    <span class="footer-logo"><img src="assets/photos/Logo 4.png" alt="BodyMindOT" /></span>
-    <span class="footer-credentials">HCPC Registered &nbsp;·&nbsp; Occupational Therapist &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span></span>
-    <span class="footer-copy">&copy; 2025 BodyMindOT. All rights reserved.</span>
+    <span class="footer-logo"><img src="assets/photos/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" /></span>
+    <span class="footer-credentials" data-i18n="footer-creds">HCPC Registered &nbsp;·&nbsp; Occupational Therapist &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span></span>
+    <span class="footer-copy" data-i18n="footer-copy">&copy; 2025 BodyMindOT. All rights reserved.</span>
   </footer>
 
   <!-- ─── BACK TO TOP (Change 7) ─── -->
@@ -1677,7 +1774,7 @@
 
   <!-- ─── COOKIE BANNER (Change 17) ─── -->
   <div id="cookie-banner">
-    <p>We use essential cookies to ensure the site works. <a href="#" id="cookie-accept">Accept</a></p>
+    <p data-i18n="cookie-text">We use essential cookies to ensure the site works. <a href="#" id="cookie-accept">Accept</a></p>
   </div>
 
 
@@ -1743,7 +1840,6 @@
       const line3 = document.getElementById('line3');
       const sub   = document.getElementById('heroSub');
       const ctas  = document.getElementById('heroCtas');
-      const illus = document.getElementById('heroIllustration');
 
       setTimeout(() => { tag.classList.add('visible'); }, 200);
       setTimeout(() => { line1.classList.add('visible'); }, 400);
@@ -1751,7 +1847,6 @@
       setTimeout(() => { line3.classList.add('visible'); }, 760);
       setTimeout(() => { sub.classList.add('visible'); }, 1000);
       setTimeout(() => { ctas.classList.add('visible'); }, 1200);
-      setTimeout(() => { illus.classList.add('visible'); }, 500);
     }
 
     // ══════════════════════════════════════════════
@@ -1802,35 +1897,6 @@
     // ══════════════════════════════════════════════
     // MOUSE PARALLAX ON HERO ILLUSTRATION (desktop only)
     // ══════════════════════════════════════════════
-    const heroSection = document.getElementById('hero');
-    const illus       = document.getElementById('heroIllustration');
-    const isTouch     = window.matchMedia('(pointer: coarse)').matches;
-
-    if (!isTouch) {
-      let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
-
-      heroSection.addEventListener('mousemove', (e) => {
-        const rect = heroSection.getBoundingClientRect();
-        const cx = rect.width  / 2;
-        const cy = rect.height / 2;
-        const dx = (e.clientX - rect.left - cx) / cx;
-        const dy = (e.clientY - rect.top  - cy) / cy;
-        targetX = -dx * 18;
-        targetY = -dy * 12;
-      });
-
-      heroSection.addEventListener('mouseleave', () => {
-        targetX = 0;
-        targetY = 0;
-      });
-
-      (function parallaxLoop() {
-        currentX += (targetX - currentX) * 0.06;
-        currentY += (targetY - currentY) * 0.06;
-        illus.style.transform = `translate(${currentX}px, ${currentY}px)`;
-        requestAnimationFrame(parallaxLoop);
-      })();
-    }
 
     // ══════════════════════════════════════════════
     // SCROLL REVEAL with IntersectionObserver
@@ -1871,100 +1937,6 @@
       }, { passive: true });
     }
 
-    // ══════════════════════════════════════════════
-    // CUSTOM CURSOR (Change 1)
-    // ══════════════════════════════════════════════
-    function initCursor() {
-      if (!window.matchMedia('(pointer: fine)').matches) return;
-
-      const dot   = document.getElementById('cursor-dot');
-      const ring  = document.getElementById('cursor-ring');
-
-      // Trail: 6 dots
-      const TRAIL_COUNT = 6;
-      const trailDots = [];
-      const trailPositions = [];
-
-      for (let i = 0; i < TRAIL_COUNT; i++) {
-        const d = document.createElement('div');
-        d.className = 'cursor-trail-dot';
-        const opacity = 0.35 - (i * ((0.35 - 0.05) / (TRAIL_COUNT - 1)));
-        d.style.opacity = opacity;
-        document.body.appendChild(d);
-        trailDots.push(d);
-        trailPositions.push({ x: -100, y: -100 });
-      }
-
-      let mouseX = -100, mouseY = -100;
-      let ringX  = -100, ringY  = -100;
-      let rafRunning = false;
-
-      function updateCursor() {
-        // Dot follows exactly
-        dot.style.left = mouseX + 'px';
-        dot.style.top  = mouseY + 'px';
-
-        // Ring lerps
-        ringX += (mouseX - ringX) * 0.12;
-        ringY += (mouseY - ringY) * 0.12;
-        ring.style.left = ringX + 'px';
-        ring.style.top  = ringY + 'px';
-
-        // Update trail positions (shift array)
-        trailPositions.unshift({ x: mouseX, y: mouseY });
-        trailPositions.length = TRAIL_COUNT;
-
-        trailDots.forEach((td, i) => {
-          const pos = trailPositions[i] || { x: -100, y: -100 };
-          td.style.left = pos.x + 'px';
-          td.style.top  = pos.y + 'px';
-        });
-
-        requestAnimationFrame(updateCursor);
-      }
-
-      requestAnimationFrame(updateCursor);
-
-      document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-      });
-
-      // Hide/show on window leave/enter
-      document.addEventListener('mouseleave', () => {
-        dot.style.display  = 'none';
-        ring.style.display = 'none';
-        trailDots.forEach(td => td.style.display = 'none');
-      });
-      document.addEventListener('mouseenter', () => {
-        dot.style.display  = 'block';
-        ring.style.display = 'block';
-        trailDots.forEach(td => td.style.display = 'block');
-      });
-
-      // Hover states
-      const hoverTargets = 'a, button, .who-card, .service-tile, .btn-primary, .btn-ghost, .btn-primary-outline, .nav-cta, .workshop-card';
-      document.querySelectorAll(hoverTargets).forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          dot.classList.add('cursor-hover');
-          ring.classList.add('cursor-hover');
-        });
-        el.addEventListener('mouseleave', () => {
-          dot.classList.remove('cursor-hover');
-          ring.classList.remove('cursor-hover');
-        });
-      });
-
-      // Click ripple
-      document.addEventListener('mousedown', (e) => {
-        const ripple = document.createElement('div');
-        ripple.className = 'cursor-ripple';
-        ripple.style.left = e.clientX + 'px';
-        ripple.style.top  = e.clientY + 'px';
-        document.body.appendChild(ripple);
-        ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
-      });
-    }
 
     // ══════════════════════════════════════════════
     // 3D TILT ON CARDS (Change 5)
@@ -2096,9 +2068,286 @@
     }
 
     // ══════════════════════════════════════════════
+    // LANGUAGE SWITCHER
+    // ══════════════════════════════════════════════
+    const TRANSLATIONS = {
+      en: {
+        'nav-about': 'About',
+        'nav-services': 'Services',
+        'nav-workshops': 'Workshops',
+        'nav-contact': 'Contact',
+        'nav-book': 'Book a Consultation',
+        'hero-tag': 'HCPC Registered &nbsp;·&nbsp; Occupational Therapist',
+        'hero-line1': 'Occupational',
+        'hero-line2': '<em>Therapy</em> for',
+        'hero-line3': 'your life.',
+        'hero-sub': 'Online mental health &amp; wellbeing consultations<br>in English and Mandarin &nbsp;·&nbsp; 中文',
+        'hero-cta1': 'Book a Consultation',
+        'hero-cta2': 'Explore Services',
+        'about-label': 'About',
+        'about-heading': 'Hi, I\'m Phoebe —<br>your OT for a more<br>fulfilling daily life.',
+        'about-intro': 'I am an HCPC-registered occupational therapist specialising in mental health and wellbeing. Through online one-to-one consultations, I support adults in navigating life\'s challenges — whether that\'s burnout, adjustment to living abroad, managing stress, or finding a sustainable rhythm in your everyday.',
+        'about-bilingual': 'I work with both English-speaking and Mandarin-speaking clients, offering a bilingual space where you can express yourself fully.<br><strong><span lang="zh-Hant">我提供中英雙語諮詢服務，歡迎中文使用者。</span></strong>',
+        'tag-hcpc': 'HCPC Registered',
+        'tag-ot': 'Occupational Therapist',
+        'tag-mh': 'Mental Health',
+        'tag-online': 'Online Consultations',
+        'tag-lang': 'English &amp; <span lang="zh-Hant">中文</span>',
+        'who-label': 'Who I Work With',
+        'who-heading': 'Support tailored<br>to your world.',
+        'who-body': 'Whether you\'re navigating the pressures of study, career, or family life — I offer a space to reflect, re-centre, and take steps toward change.',
+        'card1-title': 'Students',
+        'card1-body': 'Adjusting to a new country, managing academic pressure, or finding balance between study and life — I support students through transitions and the unique challenges of being away from home.',
+        'card2-title': 'Working Professionals',
+        'card2-body': 'Feeling stretched thin, burned out, or disconnected from your sense of purpose? I help working adults recalibrate their routines, manage stress, and create a sustainable work-life rhythm.',
+        'card3-title': 'Parents &amp; Families',
+        'card3-body': 'Parenting brings profound joy and profound difficulty. I provide a compassionate space to explore the emotional and practical challenges of family life, including the pressures of raising children abroad.',
+        'services-label': 'Individual Services',
+        'services-heading': 'Online 1:1<br>Consultations.',
+        'tile-stress': 'Stress Management',
+        'tile-burnout': 'Burnout Support',
+        'tile-daily': 'Daily Functioning',
+        'tile-balance': 'Life / Work Balance',
+        'tile-emotional': 'Emotional Regulation',
+        'tile-overseas': 'Overseas Adjustment',
+        'tile-roles': 'Life Roles Transition',
+        'tile-routines': 'Routines &amp; Sustainable Living',
+        'tile-parenting': 'Parenting &amp; Family Functioning',
+        'tile-values': 'Value Clarification',
+        'info-heading': 'Online Sessions',
+        'info-body': 'All individual sessions take place online, making it easy to access support wherever you are in the world. Sessions are held via a secure video platform at a time that suits you.',
+        'meta-format': '<strong>Format</strong> &nbsp; Secure video call',
+        'meta-language': '<strong>Language</strong> &nbsp; English or <span lang="zh-Hant">中文</span>',
+        'meta-availability': '<strong>Availability</strong> &nbsp; Flexible scheduling',
+        'meta-first': '<strong>First step</strong> &nbsp; Free 15-min intro call',
+        'info-book': 'Book a Consultation',
+        'workshops-label': 'Group Workshops',
+        'workshops-heading': 'Creativity for<br>everyday life.',
+        'workshops-body': 'My workshops explore how creativity can be a meaningful part of your daily life — not as an artistic skill, but as a way of connecting with yourself, building resilience, and finding enjoyment in the everyday.',
+        'tag-online-loc': 'Online',
+        'tag-london': 'London · In Person',
+        'workshops-cta': 'Find Upcoming Workshops',
+        'workshop-card-title': 'Creativity &amp; Daily Life Workshops',
+        'badge-online': 'Online',
+        'badge-london': 'London',
+        'workshop-card-body': 'A small-group experience designed to help you tap into creativity as a resource for wellbeing. Suitable for anyone curious about occupational therapy approaches to living more fully.',
+        'workshop-detail1': 'Sessions held online via video &amp; in person in London &nbsp;·&nbsp; Suitable for adults &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span> welcome',
+        'workshop-detail2': 'Contact for upcoming dates &nbsp;·&nbsp; hello@phoebeot.com',
+        'how-quote': '"Your voice matters —<br>and your goals<br><span>shape the path</span><br>we take together."',
+        'how-attr': '— Phoebe\'s approach',
+        'p1-title': 'Your Voice Comes First',
+        'p1-body': 'I deeply value what matters to you. Sessions are led by your priorities — there is no agenda imposed from the outside. You decide what we focus on and the pace at which we move.',
+        'p2-title': 'Goals as a Compass',
+        'p2-body': 'Together, we look into what you want from your life and find realistic, meaningful ways toward those goals. Progress doesn\'t have to be dramatic — small shifts often make the biggest difference.',
+        'p3-title': 'A More Satisfying Daily Life',
+        'p3-body': 'The aim of occupational therapy is practical and grounded: helping you participate in the activities that give your day meaning. Better routines, clearer values, more sustainable living — that is the work.',
+        'lang-note': 'Sessions are available in both English and Traditional Chinese (<span lang="zh-Hant">中文</span>), providing a fully bilingual space where you can express yourself in the language you feel most comfortable in.',
+        'contact-label': 'Get in Touch',
+        'contact-heading': 'Ready to take<br>the first step?',
+        'contact-body': 'Start with a free 15-minute introductory call — a relaxed, no-pressure conversation to see if we\'re a good fit.',
+        'contact-cta1': 'Book an Intro Call',
+        'contact-cta2': 'Send an Email',
+        'contact-note': 'hello@phoebeot.com &nbsp;·&nbsp; HCPC Registered Occupational Therapist',
+        'footer-creds': 'HCPC Registered &nbsp;·&nbsp; Occupational Therapist &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span>',
+        'footer-copy': '&copy; 2025 BodyMindOT. All rights reserved.',
+        'cookie-text': 'We use essential cookies to ensure the site works. <a href="#" id="cookie-accept">Accept</a>',
+        'cv-edu-label': 'Education',
+        'edu1-inst': 'National Taiwan University',
+        'edu1-degree': 'BSc Occupational Therapy',
+        'edu2-inst': 'Goldsmiths, University of London',
+        'edu2-degree': 'MA Dance Movement Psychotherapy',
+        'cv-exp-label': 'Experience',
+        'exp1-inst': 'NHS mental health inpatient and community services, UK',
+        'exp1-role': 'Occupational Therapist',
+        'exp2-inst': 'National Cheng Kung University Hospital, Taiwan',
+        'exp2-role': 'Occupational Therapist — Rehabilitation &amp; Children\'s Development',
+        'cv-training-label': 'Professional Development',
+        'train1': 'Motivational Interviewing',
+        'train2': 'Systemic &amp; Family-Informed Approaches',
+        'train3': 'Sensory Modulation',
+        'train4': 'Neurodiversity-Informed Practice',
+        'train5': 'Cultural Competence &amp; Cross-Cultural Mental Health',
+        'train6': 'Risk Assessment &amp; Management',
+        'train7': 'Taiwan Health Professional Post Graduate Year',
+        'cv-orgs-label': 'Additional Training Through',
+        'org1': 'The Tavistock and Portman NHS Foundation Trust, UK',
+        'org2': 'Anna Freud, UK',
+        'org3': 'National Autistic Society, UK',
+        'org4': 'The Association for Psychological Therapies, UK',
+        'org5': 'NHS mental health services, UK',
+        'org6': 'National Cheng Kung University Hospital, Taiwan',
+      },
+      zh: {
+        'nav-about': '關於我',
+        'nav-services': '服務',
+        'nav-workshops': '工作坊',
+        'nav-contact': '聯絡',
+        'nav-book': '預約諮詢',
+        'hero-tag': 'HCPC 認證 &nbsp;·&nbsp; 職業治療師',
+        'hero-line1': '職業',
+        'hero-line2': '<em>治療</em>，為了',
+        'hero-line3': '你的生活。',
+        'hero-sub': '線上心理健康及身心健康諮詢<br>提供英文及中文服務 &nbsp;·&nbsp; English',
+        'hero-cta1': '預約諮詢',
+        'hero-cta2': '了解服務',
+        'about-label': '關於我',
+        'about-heading': '你好，我是 Phoebe —<br>為你提供更充實日常<br>生活的職業治療師。',
+        'about-intro': '我是 HCPC 認證的職業治療師，專注於心理健康及身心健康領域。透過線上一對一諮詢，我協助成人應對生活中的各種挑戰——無論是職業倦怠、適應海外生活、壓力管理，還是尋找可持續的日常生活節奏。',
+        'about-bilingual': '我同時服務英語及中文客戶，提供雙語空間讓你能完整表達自己。<br><strong>I also work with English-speaking clients.</strong>',
+        'tag-hcpc': 'HCPC 認證',
+        'tag-ot': '職業治療師',
+        'tag-mh': '心理健康',
+        'tag-online': '線上諮詢',
+        'tag-lang': '英文及中文',
+        'who-label': '服務對象',
+        'who-heading': '為你量身訂製<br>的支援。',
+        'who-body': '無論你正面對學業、職業還是家庭生活的壓力——我提供一個空間讓你反思、重新找到重心，並邁向改變。',
+        'card1-title': '學生',
+        'card1-body': '適應新的國家、應對學業壓力，或在學習與生活之間尋找平衡——我支援學生度過人生轉變，以及身處異鄉所帶來的獨特挑戰。',
+        'card2-title': '在職人士',
+        'card2-body': '感到疲憊不堪、職業倦怠，或與自己的人生目標失去連結？我協助在職成人重新調整日常節奏、管理壓力，建立可持續的工作與生活平衡。',
+        'card3-title': '家長與家庭',
+        'card3-body': '為人父母既帶來深厚的喜悅，也伴隨著重重的挑戰。我提供一個充滿關懷的空間，讓你探索家庭生活中的情感及實際困難，包括在海外養育子女所帶來的壓力。',
+        'services-label': '個人服務',
+        'services-heading': '線上一對一<br>諮詢。',
+        'tile-stress': '壓力管理',
+        'tile-burnout': '職業倦怠支援',
+        'tile-daily': '日常生活功能',
+        'tile-balance': '生活與工作平衡',
+        'tile-emotional': '情緒調節',
+        'tile-overseas': '海外適應',
+        'tile-roles': '生命角色轉換',
+        'tile-routines': '日常規律與可持續生活',
+        'tile-parenting': '親職與家庭功能',
+        'tile-values': '價值釐清',
+        'info-heading': '線上療程',
+        'info-body': '所有個人療程均透過線上進行，讓你無論身在世界何處都能輕鬆獲得支援。療程透過安全的視訊平台進行，時間靈活配合你的需要。',
+        'meta-format': '<strong>形式</strong> &nbsp; 安全視訊通話',
+        'meta-language': '<strong>語言</strong> &nbsp; 英文或中文',
+        'meta-availability': '<strong>可用時間</strong> &nbsp; 彈性排程',
+        'meta-first': '<strong>第一步</strong> &nbsp; 免費 15 分鐘初步通話',
+        'info-book': '預約諮詢',
+        'workshops-label': '小組工作坊',
+        'workshops-heading': '創意融入<br>日常生活。',
+        'workshops-body': '我的工作坊探索創意如何成為日常生活中有意義的一部分——不是作為藝術技能，而是作為與自己連結、建立韌性，並在日常中找到樂趣的方式。',
+        'tag-online-loc': '線上',
+        'tag-london': '倫敦 · 面對面',
+        'workshops-cta': '查看即將舉辦的工作坊',
+        'workshop-card-title': '創意與日常生活工作坊',
+        'badge-online': '線上',
+        'badge-london': '倫敦',
+        'workshop-card-body': '小組體驗，旨在幫助你發掘創意作為身心健康的資源。適合任何對以職業治療方式更充分生活感到好奇的人。',
+        'workshop-detail1': '療程透過視訊線上及在倫敦面對面進行 &nbsp;·&nbsp; 適合成人 &nbsp;·&nbsp; 歡迎英文及中文',
+        'workshop-detail2': '請聯絡了解即將舉辦的日期 &nbsp;·&nbsp; hello@phoebeot.com',
+        'how-quote': '「你的聲音很重要——<br>而你的目標<br><span>塑造我們</span><br>共同前行的方向。」',
+        'how-attr': '— Phoebe 的工作方式',
+        'p1-title': '你的聲音最重要',
+        'p1-body': '我深深重視對你來說有意義的事情。療程由你的優先事項主導——沒有從外部施加的議程。你決定我們關注的焦點和前進的步伐。',
+        'p2-title': '以目標為指南針',
+        'p2-body': '我們一起探索你對生活的期望，並找到切實可行、有意義的方式邁向這些目標。進步不必是戲劇性的——細微的轉變往往帶來最大的改變。',
+        'p3-title': '更充實的日常生活',
+        'p3-body': '職業治療的目標是實際且紮根的：幫助你參與賦予你日子意義的活動。更好的日常規律、更清晰的價值觀、更可持續的生活——這就是我們的工作。',
+        'lang-note': '療程提供英文及繁體中文兩種語言，為你提供完全雙語的空間，讓你以最舒適的語言表達自己。',
+        'contact-label': '聯絡我',
+        'contact-heading': '準備好踏出<br>第一步了嗎？',
+        'contact-body': '從免費的 15 分鐘初步通話開始——一個輕鬆、無壓力的對話，看看我們是否合適。',
+        'contact-cta1': '預約初步通話',
+        'contact-cta2': '發送電郵',
+        'contact-note': 'hello@phoebeot.com &nbsp;·&nbsp; HCPC 認證職業治療師',
+        'footer-creds': 'HCPC 認證 &nbsp;·&nbsp; 職業治療師 &nbsp;·&nbsp; 英文及中文',
+        'footer-copy': '&copy; 2025 BodyMindOT。保留所有權利。',
+        'cookie-text': '我們使用必要的 Cookie 以確保網站正常運行。<a href="#" id="cookie-accept">接受</a>',
+        'cv-edu-label': '學歷',
+        'edu1-inst': '國立台灣大學',
+        'edu1-degree': '職業治療學士',
+        'edu2-inst': '倫敦大學金匠學院',
+        'edu2-degree': '舞動心理治療碩士',
+        'cv-exp-label': '工作經歷',
+        'exp1-inst': '英國國民健保署心理健康住院及社區服務',
+        'exp1-role': '職業治療師',
+        'exp2-inst': '台灣國立成功大學醫學院附設醫院',
+        'exp2-role': '職業治療師 — 復健部及兒童發展中心',
+        'cv-training-label': '專業發展',
+        'train1': '動機式訪談',
+        'train2': '系統性與家庭導向方法',
+        'train3': '感覺調節',
+        'train4': '神經多樣性導向實踐',
+        'train5': '文化能力與跨文化心理健康',
+        'train6': '風險評估與管理',
+        'train7': '台灣醫事人員畢業後一般醫學訓練',
+        'cv-orgs-label': '額外培訓機構',
+        'org1': '英國塔維斯托克與波特曼 NHS 基金信託',
+        'org2': '英國安娜·弗洛伊德中心',
+        'org3': '英國全國自閉症協會',
+        'org4': '英國心理治療協會',
+        'org5': '英國國民健保署心理健康服務',
+        'org6': '台灣國立成功大學醫學院附設醫院',
+      }
+    };
+
+    const MARQUEE = {
+      en: ['Stress Management','Burnout Support','Work-Life Balance','Emotional Regulation','Overseas Adjustment','Life Roles Transition','Sustainable Living','Parenting Support','Value Clarification','Daily Functioning'],
+      zh: ['壓力管理','職業倦怠支援','工作與生活平衡','情緒調節','海外適應','生命角色轉換','可持續生活','親職支援','價值釐清','日常生活功能']
+    };
+
+    function applyTranslations(lang) {
+      const t = TRANSLATIONS[lang];
+      document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.innerHTML = t[key];
+      });
+      // Rebuild marquee
+      const inner = document.querySelector('.marquee-inner');
+      if (inner) {
+        const items = MARQUEE[lang];
+        const doubled = [...items, ...items];
+        inner.innerHTML = doubled.map((item, i) =>
+          `<span>${item}</span><span class="dot">·</span>`
+        ).join('');
+      }
+      // Re-wire cookie accept after innerHTML swap
+      const cookieAccept = document.getElementById('cookie-accept');
+      if (cookieAccept) {
+        cookieAccept.addEventListener('click', (e) => {
+          e.preventDefault();
+          const banner = document.getElementById('cookie-banner');
+          if (banner) {
+            localStorage.setItem('cookie-ok', '1');
+            banner.style.opacity = '0';
+            banner.style.transform = 'translateX(-50%) translateY(20px)';
+            setTimeout(() => banner.remove(), 400);
+          }
+        });
+      }
+    }
+
+    function initLangSwitcher() {
+      const savedLang = localStorage.getItem('lang') || 'en';
+      let currentLang = savedLang;
+
+      function setLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('lang', lang);
+        applyTranslations(lang);
+        // Update all toggle buttons (desktop + mobile)
+        document.querySelectorAll('[data-lang]').forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        });
+      }
+
+      // Apply saved preference on load
+      if (savedLang !== 'en') setLang(savedLang);
+
+      // Wire up all toggle buttons
+      document.querySelectorAll('[data-lang]').forEach(btn => {
+        btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+      });
+    }
+
+    // ══════════════════════════════════════════════
     // CALL ALL INIT FUNCTIONS
     // ══════════════════════════════════════════════
-    initCursor();
     initTilt();
     initMagnetic();
     initStagger();
@@ -2106,6 +2355,7 @@
     initBackToTop();
     initCookieBanner();
     initAboutParallax();
+    initLangSwitcher();
 
   </script>
 </body>
