@@ -20,6 +20,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
+    /* ─── TAIPEI SANS TC ─── */
+    @font-face {
+      font-family: 'Taipei Sans TC';
+      src: url('font/chinese/TaipeiSansTCBeta-Light.ttf') format('truetype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Taipei Sans TC';
+      src: url('font/chinese/TaipeiSansTCBeta-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Taipei Sans TC';
+      src: url('font/chinese/TaipeiSansTCBeta-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
     /* ─── CSS VARIABLES ─── */
     :root {
       --cream:      #FAF8F5;
@@ -451,20 +474,81 @@
       object-fit: contain;
     }
 
+    /* ─── CHINESE FONT APPLICATION ─── */
+    /* Inline Chinese spans (always) */
+    [lang="zh-Hant"],
+    [lang="zh"] {
+      font-family: 'Taipei Sans TC', 'Inter', sans-serif;
+    }
+    /* Full page when zh is active — html lang attr is set by applyTranslations */
+    html[lang="zh-Hant"] body,
+    html[lang="zh-Hant"] p,
+    html[lang="zh-Hant"] span,
+    html[lang="zh-Hant"] a,
+    html[lang="zh-Hant"] label,
+    html[lang="zh-Hant"] button,
+    html[lang="zh-Hant"] input,
+    html[lang="zh-Hant"] textarea,
+    html[lang="zh-Hant"] select,
+    html[lang="zh-Hant"] li {
+      font-family: 'Taipei Sans TC', 'Inter', sans-serif;
+    }
+    html[lang="zh-Hant"] h1,
+    html[lang="zh-Hant"] h2,
+    html[lang="zh-Hant"] h3,
+    html[lang="zh-Hant"] h4 {
+      font-family: 'Taipei Sans TC', 'Cormorant Garamond', serif;
+      font-style: normal;
+    }
+
+    /* ─── HERO SCROLL HINT ─── */
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(250,248,245,0.45);
+      transition: color var(--transition-fast);
+      opacity: 0;
+      animation: scrollHintFade 1s ease 2.8s forwards;
+    }
+    .hero-scroll-hint:hover { color: var(--gold); }
+    .hero-scroll-label {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .hero-scroll-arrow {
+      animation: scrollBounce 1.6s ease-in-out infinite;
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(5px); }
+    }
+    @keyframes scrollHintFade {
+      to { opacity: 1; }
+    }
+    @media (max-width: 600px) {
+      .hero-scroll-hint { bottom: 1.5rem; }
+    }
+
     /* ─── MARQUEE ─── */
     .marquee-strip {
       background: var(--gold);
-      padding: 1rem 0;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    /* Change 9: pause on hover */
-    .marquee-strip:hover .marquee-inner {
-      animation-play-state: paused;
+      padding: 1rem 5%;
     }
     .marquee-inner {
-      display: inline-flex;
-      animation: marquee 30s linear infinite;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
     }
     .marquee-inner span {
       font-size: 0.72rem;
@@ -472,15 +556,11 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--charcoal);
-      padding: 0 2.5rem;
+      padding: 0.2rem 2rem;
     }
     .marquee-inner span.dot {
       opacity: 0.4;
       padding: 0;
-    }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
     }
 
     /* ─── SECTION SHARED ─── */
@@ -1087,6 +1167,160 @@
       letter-spacing: 0.05em;
     }
 
+    /* ─── ACCREDITATION LOGOS ─── */
+    .accreditation-logos {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--beige);
+    }
+    .accred-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+    .accred-logos-row {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .accred-logo {
+      height: 56px;
+      width: auto;
+      filter: grayscale(100%);
+      opacity: 0.65;
+      transition: opacity 0.3s ease, filter 0.3s ease;
+    }
+    .accred-logo:hover {
+      opacity: 1;
+      filter: grayscale(0%);
+    }
+
+    /* ─── CONTACT FORM ─── */
+    #contact {
+      text-align: left;
+    }
+    .contact-form-wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    #contact .section-label,
+    #contact .section-title,
+    #contact .section-body {
+      text-align: left;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      margin-top: 2.5rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .form-group label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(250,248,245,0.55);
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: rgba(250,248,245,0.06);
+      border: 1px solid rgba(196,168,130,0.25);
+      border-radius: 6px;
+      padding: 0.85rem 1rem;
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      transition: border-color var(--transition-fast), background var(--transition-fast);
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--gold);
+      background: rgba(250,248,245,0.09);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(250,248,245,0.22);
+    }
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .form-group select {
+      appearance: none;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C4A882' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 12px;
+      background-color: rgba(250,248,245,0.06);
+      padding-right: 2.5rem;
+    }
+    .form-group select option {
+      background: #1C1814;
+      color: var(--cream);
+    }
+    .form-submit-btn {
+      background: var(--gold);
+      color: var(--charcoal);
+      border: none;
+      padding: 0.9rem 2.5rem;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast);
+      width: 100%;
+      margin-top: 0.25rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .form-submit-btn:hover {
+      background: var(--gold-dark);
+      transform: translateY(-2px);
+    }
+    .contact-alt {
+      margin-top: 2.5rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid rgba(196,168,130,0.15);
+      font-size: 0.85rem;
+      color: rgba(250,248,245,0.4);
+    }
+    .contact-alt a {
+      color: var(--gold);
+    }
+    .contact-alt a:hover { text-decoration: underline; }
+    .contact-note {
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      color: rgba(250,248,245,0.25);
+      letter-spacing: 0.05em;
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; gap: 1.4rem; }
+    }
+
     /* ─── FOOTER ─── */
     footer {
       background: #100E0C;
@@ -1390,7 +1624,7 @@
     "description": "HCPC-registered occupational therapist specialising in mental health and wellbeing, offering online consultations in English and Mandarin.",
     "knowsLanguage": ["en", "zh"],
     "url": "https://bodymindot.com",
-    "email": "hello@phoebeot.com",
+    "email": "phoebehsieh@bodymindot.com",
     "hasCredential": {
       "@type": "EducationalOccupationalCredential",
       "credentialCategory": "HCPC Registration"
@@ -1420,7 +1654,7 @@
       <li><a href="#services" data-i18n="nav-services">Services</a></li>
       <li><a href="#workshops" data-i18n="nav-workshops">Workshops</a></li>
       <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
-      <li><a href="mailto:hello@phoebeot.com" class="nav-cta" data-i18n="nav-book">Book a Consultation</a></li>
+      <li><a href="mailto:phoebehsieh@bodymindot.com" class="nav-cta" data-i18n="nav-book">Book a Consultation</a></li>
     </ul>
     <div class="lang-switcher" id="langSwitcher" aria-label="Language / 語言">
       <button class="lang-btn active" data-lang="en">EN</button>
@@ -1440,7 +1674,7 @@
     <a href="#services" class="mobile-link" data-i18n="nav-services">Services</a>
     <a href="#workshops" class="mobile-link" data-i18n="nav-workshops">Workshops</a>
     <a href="#contact" class="mobile-link" data-i18n="nav-contact">Contact</a>
-    <a href="mailto:hello@phoebeot.com" class="mobile-link mobile-cta" data-i18n="nav-book">Book a Consultation</a>
+    <a href="mailto:phoebehsieh@bodymindot.com" class="mobile-link mobile-cta" data-i18n="nav-book">Book a Consultation</a>
     <div class="lang-switcher-mobile" id="langSwitcherMobile">
       <button class="lang-btn-mobile active" data-lang="en">English</button>
       <span class="lang-sep-mobile">·</span>
@@ -1473,39 +1707,21 @@
       </p>
 
       <div class="hero-ctas" id="heroCtas">
-        <a href="mailto:hello@phoebeot.com" class="btn-primary" data-i18n="hero-cta1">Book a Consultation</a>
+        <a href="mailto:phoebehsieh@bodymindot.com" class="btn-primary" data-i18n="hero-cta1">Book a Consultation</a>
         <a href="#services" class="btn-ghost" data-i18n="hero-cta2">Explore Services</a>
       </div>
     </div>
 
-  </section>
+    <a href="#about" class="hero-scroll-hint" aria-label="Scroll down">
+      <span class="hero-scroll-label">Scroll</span>
+      <span class="hero-scroll-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+        </svg>
+      </span>
+    </a>
 
-  <!-- ─── MARQUEE ─── -->
-  <div class="marquee-strip">
-    <div class="marquee-inner" aria-hidden="true">
-      <span>Stress Management</span><span class="dot">·</span>
-      <span>Burnout Support</span><span class="dot">·</span>
-      <span>Work-Life Balance</span><span class="dot">·</span>
-      <span>Emotional Regulation</span><span class="dot">·</span>
-      <span>Overseas Adjustment</span><span class="dot">·</span>
-      <span>Life Roles Transition</span><span class="dot">·</span>
-      <span>Sustainable Living</span><span class="dot">·</span>
-      <span>Parenting Support</span><span class="dot">·</span>
-      <span>Value Clarification</span><span class="dot">·</span>
-      <span>Daily Functioning</span><span class="dot">·</span>
-      <!-- duplicate for seamless loop -->
-      <span>Stress Management</span><span class="dot">·</span>
-      <span>Burnout Support</span><span class="dot">·</span>
-      <span>Work-Life Balance</span><span class="dot">·</span>
-      <span>Emotional Regulation</span><span class="dot">·</span>
-      <span>Overseas Adjustment</span><span class="dot">·</span>
-      <span>Life Roles Transition</span><span class="dot">·</span>
-      <span>Sustainable Living</span><span class="dot">·</span>
-      <span>Parenting Support</span><span class="dot">·</span>
-      <span>Value Clarification</span><span class="dot">·</span>
-      <span>Daily Functioning</span><span class="dot">·</span>
-    </div>
-  </div>
+  </section>
 
   <!-- ─── ABOUT ─── -->
   <section id="about">
@@ -1530,10 +1746,13 @@
         <div class="credential-tags fade-up">
           <span class="credential-tag" data-i18n="tag-hcpc">HCPC Registered</span>
           <span class="credential-tag" data-i18n="tag-ot">Occupational Therapist</span>
-          <span class="credential-tag" data-i18n="tag-mh">Mental Health</span>
-          <span class="credential-tag" data-i18n="tag-online">Online Consultations</span>
+          <span class="credential-tag" data-i18n="tag-mh">Mental Wellbeing</span>
+          <span class="credential-tag" data-i18n="tag-bm">Body &amp; Mind Connection</span>
+          <span class="credential-tag" data-i18n="tag-online">Online Coaching Consultations</span>
+          <span class="credential-tag" data-i18n="tag-workshops">Workshops</span>
           <span class="credential-tag" data-i18n="tag-lang">English &amp; <span lang="zh-Hant">中文</span></span>
         </div>
+
       </div>
     </div>
 
@@ -1575,6 +1794,7 @@
           <span class="training-pill" data-i18n="train5">Cultural Competence &amp; Cross-Cultural Mental Health</span>
           <span class="training-pill" data-i18n="train6">Risk Assessment &amp; Management</span>
           <span class="training-pill" data-i18n="train7">Taiwan Health Professional Post Graduate Year</span>
+          <span class="training-pill" data-i18n="train8">Therapeutic Use of Creativity</span>
         </div>
       </div>
       <div>
@@ -1605,21 +1825,18 @@
     <div class="who-cards">
       <div class="who-card fade-up">
         <div class="who-card-num">01</div>
-        <div class="who-card-icon">&#127891;</div>
         <h3 data-i18n="card1-title">Students</h3>
         <p data-i18n="card1-body">Adjusting to a new country, managing academic pressure, or finding balance between study and life — I support students through transitions and the unique challenges of being away from home.</p>
       </div>
       <div class="who-card fade-up">
         <div class="who-card-num">02</div>
-        <div class="who-card-icon">&#128188;</div>
         <h3 data-i18n="card2-title">Working Professionals</h3>
         <p data-i18n="card2-body">Feeling stretched thin, burned out, or disconnected from your sense of purpose? I help working adults recalibrate their routines, manage stress, and create a sustainable work-life rhythm.</p>
       </div>
       <div class="who-card fade-up">
         <div class="who-card-num">03</div>
-        <div class="who-card-icon">&#128106;</div>
-        <h3 data-i18n="card3-title">Parents &amp; Families</h3>
-        <p data-i18n="card3-body">Parenting brings profound joy and profound difficulty. I provide a compassionate space to explore the emotional and practical challenges of family life, including the pressures of raising children abroad.</p>
+        <h3 data-i18n="card3-title">Parents</h3>
+        <p data-i18n="card3-body">Parenting brings profound joy and profound difficulty. I provide a compassionate space to explore the emotional and practical challenges of raising children, including the extra layer of doing so in the UK.</p>
       </div>
     </div>
   </section>
@@ -1630,7 +1847,7 @@
       <div class="services-left">
         <p class="section-label fade-up" data-i18n="services-label">Individual Services</p>
         <h2 class="section-title fade-up" data-i18n="services-heading">
-          Online 1:1<br>Consultations.
+          Online 1:1 OT<br>Coaching Consultations.
         </h2>
         <div class="services-tiles fade-up">
           <div class="service-tile"><span data-i18n="tile-stress">Stress Management</span><span class="tile-arrow">&#8599;</span></div>
@@ -1648,9 +1865,9 @@
 
       <div class="services-right fade-up">
         <div class="services-info-card">
-          <h3 data-i18n="info-heading">Online Sessions</h3>
+          <h3 data-i18n="info-heading">Online 1:1 OT Coaching Consultations</h3>
           <p data-i18n="info-body">
-            All individual sessions take place online, making it easy to access support wherever you are in the world. Sessions are held via a secure video platform at a time that suits you.
+            I primarily work with clients based in the UK who may travel from time to time. Sessions take place online via a secure video platform, at a time that works for you.
           </p>
           <div class="services-meta">
             <div class="services-meta-item">
@@ -1670,7 +1887,7 @@
               <span data-i18n="meta-first"><strong>First step</strong> &nbsp; Free 15-min intro call</span>
             </div>
           </div>
-          <a href="mailto:hello@phoebeot.com" class="btn-primary" data-i18n="info-book">Book a Consultation</a>
+          <a href="mailto:phoebehsieh@bodymindot.com" class="btn-primary" data-i18n="info-book">Book a Consultation</a>
         </div>
       </div>
     </div>
@@ -1689,7 +1906,7 @@
         </p>
         <div class="location-tags fade-up">
           <span class="location-tag active" data-i18n="tag-online-loc">Online</span>
-          <span class="location-tag active" data-i18n="tag-london">London · In Person</span>
+          <span class="location-tag active" data-i18n="tag-inperson">In Person</span>
         </div>
         <a href="#contact" class="btn-primary-outline fade-up" data-i18n="workshops-cta">Find Upcoming Workshops</a>
       </div>
@@ -1699,19 +1916,19 @@
           <h3 data-i18n="workshop-card-title">Creativity &amp; Daily Life Workshops</h3>
           <div class="workshop-modes">
             <span class="mode-badge online" data-i18n="badge-online">Online</span>
-            <span class="mode-badge in-person" data-i18n="badge-london">London</span>
+            <span class="mode-badge in-person" data-i18n="badge-inperson">In Person</span>
           </div>
         </div>
         <p data-i18n="workshop-card-body">
-          A small-group experience designed to help you tap into creativity as a resource for wellbeing. Suitable for anyone curious about occupational therapy approaches to living more fully.
+          A small-group experience designed to help you tap into creativity as a resource for wellbeing. Suitable for anyone curious about creative approaches to living more fully.
         </p>
         <div class="workshop-divider"></div>
         <p class="workshop-detail" data-i18n="workshop-detail1">
-          Sessions held online via video &amp; in person in London &nbsp;·&nbsp; Suitable for adults &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span> welcome
+          Sessions held online via video &amp; in person &nbsp;·&nbsp; Suitable for adults &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span> welcome
         </p>
         <div class="workshop-divider"></div>
         <p class="workshop-detail" data-i18n="workshop-detail2">
-          Contact for upcoming dates &nbsp;·&nbsp; hello@phoebeot.com
+          Contact for upcoming dates &nbsp;·&nbsp; phoebehsieh@bodymindot.com
         </p>
       </div>
     </div>
@@ -1752,35 +1969,87 @@
   <div id="language">
     <div class="language-flags fade-up">
       <span class="lang-item">
-        <span>&#127468;&#127463;</span>
         <span>English</span>
       </span>
       <span class="lang-sep"></span>
       <span class="lang-item">
-        <span>&#127481;&#127484;</span>
         <span lang="zh-Hant">中文</span>
       </span>
     </div>
     <p class="language-note fade-up" data-i18n="lang-note">
-      Sessions are available in both English and Traditional Chinese (<span lang="zh-Hant">中文</span>), providing a fully bilingual space where you can express yourself in the language you feel most comfortable in.
+      Sessions are available in both English and Chinese (<span lang="zh-Hant">中文</span>), providing a fully bilingual space where you can express yourself in the language you feel most comfortable in.
     </p>
   </div>
 
   <!-- ─── CONTACT ─── -->
   <section id="contact">
-    <p class="section-label fade-up" data-i18n="contact-label">Get in Touch</p>
-    <h2 class="section-title fade-up" data-i18n="contact-heading">
-      Ready to take<br>the first step?
-    </h2>
-    <p class="section-body fade-up" data-i18n="contact-body">
-      Start with a free 15-minute introductory call — a relaxed, no-pressure conversation to see if we're a good fit.
-    </p>
-    <div class="contact-ctas fade-up">
-      <a href="mailto:hello@phoebeot.com" class="btn-primary" data-i18n="contact-cta1">Book an Intro Call</a>
-      <a href="mailto:hello@phoebeot.com" class="btn-primary-outline" data-i18n="contact-cta2">Send an Email</a>
+    <div class="contact-form-wrapper">
+      <p class="section-label fade-up" data-i18n="contact-label">Get in Touch</p>
+      <h2 class="section-title fade-up" data-i18n="contact-heading">
+        Ready to take<br>the first step?
+      </h2>
+      <p class="section-body fade-up" data-i18n="contact-body">
+        Fill in the form below and I'll be in touch soon. Fields marked with * are required.
+      </p>
+
+      <!-- Replace action with your form handler endpoint (e.g. Formspree) -->
+      <form class="contact-form fade-up" id="contactForm" action="#" method="post">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-name" data-i18n="form-name-label">Full Name *</label>
+            <input type="text" id="cf-name" name="name" placeholder="Your full name" required />
+          </div>
+          <div class="form-group">
+            <label for="cf-email" data-i18n="form-email-label">Email Address *</label>
+            <input type="email" id="cf-email" name="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cf-phone" data-i18n="form-phone-label">Phone Number</label>
+          <input type="tel" id="cf-phone" name="phone" placeholder="+44 7700 000000" />
+        </div>
+        <div class="form-group">
+          <label for="cf-service" data-i18n="form-service-label">What service are you interested in? *</label>
+          <select id="cf-service" name="service" required>
+            <option value="" disabled selected data-i18n="form-service-default">Please select…</option>
+            <option value="individual" data-i18n="form-service-1">Individual Consultation</option>
+            <option value="workshop" data-i18n="form-service-2">Group Workshop</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cf-referral" data-i18n="form-referral-label">How did you hear about me?</label>
+          <select id="cf-referral" name="referral">
+            <option value="" disabled selected data-i18n="form-referral-default">Please select…</option>
+            <option value="google" data-i18n="form-ref-1">Google Search</option>
+            <option value="word" data-i18n="form-ref-2">Word of Mouth</option>
+            <option value="facebook" data-i18n="form-ref-3">Facebook</option>
+            <option value="instagram" data-i18n="form-ref-4">Instagram</option>
+            <option value="threads" data-i18n="form-ref-5">Threads</option>
+            <option value="other" data-i18n="form-ref-6">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cf-message" data-i18n="form-message-label">How can I help?</label>
+          <textarea id="cf-message" name="message" placeholder="Tell me a little about what you're looking for…"></textarea>
+        </div>
+        <button type="submit" class="form-submit-btn" data-i18n="form-submit">Send Message</button>
+      </form>
+
+      <p class="contact-alt fade-up" data-i18n="contact-alt">
+        Or reach me directly at <a href="mailto:phoebehsieh@bodymindot.com">phoebehsieh@bodymindot.com</a>
+      </p>
+      <p class="contact-note fade-up" data-i18n="contact-note">HCPC Registered Occupational Therapist</p>
     </div>
-    <p class="contact-note fade-up" data-i18n="contact-note">hello@phoebeot.com &nbsp;·&nbsp; HCPC Registered Occupational Therapist</p>
   </section>
+
+  <!-- ─── REGISTERED WITH ─── -->
+  <div class="accreditation-logos" style="background:var(--cream);padding:2.5rem 5%;border-top:1px solid var(--beige);">
+    <p class="accred-label" data-i18n="accred-label" style="text-align:center;margin-bottom:1.25rem;">Registered With</p>
+    <div class="accred-logos-row" style="justify-content:center;">
+      <img src="assets/photos/hcpc-logo.png" alt="HCPC — Health and Care Professions Council" class="accred-logo" />
+      <img src="assets/photos/rcot-logo.png" alt="Royal College of Occupational Therapists" class="accred-logo" />
+    </div>
+  </div>
 
   <!-- ─── FOOTER ─── -->
   <footer>
@@ -1793,7 +2062,7 @@
   <button id="back-to-top" aria-label="Back to top">&#8593;</button>
 
   <!-- ─── FLOATING CONTACT BUTTON (Change 18) ─── -->
-  <a id="float-contact" href="mailto:hello@phoebeot.com" aria-label="Email Phoebe">
+  <a id="float-contact" href="mailto:phoebehsieh@bodymindot.com" aria-label="Email Phoebe">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <rect x="2" y="4" width="20" height="16" rx="2"/>
       <path d="m2 7 10 7 10-7"/>
@@ -2109,18 +2378,21 @@
         'hero-line1': 'Occupational',
         'hero-line2': '<em>Therapy</em> for',
         'hero-line3': 'your life.',
-        'hero-sub': 'Online mental health &amp; wellbeing consultations<br>in English and Mandarin &nbsp;·&nbsp; 中文',
+        'hero-sub': 'Online mental wellbeing &amp; OT coaching consultations<br>in English and Mandarin &nbsp;·&nbsp; 中文',
         'hero-cta1': 'Book a Consultation',
         'hero-cta2': 'Explore Services',
         'about-label': 'About',
         'about-heading': 'Hi, I\'m Phoebe —<br>your OT for a more<br>fulfilling daily life.',
-        'about-intro': 'I am an HCPC-registered occupational therapist specialising in mental health and wellbeing. Through online one-to-one consultations, I support adults in navigating life\'s challenges — whether that\'s burnout, adjustment to living abroad, managing stress, or finding a sustainable rhythm in your everyday.',
+        'about-intro': 'I am an HCPC-registered occupational therapist specialising in mental wellbeing and the body-mind connection. Through online one-to-one OT coaching consultations, I support adults navigating life\'s challenges — whether that\'s burnout, adjusting to life in the UK, managing stress, or finding a more sustainable rhythm in your everyday.',
         'about-bilingual': 'I work with both English-speaking and Mandarin-speaking clients, offering a bilingual space where you can express yourself fully.<br><strong><span lang="zh-Hant">我提供中英雙語諮詢服務，歡迎中文使用者。</span></strong>',
         'tag-hcpc': 'HCPC Registered',
         'tag-ot': 'Occupational Therapist',
-        'tag-mh': 'Mental Health',
-        'tag-online': 'Online Consultations',
+        'tag-mh': 'Mental Wellbeing',
+        'tag-bm': 'Body &amp; Mind Connection',
+        'tag-online': 'Online Coaching Consultations',
+        'tag-workshops': 'Workshops',
         'tag-lang': 'English &amp; <span lang="zh-Hant">中文</span>',
+        'accred-label': 'Registered With',
         'who-label': 'Who I Work With',
         'who-heading': 'Support tailored<br>to your world.',
         'who-body': 'Whether you\'re navigating the pressures of study, career, or family life — I offer a space to reflect, re-centre, and take steps toward change.',
@@ -2128,10 +2400,10 @@
         'card1-body': 'Adjusting to a new country, managing academic pressure, or finding balance between study and life — I support students through transitions and the unique challenges of being away from home.',
         'card2-title': 'Working Professionals',
         'card2-body': 'Feeling stretched thin, burned out, or disconnected from your sense of purpose? I help working adults recalibrate their routines, manage stress, and create a sustainable work-life rhythm.',
-        'card3-title': 'Parents &amp; Families',
-        'card3-body': 'Parenting brings profound joy and profound difficulty. I provide a compassionate space to explore the emotional and practical challenges of family life, including the pressures of raising children abroad.',
+        'card3-title': 'Parents',
+        'card3-body': 'Parenting brings profound joy and profound difficulty. I provide a compassionate space to explore the emotional and practical challenges of raising children, including the extra layer of doing so in the UK.',
         'services-label': 'Individual Services',
-        'services-heading': 'Online 1:1<br>Consultations.',
+        'services-heading': 'Online 1:1 OT<br>Coaching Consultations.',
         'tile-stress': 'Stress Management',
         'tile-burnout': 'Burnout Support',
         'tile-daily': 'Daily Functioning',
@@ -2142,8 +2414,8 @@
         'tile-routines': 'Routines &amp; Sustainable Living',
         'tile-parenting': 'Parenting &amp; Family Functioning',
         'tile-values': 'Value Clarification',
-        'info-heading': 'Online Sessions',
-        'info-body': 'All individual sessions take place online, making it easy to access support wherever you are in the world. Sessions are held via a secure video platform at a time that suits you.',
+        'info-heading': 'Online 1:1 OT Coaching Consultations',
+        'info-body': 'I primarily work with clients based in the UK who may travel from time to time. Sessions take place online via a secure video platform, at a time that works for you.',
         'meta-format': '<strong>Format</strong> &nbsp; Secure video call',
         'meta-language': '<strong>Language</strong> &nbsp; English or <span lang="zh-Hant">中文</span>',
         'meta-availability': '<strong>Availability</strong> &nbsp; Flexible scheduling',
@@ -2153,14 +2425,14 @@
         'workshops-heading': 'Creativity for<br>everyday life.',
         'workshops-body': 'My workshops explore how creativity can be a meaningful part of your daily life — not as an artistic skill, but as a way of connecting with yourself, building resilience, and finding enjoyment in the everyday.',
         'tag-online-loc': 'Online',
-        'tag-london': 'London · In Person',
+        'tag-inperson': 'In Person',
         'workshops-cta': 'Find Upcoming Workshops',
         'workshop-card-title': 'Creativity &amp; Daily Life Workshops',
         'badge-online': 'Online',
-        'badge-london': 'London',
-        'workshop-card-body': 'A small-group experience designed to help you tap into creativity as a resource for wellbeing. Suitable for anyone curious about occupational therapy approaches to living more fully.',
-        'workshop-detail1': 'Sessions held online via video &amp; in person in London &nbsp;·&nbsp; Suitable for adults &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span> welcome',
-        'workshop-detail2': 'Contact for upcoming dates &nbsp;·&nbsp; hello@phoebeot.com',
+        'badge-inperson': 'In Person',
+        'workshop-card-body': 'A small-group experience designed to help you tap into creativity as a resource for wellbeing. Suitable for anyone curious about creative approaches to living more fully.',
+        'workshop-detail1': 'Sessions held online via video &amp; in person &nbsp;·&nbsp; Suitable for adults &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span> welcome',
+        'workshop-detail2': 'Contact for upcoming dates &nbsp;·&nbsp; phoebehsieh@bodymindot.com',
         'how-quote': '"Your voice matters —<br>and your goals<br><span>shape the path</span><br>we take together."',
         'how-attr': '— Phoebe\'s approach',
         'p1-title': 'Your Voice Comes First',
@@ -2169,13 +2441,29 @@
         'p2-body': 'Together, we look into what you want from your life and find realistic, meaningful ways toward those goals. Progress doesn\'t have to be dramatic — small shifts often make the biggest difference.',
         'p3-title': 'A More Satisfying Daily Life',
         'p3-body': 'The aim of occupational therapy is practical and grounded: helping you participate in the activities that give your day meaning. Better routines, clearer values, more sustainable living — that is the work.',
-        'lang-note': 'Sessions are available in both English and Traditional Chinese (<span lang="zh-Hant">中文</span>), providing a fully bilingual space where you can express yourself in the language you feel most comfortable in.',
+        'lang-note': 'Sessions are available in both English and Chinese (<span lang="zh-Hant">中文</span>), providing a fully bilingual space where you can express yourself in the language you feel most comfortable in.',
         'contact-label': 'Get in Touch',
         'contact-heading': 'Ready to take<br>the first step?',
-        'contact-body': 'Start with a free 15-minute introductory call — a relaxed, no-pressure conversation to see if we\'re a good fit.',
-        'contact-cta1': 'Book an Intro Call',
-        'contact-cta2': 'Send an Email',
-        'contact-note': 'hello@phoebeot.com &nbsp;·&nbsp; HCPC Registered Occupational Therapist',
+        'contact-body': 'Fill in the form below and I\'ll be in touch soon. Fields marked with * are required.',
+        'form-name-label': 'Full Name *',
+        'form-email-label': 'Email Address *',
+        'form-phone-label': 'Phone Number',
+        'form-service-label': 'What service are you interested in? *',
+        'form-service-default': 'Please select…',
+        'form-service-1': 'Individual Consultation',
+        'form-service-2': 'Group Workshop',
+        'form-referral-label': 'How did you hear about me?',
+        'form-referral-default': 'Please select…',
+        'form-ref-1': 'Google Search',
+        'form-ref-2': 'Word of Mouth',
+        'form-ref-3': 'Facebook',
+        'form-ref-4': 'Instagram',
+        'form-ref-5': 'Threads',
+        'form-ref-6': 'Other',
+        'form-message-label': 'How can I help?',
+        'form-submit': 'Send Message',
+        'contact-alt': 'Or reach me directly at <a href="mailto:phoebehsieh@bodymindot.com">phoebehsieh@bodymindot.com</a>',
+        'contact-note': 'HCPC Registered Occupational Therapist',
         'footer-creds': 'HCPC Registered &nbsp;·&nbsp; Occupational Therapist &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span>',
         'footer-copy': '&copy; 2025 BodyMindOT. All rights reserved.',
         'cookie-text': 'We use essential cookies to ensure the site works. <a href="#" id="cookie-accept">Accept</a>',
@@ -2197,6 +2485,7 @@
         'train5': 'Cultural Competence &amp; Cross-Cultural Mental Health',
         'train6': 'Risk Assessment &amp; Management',
         'train7': 'Taiwan Health Professional Post Graduate Year',
+        'train8': 'Therapeutic Use of Creativity',
         'cv-orgs-label': 'Additional Training Through',
         'org1': 'The Tavistock and Portman NHS Foundation Trust, UK',
         'org2': 'Anna Freud, UK',
@@ -2211,99 +2500,119 @@
         'nav-workshops': '工作坊',
         'nav-contact': '聯絡',
         'nav-book': '預約諮詢',
-        'hero-tag': 'HCPC 認證 &nbsp;·&nbsp; 職業治療師',
-        'hero-line1': '職業',
+        'hero-tag': 'HCPC 認證 &nbsp;·&nbsp; 職能治療師',
+        'hero-line1': '職能',
         'hero-line2': '<em>治療</em>，為了',
         'hero-line3': '你的生活。',
-        'hero-sub': '線上心理健康及身心健康諮詢<br>提供英文及中文服務 &nbsp;·&nbsp; English',
+        'hero-sub': '線上身心健康諮詢<br>中文 &amp; English，都可以聊 &nbsp;·&nbsp; 找到屬於你的節奏',
         'hero-cta1': '預約諮詢',
         'hero-cta2': '了解服務',
         'about-label': '關於我',
-        'about-heading': '你好，我是 Phoebe —<br>為你提供更充實日常<br>生活的職業治療師。',
-        'about-intro': '我是 HCPC 認證的職業治療師，專注於心理健康及身心健康領域。透過線上一對一諮詢，我協助成人應對生活中的各種挑戰——無論是職業倦怠、適應海外生活、壓力管理，還是尋找可持續的日常生活節奏。',
-        'about-bilingual': '我同時服務英語及中文客戶，提供雙語空間讓你能完整表達自己。<br><strong>I also work with English-speaking clients.</strong>',
+        'about-heading': '嗨，我是 Phoebe —<br>陪你找回<br>日常生活的活力。',
+        'about-intro': '我是 HCPC 認證的職能治療師，主要在心理健康和身心連結方面提供支持。透過線上一對一教練式諮詢，我幫助大人應對各種生活挑戰——不管是工作倦怠、剛來英國的適應期、壓力管理，或者想找到一個比較舒服的日常節奏。',
+        'about-bilingual': '我同時接受英文及中文的個案，提供雙語空間讓你自在地表達自己。<br><strong>I also work with English-speaking clients.</strong>',
         'tag-hcpc': 'HCPC 認證',
-        'tag-ot': '職業治療師',
+        'tag-ot': '職能治療師',
         'tag-mh': '心理健康',
-        'tag-online': '線上諮詢',
+        'tag-bm': '身心連結',
+        'tag-online': '線上教練式諮詢',
+        'tag-workshops': '工作坊',
         'tag-lang': '英文及中文',
-        'who-label': '服務對象',
-        'who-heading': '為你量身訂製<br>的支援。',
-        'who-body': '無論你正面對學業、職業還是家庭生活的壓力——我提供一個空間讓你反思、重新找到重心，並邁向改變。',
+        'accred-label': '認證機構',
+        'who-label': '我的服務對象',
+        'who-heading': '量身打造<br>適合你的支持。',
+        'who-body': '不管你正在面對學業、工作還是家庭的壓力——這裡有個空間，讓你暫停一下、重新整理，然後一步一步往前走。',
         'card1-title': '學生',
-        'card1-body': '適應新的國家、應對學業壓力，或在學習與生活之間尋找平衡——我支援學生度過人生轉變，以及身處異鄉所帶來的獨特挑戰。',
-        'card2-title': '在職人士',
-        'card2-body': '感到疲憊不堪、職業倦怠，或與自己的人生目標失去連結？我協助在職成人重新調整日常節奏、管理壓力，建立可持續的工作與生活平衡。',
-        'card3-title': '家長與家庭',
-        'card3-body': '為人父母既帶來深厚的喜悅，也伴隨著重重的挑戰。我提供一個充滿關懷的空間，讓你探索家庭生活中的情感及實際困難，包括在海外養育子女所帶來的壓力。',
+        'card1-body': '剛到新的國家、面對學業壓力，或者想在學習和生活之間找到平衡——我陪你走過這些轉變，還有離開家鄉生活所帶來的各種挑戰。',
+        'card2-title': '上班族',
+        'card2-body': '覺得快撐不住了、已經倦怠，或是不知道自己在忙什麼？我幫助在職的大人重新調整日常節奏、管理壓力，找到可以長期維持的工作與生活平衡。',
+        'card3-title': '爸爸媽媽',
+        'card3-body': '當爸媽既開心又辛苦。這裡有個可以喘氣的地方，讓你聊聊育兒生活裡那些情感和實際上的挑戰，包括在英國帶孩子的那份額外壓力。',
         'services-label': '個人服務',
-        'services-heading': '線上一對一<br>諮詢。',
+        'services-heading': '線上一對一<br>OT 教練式諮詢。',
         'tile-stress': '壓力管理',
-        'tile-burnout': '職業倦怠支援',
+        'tile-burnout': '工作倦怠支援',
         'tile-daily': '日常生活功能',
         'tile-balance': '生活與工作平衡',
         'tile-emotional': '情緒調節',
         'tile-overseas': '海外適應',
         'tile-roles': '生命角色轉換',
         'tile-routines': '日常規律與可持續生活',
-        'tile-parenting': '親職與家庭功能',
-        'tile-values': '價值釐清',
-        'info-heading': '線上療程',
-        'info-body': '所有個人療程均透過線上進行，讓你無論身在世界何處都能輕鬆獲得支援。療程透過安全的視訊平台進行，時間靈活配合你的需要。',
-        'meta-format': '<strong>形式</strong> &nbsp; 安全視訊通話',
+        'tile-parenting': '親職與家庭',
+        'tile-values': '釐清生活價值觀',
+        'info-heading': '線上一對一 OT 教練式諮詢',
+        'info-body': '我主要服務在英國的個案（偶爾出差旅行也沒問題）。諮詢透過安全的視訊平台進行，時間可以配合你的行程彈性安排。',
+        'meta-format': '<strong>方式</strong> &nbsp; 安全視訊通話',
         'meta-language': '<strong>語言</strong> &nbsp; 英文或中文',
-        'meta-availability': '<strong>可用時間</strong> &nbsp; 彈性排程',
+        'meta-availability': '<strong>時間安排</strong> &nbsp; 彈性預約',
         'meta-first': '<strong>第一步</strong> &nbsp; 免費 15 分鐘初步通話',
         'info-book': '預約諮詢',
         'workshops-label': '小組工作坊',
-        'workshops-heading': '創意融入<br>日常生活。',
-        'workshops-body': '我的工作坊探索創意如何成為日常生活中有意義的一部分——不是作為藝術技能，而是作為與自己連結、建立韌性，並在日常中找到樂趣的方式。',
+        'workshops-heading': '把創意帶進<br>日常生活。',
+        'workshops-body': '工作坊探索的是，創意怎麼成為日常生活裡有意義的一部分——不是要你學畫畫或學才藝，而是透過創意去連結自己、建立心理韌性，在平凡的日子裡找到一點樂趣。',
         'tag-online-loc': '線上',
-        'tag-london': '倫敦 · 面對面',
-        'workshops-cta': '查看即將舉辦的工作坊',
+        'tag-inperson': '實體面對面',
+        'workshops-cta': '查看近期工作坊',
         'workshop-card-title': '創意與日常生活工作坊',
         'badge-online': '線上',
-        'badge-london': '倫敦',
-        'workshop-card-body': '小組體驗，旨在幫助你發掘創意作為身心健康的資源。適合任何對以職業治療方式更充分生活感到好奇的人。',
-        'workshop-detail1': '療程透過視訊線上及在倫敦面對面進行 &nbsp;·&nbsp; 適合成人 &nbsp;·&nbsp; 歡迎英文及中文',
-        'workshop-detail2': '請聯絡了解即將舉辦的日期 &nbsp;·&nbsp; hello@phoebeot.com',
-        'how-quote': '「你的聲音很重要——<br>而你的目標<br><span>塑造我們</span><br>共同前行的方向。」',
+        'badge-inperson': '實體面對面',
+        'workshop-card-body': '小團體的體驗課程，幫助你發現創意是一種身心健康的資源。適合任何對用更有創意的方式好好生活感到好奇的人。',
+        'workshop-detail1': '線上視訊及實體面對面進行 &nbsp;·&nbsp; 適合成人 &nbsp;·&nbsp; 歡迎英文及中文',
+        'workshop-detail2': '請聯絡了解近期課程日期 &nbsp;·&nbsp; phoebehsieh@bodymindot.com',
+        'how-quote': '「你說的話很重要——<br>而你想去的地方，<br><span>就是我們</span><br>一起走的方向。」',
         'how-attr': '— Phoebe 的工作方式',
-        'p1-title': '你的聲音最重要',
-        'p1-body': '我深深重視對你來說有意義的事情。療程由你的優先事項主導——沒有從外部施加的議程。你決定我們關注的焦點和前進的步伐。',
-        'p2-title': '以目標為指南針',
-        'p2-body': '我們一起探索你對生活的期望，並找到切實可行、有意義的方式邁向這些目標。進步不必是戲劇性的——細微的轉變往往帶來最大的改變。',
-        'p3-title': '更充實的日常生活',
-        'p3-body': '職業治療的目標是實際且紮根的：幫助你參與賦予你日子意義的活動。更好的日常規律、更清晰的價值觀、更可持續的生活——這就是我們的工作。',
-        'lang-note': '療程提供英文及繁體中文兩種語言，為你提供完全雙語的空間，讓你以最舒適的語言表達自己。',
+        'p1-title': '你說了算',
+        'p1-body': '你在意什麼，對我來說就很重要。諮詢的方向由你的需求來決定——沒有預設好的議程。你來定我們要聚焦在哪裡、用什麼步調前進。',
+        'p2-title': '以目標為方向',
+        'p2-body': '我們一起聊聊你想要什麼樣的生活，找到實際可行、有意義的方式去靠近那個目標。進步不一定要很戲劇性——有時候小小的改變，反而帶來最大的差異。',
+        'p3-title': '過更滿足的日子',
+        'p3-body': '職能治療的核心很實際：幫助你重新投入那些讓你的日子有意義的事情。更好的日常節奏、更清楚的價值觀、更無負擔的生活方式——這就是我們一起在做的事。',
+        'lang-note': '諮詢提供英文及繁體中文兩種語言，讓你可以用最自在的方式表達自己。',
         'contact-label': '聯絡我',
         'contact-heading': '準備好踏出<br>第一步了嗎？',
-        'contact-body': '從免費的 15 分鐘初步通話開始——一個輕鬆、無壓力的對話，看看我們是否合適。',
-        'contact-cta1': '預約初步通話',
-        'contact-cta2': '發送電郵',
-        'contact-note': 'hello@phoebeot.com &nbsp;·&nbsp; HCPC 認證職業治療師',
-        'footer-creds': 'HCPC 認證 &nbsp;·&nbsp; 職業治療師 &nbsp;·&nbsp; 英文及中文',
+        'contact-body': '填寫下方表單，我會盡快回覆你。有 * 的是必填欄位。',
+        'form-name-label': '姓名 *',
+        'form-email-label': '電子信箱 *',
+        'form-phone-label': '電話號碼',
+        'form-service-label': '你想預約哪種服務？*',
+        'form-service-default': '請選擇…',
+        'form-service-1': '個人諮詢',
+        'form-service-2': '小組工作坊',
+        'form-referral-label': '你是怎麼知道我的？',
+        'form-referral-default': '請選擇…',
+        'form-ref-1': 'Google 搜尋',
+        'form-ref-2': '親友介紹',
+        'form-ref-3': 'Facebook',
+        'form-ref-4': 'Instagram',
+        'form-ref-5': 'Threads',
+        'form-ref-6': '其他',
+        'form-message-label': '有什麼我可以幫到你的？',
+        'form-submit': '送出',
+        'contact-alt': '或直接寫信給我：<a href="mailto:phoebehsieh@bodymindot.com">phoebehsieh@bodymindot.com</a>',
+        'contact-note': 'HCPC 認證職能治療師',
+        'footer-creds': 'HCPC 認證 &nbsp;·&nbsp; 職能治療師 &nbsp;·&nbsp; 英文及中文',
         'footer-copy': '&copy; 2025 BodyMindOT。保留所有權利。',
-        'cookie-text': '我們使用必要的 Cookie 以確保網站正常運行。<a href="#" id="cookie-accept">接受</a>',
+        'cookie-text': '我們使用必要的 Cookie 讓網站正常運作。<a href="#" id="cookie-accept">好的</a>',
         'cv-edu-label': '學歷',
         'edu1-inst': '國立台灣大學',
-        'edu1-degree': '職業治療學士',
+        'edu1-degree': '職能治療學士',
         'edu2-inst': '倫敦大學金匠學院',
         'edu2-degree': '舞動心理治療碩士',
         'cv-exp-label': '工作經歷',
-        'exp1-inst': '英國國民健保署心理健康住院及社區服務',
-        'exp1-role': '職業治療師',
+        'exp1-inst': '英國國民健保署（NHS）心理健康住院及社區服務',
+        'exp1-role': '職能治療師',
         'exp2-inst': '台灣國立成功大學醫學院附設醫院',
-        'exp2-role': '職業治療師 — 復健部及兒童發展中心',
+        'exp2-role': '職能治療師 — 復健部及兒童發展中心',
         'cv-training-label': '專業發展',
-        'train1': '動機式訪談',
-        'train2': '系統性與家庭導向方法',
+        'train1': '動機式晤談',
+        'train2': '系統取向與家庭導向方法',
         'train3': '感覺調節',
         'train4': '神經多樣性導向實踐',
         'train5': '文化能力與跨文化心理健康',
         'train6': '風險評估與管理',
         'train7': '台灣醫事人員畢業後一般醫學訓練',
-        'cv-orgs-label': '額外培訓機構',
+        'train8': '創意作為治療媒介',
+        'cv-orgs-label': '培訓機構',
         'org1': '英國塔維斯托克與波特曼 NHS 基金信託',
         'org2': '英國安娜·弗洛伊德中心',
         'org3': '英國全國自閉症協會',
@@ -2315,7 +2624,7 @@
 
     const MARQUEE = {
       en: ['Stress Management','Burnout Support','Work-Life Balance','Emotional Regulation','Overseas Adjustment','Life Roles Transition','Sustainable Living','Parenting Support','Value Clarification','Daily Functioning'],
-      zh: ['壓力管理','職業倦怠支援','工作與生活平衡','情緒調節','海外適應','生命角色轉換','可持續生活','親職支援','價值釐清','日常生活功能']
+      zh: ['壓力管理','工作倦怠支援','工作與生活平衡','情緒調節','海外適應','生命角色轉換','可持續生活','親職支援','釐清生活價值觀','日常生活功能']
     };
 
     function applyTranslations(lang) {
@@ -2325,13 +2634,12 @@
         const key = el.getAttribute('data-i18n');
         if (t[key] !== undefined) el.innerHTML = t[key];
       });
-      // Rebuild marquee
+      // Rebuild marquee (static, no doubling)
       const inner = document.querySelector('.marquee-inner');
       if (inner) {
         const items = MARQUEE[lang];
-        const doubled = [...items, ...items];
-        inner.innerHTML = doubled.map((item, i) =>
-          `<span>${item}</span><span class="dot">·</span>`
+        inner.innerHTML = items.map((item, i) =>
+          `<span>${item}</span>${i < items.length - 1 ? '<span class="dot">·</span>' : ''}`
         ).join('');
       }
       // Re-wire cookie accept after innerHTML swap
