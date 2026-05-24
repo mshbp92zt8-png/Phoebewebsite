@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phoebe — Occupational Therapist</title>
+  <meta name="description" content="HCPC-registered occupational therapist providing online mental health and wellbeing consultations for Mandarin-speaking adults abroad and English speakers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── CSS VARIABLES ─── */
+    :root {
+      --cream:      #FAF8F5;
+      --beige:      #EDE8E0;
+      --gold:       #C4A882;
+      --gold-dark:  #A8896A;
+      --charcoal:   #1C1814;
+      --text:       #2A2A2A;
+      --text-light: #6B6560;
+      --transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      --transition-fast: 0.3s ease;
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 5%;
+      transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(28, 24, 20, 0.97);
+      padding: 1rem 5%;
+      box-shadow: 0 1px 30px rgba(0,0,0,0.25);
+      backdrop-filter: blur(10px);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--cream);
+      letter-spacing: 0.02em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(250, 248, 245, 0.75);
+      transition: color var(--transition-fast);
+    }
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold) !important;
+      padding: 0.5rem 1.4rem;
+      border-radius: 100px;
+      font-size: 0.78rem !important;
+      letter-spacing: 0.1em;
+      transition: background var(--transition-fast), color var(--transition-fast) !important;
+    }
+    .nav-cta:hover {
+      background: var(--gold) !important;
+      color: var(--charcoal) !important;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--cream);
+      transition: var(--transition-fast);
+    }
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--charcoal);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .nav-mobile.open {
+      display: flex;
+    }
+    .nav-mobile a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      color: var(--cream);
+      letter-spacing: 0.05em;
+      transition: color var(--transition-fast);
+    }
+    .nav-mobile a:hover {
+      color: var(--gold);
+    }
+    .nav-mobile-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 5%;
+      font-size: 2rem;
+      color: var(--cream);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      background: var(--charcoal);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 0 5%;
+    }
+    .hero-watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20rem, 35vw, 42rem);
+      font-weight: 300;
+      color: rgba(250,248,245,0.02);
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.05em;
+      white-space: nowrap;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding-top: 6rem;
+    }
+    .hero-tag {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transition: opacity 0.8s ease 0.1s;
+    }
+    .hero-tag.visible { opacity: 1; }
+    .hero-tag-line {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .hero-tag-text {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .hero-heading {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 2rem;
+      line-height: 1.05;
+    }
+    .hero-heading .line {
+      display: block;
+      overflow: hidden;
+    }
+    .hero-heading .line span {
+      display: block;
+      transform: translateY(110%);
+      transition: transform var(--transition);
+    }
+    .hero-heading .line span.visible {
+      transform: translateY(0);
+    }
+    .hero-heading em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 0.9rem;
+      color: rgba(250,248,245,0.55);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      line-height: 1.7;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.8s ease 1s, transform 0.8s ease 1s;
+    }
+    .hero-sub.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.8s ease 1.2s, transform 0.8s ease 1.2s;
+    }
+    .hero-ctas.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: var(--charcoal);
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background var(--transition-fast), transform var(--transition-fast);
+    }
+    .btn-primary:hover {
+      background: var(--gold-dark);
+      transform: translateY(-2px);
+    }
+    .btn-ghost {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(250,248,245,0.65);
+      border-bottom: 1px solid rgba(250,248,245,0.25);
+      padding-bottom: 2px;
+      transition: color var(--transition-fast), border-color var(--transition-fast);
+    }
+    .btn-ghost:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    /* Hero illustration */
+    .hero-illustration {
+      position: absolute;
+      bottom: 0;
+      right: 5%;
+      width: clamp(220px, 30vw, 420px);
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease 0.4s, transform 1s ease 0.4s;
+      will-change: transform;
+    }
+    .hero-illustration.visible {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    .hero-illustration img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-strip {
+      background: var(--gold);
+      padding: 1rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-inner {
+      display: inline-flex;
+      animation: marquee 30s linear infinite;
+    }
+    .marquee-inner span {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      padding: 0 2.5rem;
+    }
+    .marquee-inner span.dot {
+      opacity: 0.4;
+      padding: 0;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── SECTION SHARED ─── */
+    section {
+      padding: 6rem 5%;
+    }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+    .section-title {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .section-body {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--text-light);
+      max-width: 540px;
+    }
+
+    /* ─── FADE-UP SCROLL REVEAL ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+    /* ─── ABOUT ─── */
+    #about {
+      background: var(--cream);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .about-photo-wrap {
+      position: relative;
+    }
+    .about-photo-deco {
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: 20px;
+      bottom: 20px;
+      border: 1.5px solid var(--gold);
+      border-radius: 4px;
+      z-index: 0;
+    }
+    .about-photo-wrap img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 540px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 4px;
+    }
+    .about-content .section-title {
+      margin-bottom: 1rem;
+    }
+    .about-intro {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+    }
+    .about-bilingual {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      border-left: 2px solid var(--gold);
+      padding-left: 1rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .credential-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .credential-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      border: 1px solid var(--gold);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      background: transparent;
+    }
+
+    /* ─── WHO I WORK WITH ─── */
+    #who {
+      background: var(--beige);
+    }
+    .who-header {
+      max-width: 1200px;
+      margin: 0 auto 3.5rem;
+    }
+    .who-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .who-card {
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 2.5rem 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .who-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    }
+    .who-card-num {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.5rem;
+      font-weight: 300;
+      color: rgba(196, 168, 130, 0.18);
+      line-height: 1;
+      user-select: none;
+    }
+    .who-card-icon {
+      font-size: 1.6rem;
+      margin-bottom: 1.25rem;
+    }
+    .who-card h3 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      color: var(--charcoal);
+    }
+    .who-card p {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--text-light);
+    }
+
+    /* ─── SERVICES ─── */
+    #services {
+      background: var(--cream);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 4rem;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .services-left .section-label,
+    .services-left .section-title {
+      margin-bottom: 2rem;
+    }
+    .services-tiles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--beige);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .service-tile {
+      background: var(--cream);
+      padding: 1.5rem 1.25rem;
+      font-size: 0.87rem;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      transition: background var(--transition-fast), color var(--transition-fast);
+      cursor: default;
+      border-bottom: 1px solid var(--beige);
+    }
+    .service-tile:hover {
+      background: var(--gold);
+      color: var(--charcoal);
+    }
+    .service-tile .tile-arrow {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--gold);
+      margin-top: 0.35rem;
+      transition: color var(--transition-fast);
+    }
+    .service-tile:hover .tile-arrow {
+      color: var(--charcoal);
+    }
+    .services-right {
+      position: sticky;
+      top: 8rem;
+    }
+    .services-info-card {
+      background: var(--charcoal);
+      border-radius: 8px;
+      padding: 2.5rem;
+      color: var(--cream);
+    }
+    .services-info-card h3 {
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+    .services-info-card p {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: rgba(250,248,245,0.65);
+      margin-bottom: 1.5rem;
+    }
+    .services-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .services-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.82rem;
+      color: rgba(250,248,245,0.5);
+    }
+    .services-meta-item strong {
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .services-meta-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .services-info-card .btn-primary {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* ─── WORKSHOPS ─── */
+    #workshops {
+      background: var(--charcoal);
+    }
+    .workshops-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .workshops-left .section-label { color: var(--gold); }
+    .workshops-left .section-title { color: var(--cream); }
+    .workshops-left .section-body {
+      color: rgba(250,248,245,0.55);
+      margin-bottom: 2rem;
+    }
+    .location-tags {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .location-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.45rem 1.1rem;
+      border-radius: 100px;
+      border: 1px solid rgba(196, 168, 130, 0.4);
+      color: var(--gold);
+    }
+    .location-tag.active {
+      background: var(--gold);
+      color: var(--charcoal);
+      border-color: var(--gold);
+    }
+    .btn-primary-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background var(--transition-fast), color var(--transition-fast);
+    }
+    .btn-primary-outline:hover {
+      background: var(--gold);
+      color: var(--charcoal);
+    }
+    .workshop-card {
+      background: rgba(250,248,245,0.04);
+      border: 1px solid rgba(196,168,130,0.2);
+      border-radius: 10px;
+      padding: 2.5rem;
+    }
+    .workshop-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .workshop-card h3 {
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--cream);
+    }
+    .workshop-modes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+    .mode-badge {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+    }
+    .mode-badge.online {
+      background: rgba(196,168,130,0.15);
+      color: var(--gold);
+      border: 1px solid rgba(196,168,130,0.3);
+    }
+    .mode-badge.in-person {
+      background: var(--gold);
+      color: var(--charcoal);
+    }
+    .workshop-card p {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: rgba(250,248,245,0.5);
+      margin-bottom: 1.5rem;
+    }
+    .workshop-divider {
+      height: 1px;
+      background: rgba(196,168,130,0.15);
+      margin: 1.5rem 0;
+    }
+    .workshop-detail {
+      font-size: 0.8rem;
+      color: rgba(250,248,245,0.35);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── HOW I WORK ─── */
+    #how {
+      background: var(--cream);
+    }
+    .how-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .how-quote-wrap {
+      position: sticky;
+      top: 8rem;
+    }
+    .how-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 300;
+      line-height: 1.35;
+      color: var(--charcoal);
+    }
+    .how-quote span {
+      color: var(--gold);
+    }
+    .how-quote-attr {
+      margin-top: 1.5rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+    .how-principles {
+      display: flex;
+      flex-direction: column;
+    }
+    .how-principle {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--beige);
+    }
+    .how-principle:first-child {
+      border-top: 1px solid var(--beige);
+    }
+    .how-principle-num {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .how-principle h3 {
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 0.6rem;
+    }
+    .how-principle p {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: var(--text-light);
+    }
+
+    /* ─── LANGUAGE STRIP ─── */
+    #language {
+      background: var(--beige);
+      text-align: center;
+      padding: 4rem 5%;
+    }
+    .language-flags {
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .language-flags .lang-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .language-flags .lang-sep {
+      width: 1px;
+      height: 20px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+    .language-note {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--charcoal);
+      text-align: center;
+      padding: 8rem 5%;
+    }
+    #contact .section-label { color: var(--gold); }
+    #contact .section-title {
+      color: var(--cream);
+      max-width: 700px;
+      margin: 0 auto 1.25rem;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+    }
+    #contact .section-body {
+      color: rgba(250,248,245,0.5);
+      max-width: 480px;
+      margin: 0 auto 3rem;
+    }
+    .contact-ctas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .contact-note {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: rgba(250,248,245,0.3);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #100E0C;
+      padding: 2rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+    }
+    .footer-credentials {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(250,248,245,0.25);
+    }
+    .footer-copy {
+      font-size: 0.72rem;
+      color: rgba(250,248,245,0.2);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 1.25rem 5%; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .hero-illustration {
+        opacity: 0.12 !important;
+        right: 0;
+        width: 70vw;
+        bottom: 0;
+      }
+      .hero-illustration.visible {
+        opacity: 0.12 !important;
+      }
+
+      .about-grid,
+      .services-grid,
+      .workshops-grid,
+      .how-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .services-right { position: static; }
+      .who-cards { grid-template-columns: 1fr; }
+      .about-photo-wrap img { height: 400px; }
+
+      .contact-ctas { flex-direction: column; }
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 4rem 5%; }
+      .hero-content { padding-top: 5rem; }
+      .services-tiles { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">Phoebe</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#workshops">Workshops</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="mailto:hello@phoebeot.com" class="nav-cta">Book a Session</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div class="nav-mobile" id="mobileNav">
+    <button class="nav-mobile-close" id="mobileClose">&times;</button>
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#workshops" class="mobile-link">Workshops</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="mailto:hello@phoebeot.com" class="mobile-link">Book a Session</a>
+  </div>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <div class="hero-watermark">OT</div>
+
+    <div class="hero-content">
+      <div class="hero-tag" id="heroTag">
+        <div class="hero-tag-line"></div>
+        <span class="hero-tag-text">HCPC Registered &nbsp;·&nbsp; Occupational Therapist</span>
+      </div>
+
+      <h1 class="hero-heading">
+        <span class="line"><span id="line1">Occupational</span></span>
+        <span class="line"><span id="line2"><em>Therapy</em> for</span></span>
+        <span class="line"><span id="line3">your life.</span></span>
+      </h1>
+
+      <p class="hero-sub" id="heroSub">
+        Online mental health &amp; wellbeing consultations<br>
+        in English and Mandarin &nbsp;·&nbsp; 普通话
+      </p>
+
+      <div class="hero-ctas" id="heroCtas">
+        <a href="mailto:hello@phoebeot.com" class="btn-primary">Book a Session</a>
+        <a href="#services" class="btn-ghost">Explore Services</a>
+      </div>
+    </div>
+
+    <div class="hero-illustration" id="heroIllustration">
+      <img src="Phoebe cartoon photo.png" alt="Phoebe illustration" />
+    </div>
+  </section>
+
+  <!-- ─── MARQUEE ─── -->
+  <div class="marquee-strip">
+    <div class="marquee-inner" aria-hidden="true">
+      <span>Stress Management</span><span class="dot">·</span>
+      <span>Burnout Support</span><span class="dot">·</span>
+      <span>Work-Life Balance</span><span class="dot">·</span>
+      <span>Emotional Regulation</span><span class="dot">·</span>
+      <span>Overseas Adjustment</span><span class="dot">·</span>
+      <span>Life Roles Transition</span><span class="dot">·</span>
+      <span>Sustainable Living</span><span class="dot">·</span>
+      <span>Parenting Support</span><span class="dot">·</span>
+      <span>Value Clarification</span><span class="dot">·</span>
+      <span>Daily Functioning</span><span class="dot">·</span>
+      <!-- duplicate for seamless loop -->
+      <span>Stress Management</span><span class="dot">·</span>
+      <span>Burnout Support</span><span class="dot">·</span>
+      <span>Work-Life Balance</span><span class="dot">·</span>
+      <span>Emotional Regulation</span><span class="dot">·</span>
+      <span>Overseas Adjustment</span><span class="dot">·</span>
+      <span>Life Roles Transition</span><span class="dot">·</span>
+      <span>Sustainable Living</span><span class="dot">·</span>
+      <span>Parenting Support</span><span class="dot">·</span>
+      <span>Value Clarification</span><span class="dot">·</span>
+      <span>Daily Functioning</span><span class="dot">·</span>
+    </div>
+  </div>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-photo-wrap fade-up">
+        <div class="about-photo-deco"></div>
+        <img src="Phoebe photo.jpeg" alt="Phoebe — Occupational Therapist" />
+      </div>
+      <div class="about-content">
+        <p class="section-label fade-up">About</p>
+        <h2 class="section-title fade-up">
+          Hi, I'm Phoebe —<br>your OT for a more<br>fulfilling daily life.
+        </h2>
+        <p class="about-intro fade-up">
+          I am an HCPC-registered occupational therapist specialising in mental health and wellbeing. Through online one-to-one consultations, I support adults in navigating life's challenges — whether that's burnout, adjustment to living abroad, managing stress, or finding a sustainable rhythm in your everyday.
+        </p>
+        <p class="about-bilingual fade-up">
+          I work with both English-speaking and Mandarin-speaking clients, offering a bilingual space where you can express yourself fully.<br>
+          <strong>我提供中英双语咨询服务，欢迎普通话使用者。</strong>
+        </p>
+        <div class="credential-tags fade-up">
+          <span class="credential-tag">HCPC Registered</span>
+          <span class="credential-tag">Occupational Therapist</span>
+          <span class="credential-tag">Mental Health</span>
+          <span class="credential-tag">Online Consultations</span>
+          <span class="credential-tag">English &amp; Mandarin</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WHO I WORK WITH ─── -->
+  <section id="who">
+    <div class="who-header">
+      <p class="section-label fade-up">Who I Work With</p>
+      <h2 class="section-title fade-up">
+        Support tailored<br>to your world.
+      </h2>
+      <p class="section-body fade-up">
+        Whether you're navigating the pressures of study, career, or family life — I offer a space to reflect, re-centre, and take steps toward change.
+      </p>
+    </div>
+    <div class="who-cards">
+      <div class="who-card fade-up">
+        <div class="who-card-num">01</div>
+        <div class="who-card-icon">&#127891;</div>
+        <h3>Students</h3>
+        <p>Adjusting to a new country, managing academic pressure, or finding balance between study and life — I support students through transitions and the unique challenges of being away from home.</p>
+      </div>
+      <div class="who-card fade-up">
+        <div class="who-card-num">02</div>
+        <div class="who-card-icon">&#128188;</div>
+        <h3>Working Professionals</h3>
+        <p>Feeling stretched thin, burned out, or disconnected from your sense of purpose? I help working adults recalibrate their routines, manage stress, and create a sustainable work-life rhythm.</p>
+      </div>
+      <div class="who-card fade-up">
+        <div class="who-card-num">03</div>
+        <div class="who-card-icon">&#128106;</div>
+        <h3>Parents &amp; Families</h3>
+        <p>Parenting brings profound joy and profound difficulty. I provide a compassionate space to explore the emotional and practical challenges of family life, including the pressures of raising children abroad.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ─── -->
+  <section id="services">
+    <div class="services-grid">
+      <div class="services-left">
+        <p class="section-label fade-up">Individual Services</p>
+        <h2 class="section-title fade-up">
+          Online 1:1<br>Consultations.
+        </h2>
+        <div class="services-tiles fade-up">
+          <div class="service-tile">
+            Stress Management
+            <span class="tile-arrow">&#8599;</span>
+          </div>
+          <div class="service-tile">
+            Burnout Support
+            <span class="tile-arrow">&#8599;</span>
+          </div>
+          <div class="service-tile">
+            Daily Functioning
+            <span class="tile-arrow">&#8599;</span>
+          </div>
+          <div class="service-tile">
+            Life / Work Balance
+            <span class="tile-arrow">&#8599;</span>
+          </div>
+          <div class="service-tile">
+            Emotional Regulation
+            <span class="tile-arrow">&#8599;</span>
+          </div>
+          <div class="service-tile">
+            Overseas Adjustment
+            <span class="tile-arrow">&#8599;</span>
+          </div>
+          <div class="service-tile">
+            Life Roles Transition
+            <span class="tile-arrow">&#8599;</span>
+          </div>
+          <div class="service-tile">
+            Routines &amp; Sustainable Living
+            <span class="tile-arrow">&#8599;</span>
+          </div>
+          <div class="service-tile">
+            Parenting &amp; Family Functioning
+            <span class="tile-arrow">&#8599;</span>
+          </div>
+          <div class="service-tile">
+            Value Clarification
+            <span class="tile-arrow">&#8599;</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="services-right fade-up">
+        <div class="services-info-card">
+          <h3>Online Sessions</h3>
+          <p>
+            All individual sessions take place online, making it easy to access support wherever you are in the world. Sessions are held via a secure video platform at a time that suits you.
+          </p>
+          <div class="services-meta">
+            <div class="services-meta-item">
+              <div class="services-meta-dot"></div>
+              <span><strong>Format</strong> &nbsp; Secure video call</span>
+            </div>
+            <div class="services-meta-item">
+              <div class="services-meta-dot"></div>
+              <span><strong>Language</strong> &nbsp; English or Mandarin</span>
+            </div>
+            <div class="services-meta-item">
+              <div class="services-meta-dot"></div>
+              <span><strong>Availability</strong> &nbsp; Flexible scheduling</span>
+            </div>
+            <div class="services-meta-item">
+              <div class="services-meta-dot"></div>
+              <span><strong>First step</strong> &nbsp; Free 15-min intro call</span>
+            </div>
+          </div>
+          <a href="mailto:hello@phoebeot.com" class="btn-primary">Book a Session</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WORKSHOPS ─── -->
+  <section id="workshops">
+    <div class="workshops-grid">
+      <div class="workshops-left">
+        <p class="section-label fade-up">Group Workshops</p>
+        <h2 class="section-title fade-up">
+          Creativity for<br>everyday life.
+        </h2>
+        <p class="section-body fade-up">
+          My workshops explore how creativity can be a meaningful part of your daily life — not as an artistic skill, but as a way of connecting with yourself, building resilience, and finding enjoyment in the everyday.
+        </p>
+        <div class="location-tags fade-up">
+          <span class="location-tag active">Online</span>
+          <span class="location-tag active">London · In Person</span>
+        </div>
+        <a href="#contact" class="btn-primary-outline fade-up">Find Upcoming Workshops</a>
+      </div>
+
+      <div class="workshop-card fade-up">
+        <div class="workshop-card-header">
+          <h3>Creativity &amp; Daily Life Workshops</h3>
+          <div class="workshop-modes">
+            <span class="mode-badge online">Online</span>
+            <span class="mode-badge in-person">London</span>
+          </div>
+        </div>
+        <p>
+          A small-group experience designed to help you tap into creativity as a resource for wellbeing. Suitable for anyone curious about occupational therapy approaches to living more fully.
+        </p>
+        <div class="workshop-divider"></div>
+        <p class="workshop-detail">
+          Sessions held online via video &amp; in person in London &nbsp;·&nbsp; Suitable for adults &nbsp;·&nbsp; English &amp; Mandarin welcome
+        </p>
+        <div class="workshop-divider"></div>
+        <p class="workshop-detail">
+          Contact for upcoming dates &nbsp;·&nbsp; hello@phoebeot.com
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HOW I WORK ─── -->
+  <section id="how">
+    <div class="how-grid">
+      <div class="how-quote-wrap fade-up">
+        <blockquote class="how-quote">
+          "Your voice matters —<br>and your goals<br><span>shape the path</span><br>we take together."
+        </blockquote>
+        <p class="how-quote-attr">— Phoebe's approach</p>
+      </div>
+
+      <div class="how-principles">
+        <div class="how-principle fade-up">
+          <p class="how-principle-num">01</p>
+          <h3>Your Voice Comes First</h3>
+          <p>I deeply value what matters to you. Sessions are led by your priorities — there is no agenda imposed from the outside. You decide what we focus on and the pace at which we move.</p>
+        </div>
+        <div class="how-principle fade-up">
+          <p class="how-principle-num">02</p>
+          <h3>Goals as a Compass</h3>
+          <p>Together, we look into what you want from your life and find realistic, meaningful ways toward those goals. Progress doesn't have to be dramatic — small shifts often make the biggest difference.</p>
+        </div>
+        <div class="how-principle fade-up">
+          <p class="how-principle-num">03</p>
+          <h3>A More Satisfying Daily Life</h3>
+          <p>The aim of occupational therapy is practical and grounded: helping you participate in the activities that give your day meaning. Better routines, clearer values, more sustainable living — that is the work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── LANGUAGE STRIP ─── -->
+  <div id="language">
+    <div class="language-flags fade-up">
+      <span class="lang-item">
+        <span>&#127468;&#127463;</span>
+        <span>English</span>
+      </span>
+      <span class="lang-sep"></span>
+      <span class="lang-item">
+        <span>&#127464;&#127475;</span>
+        <span>Mandarin Chinese &nbsp;·&nbsp; 普通话</span>
+      </span>
+    </div>
+    <p class="language-note fade-up">
+      Sessions are available in both English and Mandarin Chinese, providing a fully bilingual space where you can express yourself in the language you feel most comfortable in.
+    </p>
+  </div>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact">
+    <p class="section-label fade-up">Get in Touch</p>
+    <h2 class="section-title fade-up">
+      Ready to take<br>the first step?
+    </h2>
+    <p class="section-body fade-up">
+      Start with a free 15-minute introductory call — a relaxed, no-pressure conversation to see if we're a good fit.
+    </p>
+    <div class="contact-ctas fade-up">
+      <a href="mailto:hello@phoebeot.com" class="btn-primary">Book an Intro Call</a>
+      <a href="mailto:hello@phoebeot.com" class="btn-primary-outline">Send an Email</a>
+    </div>
+    <p class="contact-note fade-up">hello@phoebeot.com &nbsp;·&nbsp; HCPC Registered Occupational Therapist</p>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <span class="footer-logo">Phoebe</span>
+    <span class="footer-credentials">HCPC Registered &nbsp;·&nbsp; Occupational Therapist &nbsp;·&nbsp; English &amp; Mandarin</span>
+    <span class="footer-copy">&copy; 2025 Phoebe. All rights reserved.</span>
+  </footer>
+
+
+  <!-- ─── JAVASCRIPT ─── -->
+  <script>
+    // ── NAV: transparent → dark on scroll ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ── HAMBURGER / MOBILE NAV ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileClose = document.getElementById('mobileClose');
+
+    hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => mobileNav.classList.remove('open'));
+    });
+
+    // ── HERO TEXT ANIMATION ──
+    function animateHero() {
+      const tag = document.getElementById('heroTag');
+      const line1 = document.getElementById('line1');
+      const line2 = document.getElementById('line2');
+      const line3 = document.getElementById('line3');
+      const sub   = document.getElementById('heroSub');
+      const ctas  = document.getElementById('heroCtas');
+      const illus = document.getElementById('heroIllustration');
+
+      // Tag fades in
+      setTimeout(() => { tag.classList.add('visible'); }, 200);
+
+      // Lines slide up
+      setTimeout(() => { line1.classList.add('visible'); }, 400);
+      setTimeout(() => { line2.classList.add('visible'); }, 580);
+      setTimeout(() => { line3.classList.add('visible'); }, 760);
+
+      // Sub + CTAs
+      setTimeout(() => { sub.classList.add('visible'); }, 1000);
+      setTimeout(() => { ctas.classList.add('visible'); }, 1200);
+
+      // Illustration floats up
+      setTimeout(() => { illus.classList.add('visible'); }, 500);
+    }
+
+    // ── MOUSE PARALLAX ON HERO ILLUSTRATION ──
+    const hero  = document.getElementById('hero');
+    const illus = document.getElementById('heroIllustration');
+    let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const cx = rect.width  / 2;
+      const cy = rect.height / 2;
+      const dx = (e.clientX - rect.left - cx) / cx;
+      const dy = (e.clientY - rect.top  - cy) / cy;
+      targetX = -dx * 18;
+      targetY = -dy * 12;
+    });
+
+    hero.addEventListener('mouseleave', () => {
+      targetX = 0;
+      targetY = 0;
+    });
+
+    (function parallaxLoop() {
+      currentX += (targetX - currentX) * 0.06;
+      currentY += (targetY - currentY) * 0.06;
+      illus.style.transform = `translate(${currentX}px, ${currentY}px)`;
+      requestAnimationFrame(parallaxLoop);
+    })();
+
+    // ── SCROLL REVEAL with IntersectionObserver ──
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    fadeEls.forEach(el => observer.observe(el));
+
+    // ── SMOOTH SCROLL for in-page links ──
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const id = anchor.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ── INIT ──
+    window.addEventListener('DOMContentLoaded', animateHero);
+  </script>
+</body>
+</html>
