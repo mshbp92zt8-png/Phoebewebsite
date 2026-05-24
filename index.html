@@ -246,7 +246,6 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold);
-      white-space: nowrap;
     }
     .hero-heading {
       font-size: clamp(3.5rem, 8vw, 7rem);
@@ -934,13 +933,18 @@
       #contact { padding: 6rem 6%; }
       #language { padding: 3.5rem 6%; }
 
+      /* Hero: top-align so no blank gap above content */
+      #hero { align-items: flex-start; }
+      /* Watermark is too large at mobile font sizes — hide it */
+      .hero-watermark { display: none; }
+
       .hero-illustration {
-        opacity: 0.1 !important;
+        opacity: 0.08 !important;
         right: 0;
-        width: 65vw;
+        width: 55vw;
         bottom: 0;
       }
-      .hero-illustration.visible { opacity: 0.1 !important; }
+      .hero-illustration.visible { opacity: 0.08 !important; }
 
       .about-grid,
       .workshops-grid,
@@ -980,7 +984,7 @@
       #language { padding: 3rem 5%; }
 
       /* Hero */
-      .hero-content { padding-top: 5.5rem; }
+      .hero-content { padding-top: 5rem; }
       .hero-heading { font-size: clamp(2.8rem, 13vw, 4.5rem); line-height: 1.05; }
       .hero-sub { font-size: 0.85rem; }
       .hero-ctas {
@@ -990,6 +994,15 @@
       }
       .hero-ctas .btn-primary { justify-content: center; }
       .hero-ctas .btn-ghost { text-align: center; padding-bottom: 4px; }
+      /* Hide illustration + watermark on small mobile — cleaner hero */
+      .hero-illustration { display: none !important; }
+      .hero-watermark { display: none; }
+      /* Hero takes only the content height on mobile, no empty gap */
+      #hero { min-height: auto; padding-bottom: 4.5rem; }
+      /* HCPC tag: hide decorative line, allow wrap */
+      .hero-tag-line { display: none; }
+      .hero-tag { gap: 0; }
+      .hero-tag-text { font-size: 0.65rem; letter-spacing: 0.12em; }
 
       /* Marquee */
       .marquee-inner span { font-size: 0.65rem; padding: 0 1.5rem; }
