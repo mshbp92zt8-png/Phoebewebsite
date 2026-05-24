@@ -3,8 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Phoebe — Occupational Therapist</title>
+  <title>BodyMindOT — Occupational Therapist</title>
   <meta name="description" content="HCPC-registered occupational therapist providing online mental health and wellbeing consultations for Mandarin-speaking adults abroad and English speakers." />
+
+  <!-- ─── OG / TWITTER META (Change 13) ─── -->
+  <meta property="og:title" content="BodyMindOT — Occupational Therapist" />
+  <meta property="og:description" content="HCPC-registered occupational therapist providing online mental health and wellbeing consultations for Mandarin-speaking adults abroad and English speakers." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/photos/Phoebe photo.jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BodyMindOT — Occupational Therapist" />
+  <meta name="twitter:description" content="HCPC-registered OT offering online mental health consultations in English and Mandarin." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -30,7 +40,7 @@
       padding: 0;
     }
     html {
-      scroll-behavior: smooth;
+      /* scroll-behavior: smooth removed — replaced by JS lerp (Change 2) */
       font-size: 16px;
     }
     body {
@@ -56,6 +66,120 @@
       line-height: 1.1;
     }
 
+    /* ─── CUSTOM CURSOR (Change 1) ─── */
+    @media (pointer: fine) {
+      html, body, a, button {
+        cursor: none;
+      }
+    }
+    #cursor-dot {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s ease, background 0.15s ease;
+      will-change: transform, left, top;
+    }
+    #cursor-dot.cursor-hover {
+      transform: translate(-50%, -50%) scale(1.8);
+    }
+    #cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold);
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+      will-change: transform, left, top;
+    }
+    #cursor-ring.cursor-hover {
+      transform: translate(-50%, -50%) scale(1.6);
+      background: rgba(196, 168, 130, 0.2);
+    }
+    .cursor-trail-dot {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      pointer-events: none;
+      z-index: 9997;
+      transform: translate(-50%, -50%);
+    }
+    @keyframes cursor-ripple {
+      0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.7; }
+      100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
+    }
+    .cursor-ripple {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold);
+      pointer-events: none;
+      z-index: 9996;
+      animation: cursor-ripple 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* ─── PAGE LOAD CURTAIN (Change 3) ─── */
+    #page-curtain {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: var(--charcoal);
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+    #page-curtain.lift {
+      transform: translateY(-100%);
+    }
+    #curtain-brand img {
+      height: 72px;
+      width: auto;
+    }
+    #curtain-line {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    /* ─── SCROLL PROGRESS BAR (Change 4) ─── */
+    #scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      background: var(--gold);
+      z-index: 9997;
+      width: 0%;
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+
+    /* ─── GRAIN OVERLAY (Change 10) ─── */
+    #grain-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9990;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 150px 150px;
+    }
+
     /* ─── NAV ─── */
     nav {
       position: fixed;
@@ -76,11 +200,12 @@
       backdrop-filter: blur(10px);
     }
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 500;
-      color: var(--cream);
-      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo img {
+      height: 38px;
+      width: auto;
     }
     .nav-links {
       display: flex;
@@ -114,7 +239,7 @@
       color: var(--charcoal) !important;
     }
 
-    /* Hamburger */
+    /* ─── HAMBURGER — morphing animation (Change 8) ─── */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -131,7 +256,18 @@
       width: 24px;
       height: 1.5px;
       background: var(--cream);
-      transition: var(--transition-fast);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
     }
     .nav-mobile {
       display: none;
@@ -360,6 +496,10 @@
       overflow: hidden;
       white-space: nowrap;
     }
+    /* Change 9: pause on hover */
+    .marquee-strip:hover .marquee-inner {
+      animation-play-state: paused;
+    }
     .marquee-inner {
       display: inline-flex;
       animation: marquee 30s linear infinite;
@@ -438,6 +578,7 @@
     }
     .about-photo-wrap {
       position: relative;
+      overflow: hidden;
     }
     .about-photo-deco {
       position: absolute;
@@ -457,6 +598,7 @@
       object-fit: cover;
       object-position: center top;
       border-radius: 4px;
+      transition: transform 0.4s ease;
     }
     .about-content .section-title {
       margin-bottom: 1rem;
@@ -905,10 +1047,9 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
-    .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      color: var(--gold);
+    .footer-logo img {
+      height: 34px;
+      width: auto;
     }
     .footer-credentials {
       font-size: 0.72rem;
@@ -919,6 +1060,79 @@
     .footer-copy {
       font-size: 0.72rem;
       color: rgba(250,248,245,0.2);
+    }
+
+    /* ─── BACK TO TOP (Change 7) ─── */
+    #back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--charcoal);
+      border: none;
+      font-size: 1.2rem;
+      z-index: 500;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateY(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #back-to-top:hover {
+      background: var(--gold-dark);
+    }
+
+    /* ─── FLOATING CONTACT BUTTON (Change 18) ─── */
+    #float-contact {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 500;
+      box-shadow: 0 4px 20px rgba(196,168,130,0.4);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    #float-contact:hover {
+      background: var(--gold-dark);
+      transform: scale(1.1) translateY(-2px);
+    }
+
+    /* ─── COOKIE BANNER (Change 17) ─── */
+    #cookie-banner {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--charcoal);
+      color: rgba(250,248,245,0.7);
+      padding: 0.9rem 1.75rem;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      z-index: 8000;
+      white-space: nowrap;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    #cookie-banner a {
+      color: var(--gold);
+      text-decoration: underline;
+      cursor: pointer;
     }
 
     /* ─── RESPONSIVE ─── */
@@ -1051,6 +1265,11 @@
       /* Footer */
       footer { padding: 2rem 5%; gap: 0.5rem; }
       .footer-credentials { display: none; }
+
+      /* Back to top / float contact: adjust on mobile */
+      #back-to-top { bottom: 1.25rem; right: 1.25rem; }
+      #float-contact { bottom: 1.25rem; left: 1.25rem; }
+      #cookie-banner { white-space: normal; text-align: center; width: 90%; }
     }
 
     /* Small mobile (≤ 400px) */
@@ -1061,12 +1280,46 @@
       .hero-tag-text { font-size: 0.6rem; letter-spacing: 0.1em; }
     }
   </style>
+
+  <!-- ─── STRUCTURED DATA JSON-LD (Change 14) ─── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Phoebe",
+    "jobTitle": "Occupational Therapist",
+    "description": "HCPC-registered occupational therapist specialising in mental health and wellbeing, offering online consultations in English and Mandarin.",
+    "knowsLanguage": ["en", "zh"],
+    "url": "https://bodymindot.com",
+    "email": "hello@phoebeot.com",
+    "hasCredential": {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "HCPC Registration"
+    }
+  }
+  </script>
 </head>
 <body>
 
+  <!-- ─── PAGE LOAD CURTAIN (Change 3) ─── -->
+  <div id="page-curtain">
+    <span id="curtain-brand"><img src="assets/photos/Logo 4.png" alt="BodyMindOT" /></span>
+    <div id="curtain-line"></div>
+  </div>
+
+  <!-- ─── GRAIN OVERLAY (Change 10) ─── -->
+  <div id="grain-overlay" aria-hidden="true"></div>
+
+  <!-- ─── SCROLL PROGRESS (Change 4) ─── -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ─── CUSTOM CURSOR ELEMENTS (Change 1) ─── -->
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
   <!-- ─── NAV ─── -->
   <nav id="navbar">
-    <a href="#hero" class="nav-logo">Phoebe</a>
+    <a href="#hero" class="nav-logo"><img src="assets/photos/Logo 4.png" alt="BodyMindOT" /></a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
@@ -1118,8 +1371,9 @@
       </div>
     </div>
 
+    <!-- Change 15: eager load hero illustration, with explicit dimensions -->
     <div class="hero-illustration" id="heroIllustration">
-      <img src="Phoebe cartoon photo.png" alt="Phoebe illustration" />
+      <img src="assets/photos/Phoebe cartoon photo.png" alt="Phoebe illustration" width="420" height="600" />
     </div>
   </section>
 
@@ -1155,7 +1409,8 @@
     <div class="about-grid">
       <div class="about-photo-wrap fade-up">
         <div class="about-photo-deco"></div>
-        <img src="Phoebe photo.jpeg" alt="Phoebe — Occupational Therapist" />
+        <!-- Change 15: lazy load, explicit dimensions -->
+        <img src="assets/photos/Phoebe photo.jpeg" alt="BodyMindOT — Occupational Therapist" loading="lazy" width="600" height="540" />
       </div>
       <div class="about-content">
         <p class="section-label fade-up">About</p>
@@ -1165,16 +1420,17 @@
         <p class="about-intro fade-up">
           I am an HCPC-registered occupational therapist specialising in mental health and wellbeing. Through online one-to-one consultations, I support adults in navigating life's challenges — whether that's burnout, adjustment to living abroad, managing stress, or finding a sustainable rhythm in your everyday.
         </p>
+        <!-- Change 16: wrap Chinese text with lang attribute -->
         <p class="about-bilingual fade-up">
           I work with both English-speaking and Mandarin-speaking clients, offering a bilingual space where you can express yourself fully.<br>
-          <strong>我提供中英雙語諮詢服務，歡迎中文使用者。</strong>
+          <strong><span lang="zh-Hant">我提供中英雙語諮詢服務，歡迎中文使用者。</span></strong>
         </p>
         <div class="credential-tags fade-up">
           <span class="credential-tag">HCPC Registered</span>
           <span class="credential-tag">Occupational Therapist</span>
           <span class="credential-tag">Mental Health</span>
           <span class="credential-tag">Online Consultations</span>
-          <span class="credential-tag">English &amp; 中文</span>
+          <span class="credential-tag">English &amp; <span lang="zh-Hant">中文</span></span>
         </div>
       </div>
     </div>
@@ -1278,7 +1534,7 @@
             </div>
             <div class="services-meta-item">
               <div class="services-meta-dot"></div>
-              <span><strong>Language</strong> &nbsp; English or 中文</span>
+              <span><strong>Language</strong> &nbsp; English or <span lang="zh-Hant">中文</span></span>
             </div>
             <div class="services-meta-item">
               <div class="services-meta-dot"></div>
@@ -1326,7 +1582,7 @@
         </p>
         <div class="workshop-divider"></div>
         <p class="workshop-detail">
-          Sessions held online via video &amp; in person in London &nbsp;·&nbsp; Suitable for adults &nbsp;·&nbsp; English &amp; 中文 welcome
+          Sessions held online via video &amp; in person in London &nbsp;·&nbsp; Suitable for adults &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span> welcome
         </p>
         <div class="workshop-divider"></div>
         <p class="workshop-detail">
@@ -1367,6 +1623,7 @@
   </section>
 
   <!-- ─── LANGUAGE STRIP ─── -->
+  <!-- Change 16: lang attributes on Chinese text -->
   <div id="language">
     <div class="language-flags fade-up">
       <span class="lang-item">
@@ -1376,11 +1633,11 @@
       <span class="lang-sep"></span>
       <span class="lang-item">
         <span>&#127481;&#127484;</span>
-        <span>中文</span>
+        <span lang="zh-Hant">中文</span>
       </span>
     </div>
     <p class="language-note fade-up">
-      Sessions are available in both English and Traditional Chinese (中文), providing a fully bilingual space where you can express yourself in the language you feel most comfortable in.
+      Sessions are available in both English and Traditional Chinese (<span lang="zh-Hant">中文</span>), providing a fully bilingual space where you can express yourself in the language you feel most comfortable in.
     </p>
   </div>
 
@@ -1402,35 +1659,85 @@
 
   <!-- ─── FOOTER ─── -->
   <footer>
-    <span class="footer-logo">Phoebe</span>
-    <span class="footer-credentials">HCPC Registered &nbsp;·&nbsp; Occupational Therapist &nbsp;·&nbsp; English &amp; 中文</span>
-    <span class="footer-copy">&copy; 2025 Phoebe. All rights reserved.</span>
+    <span class="footer-logo"><img src="assets/photos/Logo 4.png" alt="BodyMindOT" /></span>
+    <span class="footer-credentials">HCPC Registered &nbsp;·&nbsp; Occupational Therapist &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span></span>
+    <span class="footer-copy">&copy; 2025 BodyMindOT. All rights reserved.</span>
   </footer>
+
+  <!-- ─── BACK TO TOP (Change 7) ─── -->
+  <button id="back-to-top" aria-label="Back to top">&#8593;</button>
+
+  <!-- ─── FLOATING CONTACT BUTTON (Change 18) ─── -->
+  <a id="float-contact" href="mailto:hello@phoebeot.com" aria-label="Email Phoebe">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="2" y="4" width="20" height="16" rx="2"/>
+      <path d="m2 7 10 7 10-7"/>
+    </svg>
+  </a>
+
+  <!-- ─── COOKIE BANNER (Change 17) ─── -->
+  <div id="cookie-banner">
+    <p>We use essential cookies to ensure the site works. <a href="#" id="cookie-accept">Accept</a></p>
+  </div>
 
 
   <!-- ─── JAVASCRIPT ─── -->
   <script>
-    // ── NAV: transparent → dark on scroll ──
+    // ══════════════════════════════════════════════
+    // PAGE LOAD CURTAIN (Change 3)
+    // ══════════════════════════════════════════════
+    document.addEventListener('DOMContentLoaded', () => {
+      const curtain = document.getElementById('page-curtain');
+      // Wait 800ms, then slide curtain up over 900ms
+      setTimeout(() => {
+        curtain.classList.add('lift');
+        // Remove from DOM after animation completes
+        curtain.addEventListener('transitionend', () => {
+          curtain.remove();
+        }, { once: true });
+      }, 800);
+
+      // Hero animation fires after curtain lifts (800ms wait + 900ms anim = 1700ms total)
+      setTimeout(animateHero, 1700);
+    });
+
+    // ══════════════════════════════════════════════
+    // NAV: transparent → dark on scroll
+    // ══════════════════════════════════════════════
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 50);
-    });
+    }, { passive: true });
 
-    // ── HAMBURGER / MOBILE NAV ──
+    // ══════════════════════════════════════════════
+    // HAMBURGER / MOBILE NAV (Change 8: morphing hamburger)
+    // ══════════════════════════════════════════════
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobileNav');
     const mobileClose = document.getElementById('mobileClose');
 
-    hamburger.addEventListener('click', () => mobileNav.classList.toggle('open'));
-    mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
-
-    document.querySelectorAll('.mobile-link').forEach(link => {
-      link.addEventListener('click', () => mobileNav.classList.remove('open'));
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('active', isOpen);
     });
 
-    // ── HERO TEXT ANIMATION ──
+    mobileClose.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('active');
+    });
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        hamburger.classList.remove('active');
+      });
+    });
+
+    // ══════════════════════════════════════════════
+    // HERO TEXT ANIMATION
+    // ══════════════════════════════════════════════
     function animateHero() {
-      const tag = document.getElementById('heroTag');
+      const tag   = document.getElementById('heroTag');
       const line1 = document.getElementById('line1');
       const line2 = document.getElementById('line2');
       const line3 = document.getElementById('line3');
@@ -1438,32 +1745,72 @@
       const ctas  = document.getElementById('heroCtas');
       const illus = document.getElementById('heroIllustration');
 
-      // Tag fades in
       setTimeout(() => { tag.classList.add('visible'); }, 200);
-
-      // Lines slide up
       setTimeout(() => { line1.classList.add('visible'); }, 400);
       setTimeout(() => { line2.classList.add('visible'); }, 580);
       setTimeout(() => { line3.classList.add('visible'); }, 760);
-
-      // Sub + CTAs
       setTimeout(() => { sub.classList.add('visible'); }, 1000);
       setTimeout(() => { ctas.classList.add('visible'); }, 1200);
-
-      // Illustration floats up
       setTimeout(() => { illus.classList.add('visible'); }, 500);
     }
 
-    // ── MOUSE PARALLAX ON HERO ILLUSTRATION (desktop only) ──
-    const hero  = document.getElementById('hero');
-    const illus = document.getElementById('heroIllustration');
-    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    // ══════════════════════════════════════════════
+    // SMOOTH SCROLL — lerp-based (Change 2)
+    // ══════════════════════════════════════════════
+    (function initSmoothScroll() {
+      let targetY = window.scrollY;
+      let currentY = window.scrollY;
+      let rafId = null;
+      const LERP = 0.1;
+
+      function lerp(a, b, t) { return a + (b - a) * t; }
+
+      function tick() {
+        currentY = lerp(currentY, targetY, LERP);
+        if (Math.abs(currentY - targetY) < 0.5) {
+          currentY = targetY;
+          rafId = null;
+          return;
+        }
+        window.scrollTo(0, currentY);
+        rafId = requestAnimationFrame(tick);
+      }
+
+      function smoothScrollTo(y) {
+        targetY = Math.max(0, Math.min(y, document.body.scrollHeight - window.innerHeight));
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          const id = anchor.getAttribute('href').slice(1);
+          if (!id) {
+            e.preventDefault();
+            smoothScrollTo(0);
+            return;
+          }
+          const target = document.getElementById(id);
+          if (target) {
+            e.preventDefault();
+            const top = target.getBoundingClientRect().top + window.scrollY - 72;
+            smoothScrollTo(top);
+          }
+        });
+      });
+    })();
+
+    // ══════════════════════════════════════════════
+    // MOUSE PARALLAX ON HERO ILLUSTRATION (desktop only)
+    // ══════════════════════════════════════════════
+    const heroSection = document.getElementById('hero');
+    const illus       = document.getElementById('heroIllustration');
+    const isTouch     = window.matchMedia('(pointer: coarse)').matches;
 
     if (!isTouch) {
       let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
 
-      hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
+      heroSection.addEventListener('mousemove', (e) => {
+        const rect = heroSection.getBoundingClientRect();
         const cx = rect.width  / 2;
         const cy = rect.height / 2;
         const dx = (e.clientX - rect.left - cx) / cx;
@@ -1472,7 +1819,7 @@
         targetY = -dy * 12;
       });
 
-      hero.addEventListener('mouseleave', () => {
+      heroSection.addEventListener('mouseleave', () => {
         targetX = 0;
         targetY = 0;
       });
@@ -1485,7 +1832,9 @@
       })();
     }
 
-    // ── SCROLL REVEAL with IntersectionObserver ──
+    // ══════════════════════════════════════════════
+    // SCROLL REVEAL with IntersectionObserver
+    // ══════════════════════════════════════════════
     const fadeEls = document.querySelectorAll('.fade-up');
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1498,7 +1847,6 @@
 
     fadeEls.forEach(el => revealObserver.observe(el));
 
-    // Fallback: any element within 1.5x viewport height on load shows immediately
     function revealNear() {
       const vh = window.innerHeight;
       fadeEls.forEach(el => {
@@ -1511,20 +1859,254 @@
     revealNear();
     window.addEventListener('scroll', revealNear, { passive: true });
 
-    // ── SMOOTH SCROLL for in-page links ──
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', (e) => {
-        const id = anchor.getAttribute('href').slice(1);
-        const target = document.getElementById(id);
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
+    // ══════════════════════════════════════════════
+    // SCROLL PROGRESS BAR (Change 4)
+    // ══════════════════════════════════════════════
+    function initProgressBar() {
+      const bar = document.getElementById('scroll-progress');
+      window.addEventListener('scroll', () => {
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        const pct  = docH > 0 ? (window.scrollY / docH) * 100 : 0;
+        bar.style.width = pct + '%';
+      }, { passive: true });
+    }
 
-    // ── INIT ──
-    window.addEventListener('DOMContentLoaded', animateHero);
+    // ══════════════════════════════════════════════
+    // CUSTOM CURSOR (Change 1)
+    // ══════════════════════════════════════════════
+    function initCursor() {
+      if (!window.matchMedia('(pointer: fine)').matches) return;
+
+      const dot   = document.getElementById('cursor-dot');
+      const ring  = document.getElementById('cursor-ring');
+
+      // Trail: 6 dots
+      const TRAIL_COUNT = 6;
+      const trailDots = [];
+      const trailPositions = [];
+
+      for (let i = 0; i < TRAIL_COUNT; i++) {
+        const d = document.createElement('div');
+        d.className = 'cursor-trail-dot';
+        const opacity = 0.35 - (i * ((0.35 - 0.05) / (TRAIL_COUNT - 1)));
+        d.style.opacity = opacity;
+        document.body.appendChild(d);
+        trailDots.push(d);
+        trailPositions.push({ x: -100, y: -100 });
+      }
+
+      let mouseX = -100, mouseY = -100;
+      let ringX  = -100, ringY  = -100;
+      let rafRunning = false;
+
+      function updateCursor() {
+        // Dot follows exactly
+        dot.style.left = mouseX + 'px';
+        dot.style.top  = mouseY + 'px';
+
+        // Ring lerps
+        ringX += (mouseX - ringX) * 0.12;
+        ringY += (mouseY - ringY) * 0.12;
+        ring.style.left = ringX + 'px';
+        ring.style.top  = ringY + 'px';
+
+        // Update trail positions (shift array)
+        trailPositions.unshift({ x: mouseX, y: mouseY });
+        trailPositions.length = TRAIL_COUNT;
+
+        trailDots.forEach((td, i) => {
+          const pos = trailPositions[i] || { x: -100, y: -100 };
+          td.style.left = pos.x + 'px';
+          td.style.top  = pos.y + 'px';
+        });
+
+        requestAnimationFrame(updateCursor);
+      }
+
+      requestAnimationFrame(updateCursor);
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      // Hide/show on window leave/enter
+      document.addEventListener('mouseleave', () => {
+        dot.style.display  = 'none';
+        ring.style.display = 'none';
+        trailDots.forEach(td => td.style.display = 'none');
+      });
+      document.addEventListener('mouseenter', () => {
+        dot.style.display  = 'block';
+        ring.style.display = 'block';
+        trailDots.forEach(td => td.style.display = 'block');
+      });
+
+      // Hover states
+      const hoverTargets = 'a, button, .who-card, .service-tile, .btn-primary, .btn-ghost, .btn-primary-outline, .nav-cta, .workshop-card';
+      document.querySelectorAll(hoverTargets).forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          dot.classList.add('cursor-hover');
+          ring.classList.add('cursor-hover');
+        });
+        el.addEventListener('mouseleave', () => {
+          dot.classList.remove('cursor-hover');
+          ring.classList.remove('cursor-hover');
+        });
+      });
+
+      // Click ripple
+      document.addEventListener('mousedown', (e) => {
+        const ripple = document.createElement('div');
+        ripple.className = 'cursor-ripple';
+        ripple.style.left = e.clientX + 'px';
+        ripple.style.top  = e.clientY + 'px';
+        document.body.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+      });
+    }
+
+    // ══════════════════════════════════════════════
+    // 3D TILT ON CARDS (Change 5)
+    // ══════════════════════════════════════════════
+    function initTilt() {
+      if (window.matchMedia('(pointer: coarse)').matches) return;
+
+      document.querySelectorAll('.who-card, .workshop-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const dx = ((e.clientX - rect.left) / rect.width)  - 0.5;
+          const dy = ((e.clientY - rect.top)  / rect.height) - 0.5;
+          card.style.transition = 'transform 0.1s ease';
+          card.style.transform  = `perspective(800px) rotateX(${-dy * 8}deg) rotateY(${dx * 8}deg) scale(1.02)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transition = 'transform 0.5s ease';
+          card.style.transform  = '';
+        });
+      });
+    }
+
+    // ══════════════════════════════════════════════
+    // MAGNETIC BUTTONS (Change 6)
+    // ══════════════════════════════════════════════
+    function initMagnetic() {
+      if (window.matchMedia('(pointer: coarse)').matches) return;
+
+      document.querySelectorAll('.btn-primary, .nav-cta').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const dx = e.clientX - (rect.left + rect.width  / 2);
+          const dy = e.clientY - (rect.top  + rect.height / 2);
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 60) {
+            btn.style.transition = 'transform 0.2s ease';
+            btn.style.transform  = `translate(${dx * 0.3}px, ${dy * 0.3}px)`;
+          }
+        });
+
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transition = 'transform 0.4s ease';
+          btn.style.transform  = '';
+        });
+      });
+    }
+
+    // ══════════════════════════════════════════════
+    // BACK TO TOP (Change 7)
+    // ══════════════════════════════════════════════
+    function initBackToTop() {
+      const btn = document.getElementById('back-to-top');
+
+      window.addEventListener('scroll', () => {
+        btn.classList.toggle('visible', window.scrollY > 400);
+      }, { passive: true });
+
+      btn.addEventListener('click', () => {
+        // Use smooth scroll if available
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // ══════════════════════════════════════════════
+    // SECTION ENTRANCE STAGGER (Change 12)
+    // ══════════════════════════════════════════════
+    function initStagger() {
+      // .who-card: 0s, 0.15s, 0.30s
+      document.querySelectorAll('.who-card').forEach((el, i) => {
+        el.style.transitionDelay = (i * 0.15) + 's';
+      });
+
+      // .how-principle: 0s, 0.12s, 0.24s
+      document.querySelectorAll('.how-principle').forEach((el, i) => {
+        el.style.transitionDelay = (i * 0.12) + 's';
+      });
+
+      // .service-tile: 0.05s stagger, max 0.25s
+      document.querySelectorAll('.service-tile').forEach((el, i) => {
+        el.style.transitionDelay = Math.min(i * 0.05, 0.25) + 's';
+      });
+    }
+
+    // ══════════════════════════════════════════════
+    // COOKIE BANNER (Change 17)
+    // ══════════════════════════════════════════════
+    function initCookieBanner() {
+      const banner = document.getElementById('cookie-banner');
+      if (!banner) return;
+
+      if (localStorage.getItem('cookie-ok')) {
+        banner.style.display = 'none';
+        return;
+      }
+
+      const acceptBtn = document.getElementById('cookie-accept');
+      acceptBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        localStorage.setItem('cookie-ok', '1');
+        banner.style.opacity  = '0';
+        banner.style.transform = 'translateX(-50%) translateY(20px)';
+        setTimeout(() => banner.remove(), 400);
+      });
+    }
+
+    // ══════════════════════════════════════════════
+    // ABOUT SECTION IMAGE PARALLAX (Change 11)
+    // ══════════════════════════════════════════════
+    function initAboutParallax() {
+      if (window.matchMedia('(pointer: coarse)').matches) return;
+
+      const aboutSection = document.getElementById('about');
+      const aboutImg = aboutSection ? aboutSection.querySelector('.about-photo-wrap img') : null;
+      if (!aboutImg) return;
+
+      aboutSection.addEventListener('mousemove', (e) => {
+        const rect = aboutSection.getBoundingClientRect();
+        const dx = ((e.clientX - rect.left) / rect.width)  - 0.5;
+        const dy = ((e.clientY - rect.top)  / rect.height) - 0.5;
+        aboutImg.style.transition = 'transform 0.15s ease';
+        aboutImg.style.transform  = `translate(${dx * 8}px, ${dy * 8}px)`;
+      });
+
+      aboutSection.addEventListener('mouseleave', () => {
+        aboutImg.style.transition = 'transform 0.5s ease';
+        aboutImg.style.transform  = '';
+      });
+    }
+
+    // ══════════════════════════════════════════════
+    // CALL ALL INIT FUNCTIONS
+    // ══════════════════════════════════════════════
+    initCursor();
+    initTilt();
+    initMagnetic();
+    initStagger();
+    initProgressBar();
+    initBackToTop();
+    initCookieBanner();
+    initAboutParallax();
+
   </script>
 </body>
 </html>
