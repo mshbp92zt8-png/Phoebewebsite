@@ -138,24 +138,43 @@
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       background: var(--charcoal);
-      z-index: 99;
+      z-index: 200;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 2.5rem;
+      gap: clamp(1.25rem, 5vh, 2.2rem);
+      overflow-y: auto;
+      padding: 5rem 2rem 3rem;
     }
     .nav-mobile.open {
       display: flex;
     }
     .nav-mobile a {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       color: var(--cream);
       letter-spacing: 0.05em;
       transition: color var(--transition-fast);
+      text-align: center;
     }
     .nav-mobile a:hover {
       color: var(--gold);
+    }
+    .nav-mobile a.mobile-cta {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--charcoal);
+      padding: 0.9rem 2.5rem;
+      border-radius: 100px;
+      margin-top: 0.5rem;
+    }
+    .nav-mobile a.mobile-cta:hover {
+      background: var(--gold-dark);
+      color: var(--charcoal);
     }
     .nav-mobile-close {
       position: absolute;
@@ -168,6 +187,12 @@
       border: none;
       font-family: 'Inter', sans-serif;
       font-weight: 300;
+      z-index: 201;
+      min-width: 44px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
     }
 
     /* ─── HERO ─── */
@@ -221,6 +246,7 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold);
+      white-space: nowrap;
     }
     .hero-heading {
       font-size: clamp(3.5rem, 8vw, 7rem);
@@ -359,6 +385,10 @@
     /* ─── SECTION SHARED ─── */
     section {
       padding: 6rem 5%;
+      scroll-margin-top: 72px;
+    }
+    #language {
+      scroll-margin-top: 72px;
     }
     .section-label {
       font-size: 0.7rem;
@@ -975,6 +1005,7 @@
       /* Services: single column tiles */
       .services-tiles { grid-template-columns: 1fr; }
       .service-tile { padding: 1.1rem 1rem; }
+      .service-tile .tile-arrow { display: none; }
       .services-info-card { padding: 2rem 1.5rem; }
 
       /* Workshops */
@@ -1014,6 +1045,7 @@
       .hero-heading { font-size: clamp(2.4rem, 12vw, 3rem); }
       .section-title { font-size: clamp(1.9rem, 9vw, 2.5rem); }
       nav { padding: 1rem 5%; }
+      .hero-tag-text { font-size: 0.6rem; letter-spacing: 0.1em; }
     }
   </style>
 </head>
@@ -1043,7 +1075,7 @@
     <a href="#services" class="mobile-link">Services</a>
     <a href="#workshops" class="mobile-link">Workshops</a>
     <a href="#contact" class="mobile-link">Contact</a>
-    <a href="mailto:hello@phoebeot.com" class="mobile-link">Book a Consultation</a>
+    <a href="mailto:hello@phoebeot.com" class="mobile-link mobile-cta">Book a Consultation</a>
   </div>
 
   <!-- ─── HERO ─── -->
@@ -1376,7 +1408,7 @@
     const mobileNav = document.getElementById('mobileNav');
     const mobileClose = document.getElementById('mobileClose');
 
-    hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
+    hamburger.addEventListener('click', () => mobileNav.classList.toggle('open'));
     mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
 
     document.querySelectorAll('.mobile-link').forEach(link => {
@@ -1409,45 +1441,62 @@
       setTimeout(() => { illus.classList.add('visible'); }, 500);
     }
 
-    // ── MOUSE PARALLAX ON HERO ILLUSTRATION ──
+    // ── MOUSE PARALLAX ON HERO ILLUSTRATION (desktop only) ──
     const hero  = document.getElementById('hero');
     const illus = document.getElementById('heroIllustration');
-    let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
 
-    hero.addEventListener('mousemove', (e) => {
-      const rect = hero.getBoundingClientRect();
-      const cx = rect.width  / 2;
-      const cy = rect.height / 2;
-      const dx = (e.clientX - rect.left - cx) / cx;
-      const dy = (e.clientY - rect.top  - cy) / cy;
-      targetX = -dx * 18;
-      targetY = -dy * 12;
-    });
+    if (!isTouch) {
+      let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
 
-    hero.addEventListener('mouseleave', () => {
-      targetX = 0;
-      targetY = 0;
-    });
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const cx = rect.width  / 2;
+        const cy = rect.height / 2;
+        const dx = (e.clientX - rect.left - cx) / cx;
+        const dy = (e.clientY - rect.top  - cy) / cy;
+        targetX = -dx * 18;
+        targetY = -dy * 12;
+      });
 
-    (function parallaxLoop() {
-      currentX += (targetX - currentX) * 0.06;
-      currentY += (targetY - currentY) * 0.06;
-      illus.style.transform = `translate(${currentX}px, ${currentY}px)`;
-      requestAnimationFrame(parallaxLoop);
-    })();
+      hero.addEventListener('mouseleave', () => {
+        targetX = 0;
+        targetY = 0;
+      });
+
+      (function parallaxLoop() {
+        currentX += (targetX - currentX) * 0.06;
+        currentY += (targetY - currentY) * 0.06;
+        illus.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        requestAnimationFrame(parallaxLoop);
+      })();
+    }
 
     // ── SCROLL REVEAL with IntersectionObserver ──
     const fadeEls = document.querySelectorAll('.fade-up');
-    const observer = new IntersectionObserver((entries) => {
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+          revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.04, rootMargin: '0px 0px 0px 0px' });
 
-    fadeEls.forEach(el => observer.observe(el));
+    fadeEls.forEach(el => revealObserver.observe(el));
+
+    // Fallback: any element within 1.5x viewport height on load shows immediately
+    function revealNear() {
+      const vh = window.innerHeight;
+      fadeEls.forEach(el => {
+        if (!el.classList.contains('visible')) {
+          const top = el.getBoundingClientRect().top;
+          if (top < vh * 1.5) el.classList.add('visible');
+        }
+      });
+    }
+    revealNear();
+    window.addEventListener('scroll', revealNear, { passive: true });
 
     // ── SMOOTH SCROLL for in-page links ──
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
