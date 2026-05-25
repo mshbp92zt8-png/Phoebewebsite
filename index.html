@@ -1826,17 +1826,13 @@
       color: var(--charcoal);
       line-height: 1.3;
     }
-    .lang-col-divider {
-      width: 1px;
-      height: 60px;
-      background: var(--gold);
-      opacity: 0.35;
-      flex-shrink: 0;
-    }
     @media (max-width: 600px) {
       .language-bilingual { flex-direction: column; gap: 1.5rem; }
-      .lang-col-divider { width: 40px; height: 1px; }
     }
+    /* Language strip: show only the active language column */
+    .lang-col-zh { display: none; }
+    html[lang="zh-Hant"] .lang-col-en { display: none; }
+    html[lang="zh-Hant"] .lang-col-zh { display: block; }
 
     /* ─── FAQ ─── */
     #faq {
@@ -2273,7 +2269,7 @@
   <section id="workshops">
     <div class="workshops-grid">
       <div class="workshops-left">
-        <p class="section-label fade-up" data-i18n="workshops-label">Group Workshops</p>
+        <p class="section-label fade-up" data-i18n="workshops-label">Experiential Group Workshop</p>
         <h2 class="section-title fade-up" data-i18n="workshops-heading">
           Creativity for<br>everyday life.
         </h2>
@@ -2310,57 +2306,6 @@
     </div>
   </section>
 
-  <!-- ─── HOW I WORK ─── -->
-  <section id="how">
-    <div class="how-grid">
-      <div class="how-quote-wrap fade-up">
-        <blockquote class="how-quote" data-i18n="how-quote">
-          "Your voice matters —<br>and your goals<br><span>shape the path</span><br>we take together."
-        </blockquote>
-        <p class="how-quote-attr" data-i18n="how-attr">— Phoebe's approach</p>
-      </div>
-
-      <div class="how-principles">
-        <div class="how-principle fade-up">
-          <div class="how-principle-header">
-            <div class="how-principle-header-left">
-              <p class="how-principle-num">01</p>
-              <h3 data-i18n="p1-title">Your Voice Comes First</h3>
-            </div>
-            <span class="how-principle-toggle">+</span>
-          </div>
-          <div class="how-principle-body">
-            <p data-i18n="p1-body">I deeply value what matters to you. Sessions are led by your priorities — there is no agenda imposed from the outside. You decide what we focus on and the pace at which we move.</p>
-          </div>
-        </div>
-        <div class="how-principle fade-up">
-          <div class="how-principle-header">
-            <div class="how-principle-header-left">
-              <p class="how-principle-num">02</p>
-              <h3 data-i18n="p2-title">Goals as a Compass</h3>
-            </div>
-            <span class="how-principle-toggle">+</span>
-          </div>
-          <div class="how-principle-body">
-            <p data-i18n="p2-body">Together, we look into what you want from your life and find realistic, meaningful ways toward those goals. Progress doesn't have to be dramatic — small shifts often make the biggest difference.</p>
-          </div>
-        </div>
-        <div class="how-principle fade-up">
-          <div class="how-principle-header">
-            <div class="how-principle-header-left">
-              <p class="how-principle-num">03</p>
-              <h3 data-i18n="p3-title">A More Satisfying Daily Life</h3>
-            </div>
-            <span class="how-principle-toggle">+</span>
-          </div>
-          <div class="how-principle-body">
-            <p data-i18n="p3-body">The aim of occupational therapy is practical and grounded: helping you participate in the activities that give your day meaning. Better routines, clearer values, more sustainable living — that is the work.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ─── TESTIMONIALS ─── -->
   <section id="testimonials">
     <div class="testimonials-wrapper">
@@ -2386,12 +2331,11 @@
   <!-- Change 16: lang attributes on Chinese text -->
   <div id="language">
     <div class="language-bilingual fade-up">
-      <div class="lang-col">
+      <div class="lang-col lang-col-en">
         <p class="lang-col-label">English</p>
         <p class="lang-col-quote">"Finding your rhythm<br>in everyday life."</p>
       </div>
-      <div class="lang-col-divider"></div>
-      <div class="lang-col">
+      <div class="lang-col lang-col-zh">
         <p class="lang-col-label" lang="zh-Hant">中文</p>
         <p class="lang-col-quote" lang="zh-Hant">「找到屬於你的<br>日常節奏。」</p>
       </div>
@@ -2463,7 +2407,7 @@
           <select id="cf-service" name="service" required>
             <option value="" disabled selected data-i18n="form-service-default">Please select…</option>
             <option value="individual" data-i18n="form-service-1">Individual Consultation</option>
-            <option value="workshop" data-i18n="form-service-2">Group Workshop</option>
+            <option value="workshop" data-i18n="form-service-2">Experiential Group Workshop</option>
           </select>
         </div>
         <div class="form-group">
@@ -2880,7 +2824,7 @@
         'meta-language': '<strong>Language</strong> &nbsp; English or <span lang="zh-Hant">中文</span>',
         'meta-first': '<strong>First step</strong> &nbsp; Free 15-min intro call',
         'info-book': 'Book a Consultation',
-        'workshops-label': 'Group Workshops',
+        'workshops-label': 'Experiential Group Workshop',
         'workshops-heading': 'Creativity for<br>everyday life.',
         'workshops-body': 'My workshops explore how creativity can be a meaningful part of your daily life — not as an artistic skill, but as a way of connecting with yourself, building resilience, and finding enjoyment in the everyday.',
         'tag-online-loc': 'Online',
@@ -2910,7 +2854,7 @@
         'form-service-label': 'What service are you interested in? *',
         'form-service-default': 'Please select…',
         'form-service-1': 'Individual Consultation',
-        'form-service-2': 'Group Workshop',
+        'form-service-2': 'Experiential Group Workshop',
         'form-referral-label': 'How did you hear about me?',
         'form-referral-default': 'Please select…',
         'form-ref-1': 'Google Search',
@@ -3009,7 +2953,7 @@
         'meta-language': '<strong>語言</strong> &nbsp; 英文或中文',
         'meta-first': '<strong>第一步</strong> &nbsp; 免費 15 分鐘初步通話',
         'info-book': '預約諮詢',
-        'workshops-label': '小組工作坊',
+        'workshops-label': '體驗式小團體工作坊',
         'workshops-heading': '把創意帶進<br>日常生活。',
         'workshops-body': '工作坊探索的是，創意怎麼成為日常生活裡有意義的一部分——不是要你學畫畫或學才藝，而是透過創意去連結自己、建立心理韌性，在平凡的日子裡找到一點樂趣。',
         'tag-online-loc': '線上',
@@ -3039,7 +2983,7 @@
         'form-service-label': '你想預約哪種服務？*',
         'form-service-default': '請選擇…',
         'form-service-1': '個人諮詢',
-        'form-service-2': '小組工作坊',
+        'form-service-2': '體驗式小團體工作坊',
         'form-referral-label': '你是怎麼知道我的？',
         'form-referral-default': '請選擇…',
         'form-ref-1': 'Google 搜尋',
