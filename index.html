@@ -843,70 +843,20 @@
     .service-tile {
       background: #F4EDE3;
       border-radius: 8px;
-      padding: 1rem 1.1rem;
+      padding: 1rem 1.2rem;
       font-size: 0.93rem;
       font-weight: 500;
       color: var(--text);
       letter-spacing: 0.01em;
       line-height: 1.35;
       display: flex;
-      align-items: flex-start;
-      gap: 0.65rem;
+      align-items: center;
       transition: background var(--transition-fast);
-      cursor: pointer;
+      cursor: default;
     }
     .service-tile:hover { background: #ECE3D7; }
-    .service-tile.expanded { background: #ECE3D7; }
-    .tile-icon {
-      color: var(--gold-dark);
-      flex-shrink: 0;
-      display: flex;
-      padding-top: 0.15rem;
-    }
-    .tile-icon svg {
-      width: 16px;
-      height: 16px;
-      stroke: currentColor;
-      stroke-width: 1.5;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .tile-text {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-    .tile-label { display: block; }
-    .tile-desc {
-      font-size: 0.8rem;
-      font-weight: 400;
-      color: var(--text-light);
-      line-height: 1.65;
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: max-height 0.38s ease, opacity 0.3s ease, margin-top 0.3s ease;
-      margin-top: 0;
-    }
-    .service-tile.expanded .tile-desc {
-      max-height: 160px;
-      opacity: 1;
-      margin-top: 0.45rem;
-    }
-    .tile-toggle {
-      flex-shrink: 0;
-      color: var(--gold-dark);
-      font-size: 1.1rem;
-      font-weight: 300;
-      font-family: 'Inter', sans-serif;
-      line-height: 1;
-      padding-top: 0.1rem;
-      transition: transform 0.3s ease;
-      user-select: none;
-    }
-    .service-tile.expanded .tile-toggle { transform: rotate(45deg); }
     .service-tile .tile-arrow { display: none; }
+    .tile-desc { display: none; }
     .services-right {
       position: sticky;
       top: 8rem;
@@ -1619,7 +1569,7 @@
 
       /* Services: single column tiles */
       .services-tiles { grid-template-columns: 1fr; }
-      .service-tile { padding: 0.85rem 1rem; font-size: 0.88rem; }
+      .service-tile { padding: 0.85rem 1rem; font-size: 0.88rem; gap: 6px; }
       .service-tile .tile-arrow { display: none; }
       .services-info-card { padding: 2rem 1.5rem; }
 
@@ -2256,46 +2206,16 @@
           Online 1:1 Occupational Therapy<br>Coaching Consultations.
         </h2>
         <div class="services-tiles fade-up">
-          <div class="service-tile">
-            <span class="tile-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
-            <span class="tile-text"><span data-i18n="tile-routines">Routines &amp; Sustainable Living</span><span class="tile-desc">Designing daily structures that support your wellbeing and that you can actually maintain.</span></span>
-          </div>
-          <div class="service-tile">
-            <span class="tile-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
-            <span class="tile-text"><span data-i18n="tile-emotional">Emotional Regulation</span><span class="tile-desc">Understanding your emotional responses and finding tools to navigate them with greater ease.</span></span>
-          </div>
-          <div class="service-tile">
-            <span class="tile-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
-            <span class="tile-text"><span data-i18n="tile-overseas">Overseas Adjustment</span><span class="tile-desc">Settling into life in a new country — the practical and emotional sides — with support along the way.</span></span>
-          </div>
-          <div class="service-tile">
-            <span class="tile-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"/><path d="M5 21h14"/><path d="M5 7l7-4 7 4"/><path d="M5 7a7 7 0 0 0 7 7 7 7 0 0 0 7-7"/></svg></span>
-            <span class="tile-text"><span data-i18n="tile-balance">Life / Work Balance</span><span class="tile-desc">Recalibrating your time and energy so work is one part of life — not all of it.</span></span>
-          </div>
-          <div class="service-tile">
-            <span class="tile-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
-            <span class="tile-text"><span data-i18n="tile-burnout">Burnout Support</span><span class="tile-desc">Working through exhaustion and disconnection to rediscover energy and purpose in daily life.</span></span>
-          </div>
-          <div class="service-tile">
-            <span class="tile-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
-            <span class="tile-text"><span data-i18n="tile-stress">Stress Management</span><span class="tile-desc">Identifying your stress patterns and building practical strategies to respond rather than react.</span></span>
-          </div>
-          <div class="service-tile">
-            <span class="tile-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
-            <span class="tile-text"><span data-i18n="tile-daily">Daily Functioning</span><span class="tile-desc">Rebuilding the routines and habits that help you feel grounded, capable, and in control.</span></span>
-          </div>
-          <div class="service-tile">
-            <span class="tile-icon"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span>
-            <span class="tile-text"><span data-i18n="tile-roles">Life Roles Transition</span><span class="tile-desc">Moving through changes in identity, relationships, or responsibilities with clarity and confidence.</span></span>
-          </div>
-          <div class="service-tile">
-            <span class="tile-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-            <span class="tile-text"><span data-i18n="tile-parenting">Parenting &amp; Family Functioning</span><span class="tile-desc">Finding balance and presence in family life, even when it feels overwhelming.</span></span>
-          </div>
-          <div class="service-tile">
-            <span class="tile-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
-            <span class="tile-text"><span data-i18n="tile-values">Value Clarification</span><span class="tile-desc">Getting clear on what truly matters to you, so your choices align with the life you want to live.</span></span>
-          </div>
+          <div class="service-tile"><span data-i18n="tile-routines">Routines &amp; Sustainable Living</span></div>
+          <div class="service-tile"><span data-i18n="tile-emotional">Emotional Regulation</span></div>
+          <div class="service-tile"><span data-i18n="tile-overseas">Overseas Adjustment</span></div>
+          <div class="service-tile"><span data-i18n="tile-balance">Life / Work Balance</span></div>
+          <div class="service-tile"><span data-i18n="tile-burnout">Burnout Support</span></div>
+          <div class="service-tile"><span data-i18n="tile-stress">Stress Management</span></div>
+          <div class="service-tile"><span data-i18n="tile-daily">Daily Functioning</span></div>
+          <div class="service-tile"><span data-i18n="tile-roles">Life Roles Transition</span></div>
+          <div class="service-tile"><span data-i18n="tile-parenting">Parenting &amp; Family Functioning</span></div>
+          <div class="service-tile"><span data-i18n="tile-values">Value Clarification</span></div>
         </div>
       </div>
 
@@ -3252,23 +3172,6 @@
     // ══════════════════════════════════════════════
     // HOW I WORK ACCORDION
     // ══════════════════════════════════════════════
-    // ══════════════════════════════════════════════
-    // SERVICE TILE ACCORDION
-    // ══════════════════════════════════════════════
-    function initServiceTiles() {
-      document.querySelectorAll('.service-tile').forEach(tile => {
-        const toggle = document.createElement('span');
-        toggle.className = 'tile-toggle';
-        toggle.textContent = '+';
-        tile.appendChild(toggle);
-        tile.addEventListener('click', () => {
-          const isOpen = tile.classList.contains('expanded');
-          document.querySelectorAll('.service-tile').forEach(t => t.classList.remove('expanded'));
-          if (!isOpen) tile.classList.add('expanded');
-        });
-      });
-    }
-
     function initPrincipleAccordion() {
       document.querySelectorAll('.how-principle').forEach(principle => {
         principle.addEventListener('click', () => {
@@ -3387,7 +3290,6 @@
     initAboutParallax();
     initLangSwitcher();
     initActiveNav();
-    initServiceTiles();
     initPrincipleAccordion();
     initTestimonials();
     initFAQ();
