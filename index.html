@@ -837,7 +837,7 @@
     .services-tiles {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-auto-rows: minmax(2.5rem, auto);
+      grid-auto-rows: minmax(2.9rem, auto);
       gap: 2px;
       background: var(--beige);
       border-radius: 6px;
@@ -845,20 +845,41 @@
     }
     .service-tile {
       background: var(--cream);
-      padding: 0 1rem;
-      font-size: 0.82rem;
+      padding: 0 0.9rem;
+      font-size: 0.8rem;
       font-weight: 500;
       color: var(--text);
       letter-spacing: 0.02em;
       line-height: 1.3;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: 2.5rem;
+      align-items: flex-start;
+      gap: 0.55rem;
+      min-height: 2.9rem;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
       transition: background var(--transition-fast), color var(--transition-fast);
-      cursor: default;
-      border-bottom: 1px solid var(--beige);
+      cursor: pointer;
     }
+    .tile-icon {
+      color: var(--gold);
+      flex-shrink: 0;
+      display: flex;
+      padding-top: 0.05rem;
+    }
+    .tile-icon svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .tile-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .service-tile:hover .tile-icon { color: var(--charcoal); }
     .service-tile:hover {
       background: var(--gold);
       color: var(--charcoal);
@@ -1578,7 +1599,7 @@
 
       /* Services: single column tiles */
       .services-tiles { grid-template-columns: 1fr; }
-      .service-tile { padding: 0 0.9rem; min-height: 2.4rem; }
+      .service-tile { padding: 0.65rem 0.9rem; min-height: 2.6rem; }
       .service-tile .tile-arrow { display: none; }
       .services-info-card { padding: 2rem 1.5rem; }
 
@@ -2235,16 +2256,46 @@
           Online 1:1 Occupational Therapy<br>Coaching Consultations.
         </h2>
         <div class="services-tiles fade-up">
-          <div class="service-tile"><span data-i18n="tile-stress">Stress Management</span><span class="tile-arrow">&#8599;</span><span class="tile-desc">Identifying your stress patterns and building practical strategies to respond rather than react.</span></div>
-          <div class="service-tile"><span data-i18n="tile-burnout">Burnout Support</span><span class="tile-arrow">&#8599;</span><span class="tile-desc">Working through exhaustion and disconnection to rediscover energy and purpose in daily life.</span></div>
-          <div class="service-tile"><span data-i18n="tile-daily">Daily Functioning</span><span class="tile-arrow">&#8599;</span><span class="tile-desc">Rebuilding the routines and habits that help you feel grounded, capable, and in control.</span></div>
-          <div class="service-tile"><span data-i18n="tile-balance">Life / Work Balance</span><span class="tile-arrow">&#8599;</span><span class="tile-desc">Recalibrating your time and energy so work is one part of life — not all of it.</span></div>
-          <div class="service-tile"><span data-i18n="tile-emotional">Emotional Regulation</span><span class="tile-arrow">&#8599;</span><span class="tile-desc">Understanding your emotional responses and finding tools to navigate them with greater ease.</span></div>
-          <div class="service-tile"><span data-i18n="tile-overseas">Overseas Adjustment</span><span class="tile-arrow">&#8599;</span><span class="tile-desc">Settling into life in a new country — the practical and emotional sides — with support along the way.</span></div>
-          <div class="service-tile"><span data-i18n="tile-roles">Life Roles Transition</span><span class="tile-arrow">&#8599;</span><span class="tile-desc">Moving through changes in identity, relationships, or responsibilities with clarity and confidence.</span></div>
-          <div class="service-tile"><span data-i18n="tile-routines">Routines &amp; Sustainable Living</span><span class="tile-arrow">&#8599;</span><span class="tile-desc">Designing daily structures that support your wellbeing and that you can actually maintain.</span></div>
-          <div class="service-tile"><span data-i18n="tile-parenting">Parenting &amp; Family Functioning</span><span class="tile-arrow">&#8599;</span><span class="tile-desc">Finding balance and presence in family life, even when it feels overwhelming.</span></div>
-          <div class="service-tile"><span data-i18n="tile-values">Value Clarification</span><span class="tile-arrow">&#8599;</span><span class="tile-desc">Getting clear on what truly matters to you, so your choices align with the life you want to live.</span></div>
+          <div class="service-tile">
+            <span class="tile-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+            <span class="tile-text"><span data-i18n="tile-routines">Routines &amp; Sustainable Living</span><span class="tile-desc">Designing daily structures that support your wellbeing and that you can actually maintain.</span></span>
+          </div>
+          <div class="service-tile">
+            <span class="tile-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="tile-text"><span data-i18n="tile-emotional">Emotional Regulation</span><span class="tile-desc">Understanding your emotional responses and finding tools to navigate them with greater ease.</span></span>
+          </div>
+          <div class="service-tile">
+            <span class="tile-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+            <span class="tile-text"><span data-i18n="tile-overseas">Overseas Adjustment</span><span class="tile-desc">Settling into life in a new country — the practical and emotional sides — with support along the way.</span></span>
+          </div>
+          <div class="service-tile">
+            <span class="tile-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"/><path d="M5 21h14"/><path d="M5 7l7-4 7 4"/><path d="M5 7a7 7 0 0 0 7 7 7 7 0 0 0 7-7"/></svg></span>
+            <span class="tile-text"><span data-i18n="tile-balance">Life / Work Balance</span><span class="tile-desc">Recalibrating your time and energy so work is one part of life — not all of it.</span></span>
+          </div>
+          <div class="service-tile">
+            <span class="tile-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+            <span class="tile-text"><span data-i18n="tile-burnout">Burnout Support</span><span class="tile-desc">Working through exhaustion and disconnection to rediscover energy and purpose in daily life.</span></span>
+          </div>
+          <div class="service-tile">
+            <span class="tile-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+            <span class="tile-text"><span data-i18n="tile-stress">Stress Management</span><span class="tile-desc">Identifying your stress patterns and building practical strategies to respond rather than react.</span></span>
+          </div>
+          <div class="service-tile">
+            <span class="tile-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+            <span class="tile-text"><span data-i18n="tile-daily">Daily Functioning</span><span class="tile-desc">Rebuilding the routines and habits that help you feel grounded, capable, and in control.</span></span>
+          </div>
+          <div class="service-tile">
+            <span class="tile-icon"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span>
+            <span class="tile-text"><span data-i18n="tile-roles">Life Roles Transition</span><span class="tile-desc">Moving through changes in identity, relationships, or responsibilities with clarity and confidence.</span></span>
+          </div>
+          <div class="service-tile">
+            <span class="tile-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <span class="tile-text"><span data-i18n="tile-parenting">Parenting &amp; Family Functioning</span><span class="tile-desc">Finding balance and presence in family life, even when it feels overwhelming.</span></span>
+          </div>
+          <div class="service-tile">
+            <span class="tile-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+            <span class="tile-text"><span data-i18n="tile-values">Value Clarification</span><span class="tile-desc">Getting clear on what truly matters to you, so your choices align with the life you want to live.</span></span>
+          </div>
         </div>
       </div>
 
@@ -2262,10 +2313,6 @@
             <div class="services-meta-item">
               <div class="services-meta-dot"></div>
               <span data-i18n="meta-language"><strong>Language</strong> &nbsp; English or <span lang="zh-Hant">中文</span></span>
-            </div>
-            <div class="services-meta-item">
-              <div class="services-meta-dot"></div>
-              <span data-i18n="meta-availability"><strong>Availability</strong> &nbsp; Flexible scheduling</span>
             </div>
             <div class="services-meta-item">
               <div class="services-meta-dot"></div>
@@ -2911,7 +2958,6 @@
         'info-body': 'I primarily work with clients based in the UK who may travel from time to time. Sessions take place online via a secure video platform, at a time that works for you.',
         'meta-format': '<strong>Format</strong> &nbsp; Secure video call',
         'meta-language': '<strong>Language</strong> &nbsp; English or <span lang="zh-Hant">中文</span>',
-        'meta-availability': '<strong>Availability</strong> &nbsp; Flexible scheduling',
         'meta-first': '<strong>First step</strong> &nbsp; Free 15-min intro call',
         'info-book': 'Book a Consultation',
         'workshops-label': 'Group Workshops',
@@ -3041,7 +3087,6 @@
         'info-body': '我主要服務在英國的個案（偶爾出差旅行也沒問題）。諮詢透過安全的視訊平台進行，時間可以配合你的行程彈性安排。',
         'meta-format': '<strong>方式</strong> &nbsp; 安全視訊通話',
         'meta-language': '<strong>語言</strong> &nbsp; 英文或中文',
-        'meta-availability': '<strong>時間安排</strong> &nbsp; 彈性預約',
         'meta-first': '<strong>第一步</strong> &nbsp; 免費 15 分鐘初步通話',
         'info-book': '預約諮詢',
         'workshops-label': '小組工作坊',
