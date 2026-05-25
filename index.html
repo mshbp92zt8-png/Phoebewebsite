@@ -1473,9 +1473,8 @@
       #contact { padding: 6rem 6%; }
       #language { padding: 3.5rem 6%; }
 
-      /* Hero: top-align so no blank gap above content */
-      #hero { align-items: flex-start; }
-      /* Watermark is too large at mobile font sizes — hide it */
+      /* Hero: cap height and keep content centered — avoids large dark gap */
+      #hero { min-height: 80vh; }
       .hero-watermark { display: none; }
 
       .hero-illustration {
@@ -1487,10 +1486,13 @@
       .hero-illustration.visible { opacity: 0.08 !important; }
 
       .about-grid,
-      .workshops-grid,
       .how-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
+      }
+      .workshops-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
       }
 
       /* Services: tiles full-width, info card below */
@@ -1515,6 +1517,14 @@
         text-align: center;
         gap: 0.75rem;
       }
+    }
+
+    /* Mid-tablet (≤ 768px) — smoother padding transition */
+    @media (max-width: 768px) {
+      section { padding: 4rem 5%; }
+      #contact { padding: 5rem 5%; }
+      #language { padding: 3rem 5%; }
+      .process-strip { padding: 4rem 5%; }
     }
 
     /* Mobile (≤ 600px) */
@@ -1543,6 +1553,12 @@
       .hero-tag-line { display: none; }
       .hero-tag { gap: 0; }
       .hero-tag-text { font-size: 0.65rem; letter-spacing: 0.12em; }
+      /* Hero overlay: uniform dark on mobile since content spans full width */
+      .hero-overlay {
+        background: rgba(28, 24, 20, 0.78);
+      }
+      /* Nav: hide desktop lang-switcher pill on mobile — accessible via mobile menu */
+      nav .lang-switcher { display: none; }
 
       /* Marquee */
       .marquee-inner span { font-size: 0.65rem; padding: 0 1.5rem; }
@@ -1565,6 +1581,7 @@
       .workshop-card { padding: 1.75rem 1.5rem; }
       .workshop-card-header { flex-direction: column; gap: 0.75rem; }
       .workshop-modes { flex-direction: row; flex-wrap: wrap; }
+      .workshop-detail { word-break: break-word; overflow-wrap: break-word; }
 
       /* How I Work */
       .how-principle { padding: 1.5rem 0; }
@@ -1596,6 +1613,22 @@
       #back-to-top { bottom: 1.25rem; right: 1.25rem; }
       #float-contact { bottom: 1.25rem; left: 1.25rem; }
       #cookie-banner { white-space: normal; text-align: center; width: 90%; }
+
+      /* Accreditation logos: tighter row on small screens */
+      .accred-logos-row { gap: 1rem; }
+      .accred-logo { height: 44px; }
+
+      /* About photo: don't over-crop on small screens */
+      .about-photo-wrap img { height: auto; max-height: 380px; }
+
+      /* FAQ: ensure long questions wrap cleanly */
+      .faq-q { font-size: 1.1rem; }
+
+      /* Services info card: tighter padding */
+      .services-info-card { padding: 1.75rem 1.25rem; }
+
+      /* Contact alt text: email wraps on narrow screens */
+      .contact-alt { word-break: break-word; overflow-wrap: break-word; }
     }
 
     /* Small mobile (≤ 400px) */
@@ -2191,7 +2224,7 @@
       <div class="who-card fade-up">
         <div class="who-card-num">03</div>
         <h3 data-i18n="card3-title">Parents</h3>
-        <p data-i18n="card3-body">Parenting brings profound joy and profound difficulty. I provide a compassionate space to explore the emotional and practical challenges of raising children, including the extra layer of doing so in the UK.</p>
+        <p data-i18n="card3-body">Being a parent — caring for children and family — is no small thing. Life is always in motion. This is a space to breathe and talk through the challenges of parenting and caring for others, including navigating cultural differences and how to adapt.</p>
       </div>
     </div>
   </section>
@@ -2864,7 +2897,7 @@
         'card2-title': 'Working Professionals',
         'card2-body': 'Feeling stretched thin, burned out, or disconnected from your sense of purpose? I help working adults recalibrate their routines, manage stress, and create a sustainable work-life rhythm.',
         'card3-title': 'Parents',
-        'card3-body': 'Parenting brings profound joy and profound difficulty. I provide a compassionate space to explore the emotional and practical challenges of raising children, including the extra layer of doing so in the UK.',
+        'card3-body': 'Being a parent — caring for children and family — is no small thing. Life is always in motion. This is a space to breathe and talk through the challenges of parenting and caring for others, including navigating cultural differences and how to adapt.',
         'services-label': 'Individual Services',
         'services-heading': 'Online 1:1 OT<br>Coaching Consultations.',
         'tile-stress': 'Stress Management',
@@ -2994,7 +3027,7 @@
         'card2-title': '上班族',
         'card2-body': '覺得快撐不住了、已經倦怠，或是不知道自己在忙什麼？我幫助在職的大人重新調整日常節奏、管理壓力，找到可以長期維持的工作與生活平衡。',
         'card3-title': '爸爸媽媽',
-        'card3-body': '當爸媽既開心又辛苦。這裡有個可以喘氣的地方，讓你聊聊育兒生活裡那些情感和實際上的挑戰，包括在英國帶孩子的那份額外壓力。',
+        'card3-body': '身為爸爸媽媽照顧孩子與家庭不容易，生活總是不停的運轉。這裡有個喘息的空間讓你聊聊育兒與照顧他人的挑戰，同時面對文化差異的壓力以及如何轉變。',
         'services-label': '個人服務',
         'services-heading': '線上一對一<br>OT 教練式諮詢。',
         'tile-stress': '壓力管理',
