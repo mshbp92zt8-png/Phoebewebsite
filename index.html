@@ -837,6 +837,7 @@
     .services-tiles {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      grid-auto-rows: minmax(2.5rem, auto);
       gap: 2px;
       background: var(--beige);
       border-radius: 6px;
@@ -844,12 +845,16 @@
     }
     .service-tile {
       background: var(--cream);
-      padding: 1.5rem 1.25rem;
-      font-size: 0.87rem;
+      padding: 0 1rem;
+      font-size: 0.82rem;
       font-weight: 500;
       color: var(--text);
       letter-spacing: 0.02em;
-      line-height: 1.4;
+      line-height: 1.3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 2.5rem;
       transition: background var(--transition-fast), color var(--transition-fast);
       cursor: default;
       border-bottom: 1px solid var(--beige);
@@ -1573,7 +1578,7 @@
 
       /* Services: single column tiles */
       .services-tiles { grid-template-columns: 1fr; }
-      .service-tile { padding: 1.1rem 1rem; }
+      .service-tile { padding: 0 0.9rem; min-height: 2.4rem; }
       .service-tile .tile-arrow { display: none; }
       .services-info-card { padding: 2rem 1.5rem; }
 
@@ -2227,7 +2232,7 @@
       <div class="services-left">
         <p class="section-label fade-up" data-i18n="services-label">Individual Services</p>
         <h2 class="section-title fade-up" data-i18n="services-heading">
-          Online 1:1 OT<br>Coaching Consultations.
+          Online 1:1 Occupational Therapy<br>Coaching Consultations.
         </h2>
         <div class="services-tiles fade-up">
           <div class="service-tile"><span data-i18n="tile-stress">Stress Management</span><span class="tile-arrow">&#8599;</span><span class="tile-desc">Identifying your stress patterns and building practical strategies to respond rather than react.</span></div>
@@ -2245,7 +2250,7 @@
 
       <div class="services-right fade-up">
         <div class="services-info-card">
-          <h3 data-i18n="info-heading">Online 1:1 OT Coaching Consultations</h3>
+          <h3 data-i18n="info-heading">Online 1:1 Occupational Therapy Coaching Consultations</h3>
           <p data-i18n="info-body">
             I primarily work with clients based in the UK who may travel from time to time. Sessions take place online via a secure video platform, at a time that works for you.
           </p>
@@ -2891,7 +2896,7 @@
         'card3-title': 'Parents',
         'card3-body': 'Being a parent — caring for children and family — is no small thing. Life is always in motion. This is a space to breathe and talk through the challenges of parenting and caring for others, including navigating cultural differences and how to adapt.',
         'services-label': 'Individual Services',
-        'services-heading': 'Online 1:1 OT<br>Coaching Consultations.',
+        'services-heading': 'Online 1:1 Occupational Therapy<br>Coaching Consultations.',
         'tile-stress': 'Stress Management',
         'tile-burnout': 'Burnout Support',
         'tile-daily': 'Daily Functioning',
@@ -2902,7 +2907,7 @@
         'tile-routines': 'Routines &amp; Sustainable Living',
         'tile-parenting': 'Parenting &amp; Family Functioning',
         'tile-values': 'Value Clarification',
-        'info-heading': 'Online 1:1 OT Coaching Consultations',
+        'info-heading': 'Online 1:1 Occupational Therapy Coaching Consultations',
         'info-body': 'I primarily work with clients based in the UK who may travel from time to time. Sessions take place online via a secure video platform, at a time that works for you.',
         'meta-format': '<strong>Format</strong> &nbsp; Secure video call',
         'meta-language': '<strong>Language</strong> &nbsp; English or <span lang="zh-Hant">中文</span>',
@@ -3021,7 +3026,7 @@
         'card3-title': '爸爸媽媽',
         'card3-body': '身為爸爸媽媽照顧孩子與家庭不容易，生活總是不停的運轉。這裡有個喘息的空間讓你聊聊育兒與照顧他人的挑戰，同時面對文化差異的壓力以及如何轉變。',
         'services-label': '個人服務',
-        'services-heading': '線上一對一<br>OT 教練式諮詢。',
+        'services-heading': '線上一對一<br>職能治療教練式諮詢。',
         'tile-stress': '壓力管理',
         'tile-burnout': '工作倦怠支援',
         'tile-daily': '日常生活功能',
@@ -3032,7 +3037,7 @@
         'tile-routines': '日常規律與可持續生活',
         'tile-parenting': '親職與家庭',
         'tile-values': '釐清生活價值觀',
-        'info-heading': '線上一對一 OT 教練式諮詢',
+        'info-heading': '線上一對一職能治療教練式諮詢',
         'info-body': '我主要服務在英國的個案（偶爾出差旅行也沒問題）。諮詢透過安全的視訊平台進行，時間可以配合你的行程彈性安排。',
         'meta-format': '<strong>方式</strong> &nbsp; 安全視訊通話',
         'meta-language': '<strong>語言</strong> &nbsp; 英文或中文',
