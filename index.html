@@ -837,40 +837,35 @@
     .services-tiles {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-auto-rows: minmax(2.9rem, auto);
-      gap: 2px;
-      background: var(--beige);
-      border-radius: 6px;
-      overflow: hidden;
+      gap: 8px;
+      background: transparent;
     }
     .service-tile {
-      background: var(--cream);
-      padding: 1.1rem 1.2rem;
-      font-size: 0.875rem;
+      background: #F4EDE3;
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      font-size: 0.93rem;
       font-weight: 500;
       color: var(--text);
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
       line-height: 1.35;
       display: flex;
       align-items: flex-start;
-      gap: 0.7rem;
-      border-top: 3px solid var(--gold);
-      transition: background var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
-      cursor: default;
+      gap: 0.65rem;
+      transition: background var(--transition-fast);
+      cursor: pointer;
     }
-    .service-tile:hover {
-      background: var(--beige);
-      box-shadow: inset 0 0 0 1px rgba(196,168,130,0.3);
-    }
+    .service-tile:hover { background: #ECE3D7; }
+    .service-tile.expanded { background: #ECE3D7; }
     .tile-icon {
-      color: var(--gold);
+      color: var(--gold-dark);
       flex-shrink: 0;
       display: flex;
-      padding-top: 0.1rem;
+      padding-top: 0.15rem;
     }
     .tile-icon svg {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       stroke: currentColor;
       stroke-width: 1.5;
       fill: none;
@@ -880,10 +875,38 @@
     .tile-text {
       display: flex;
       flex-direction: column;
+      flex: 1;
     }
-    .service-tile .tile-arrow {
-      display: none;
+    .tile-label { display: block; }
+    .tile-desc {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--text-light);
+      line-height: 1.65;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.38s ease, opacity 0.3s ease, margin-top 0.3s ease;
+      margin-top: 0;
     }
+    .service-tile.expanded .tile-desc {
+      max-height: 160px;
+      opacity: 1;
+      margin-top: 0.45rem;
+    }
+    .tile-toggle {
+      flex-shrink: 0;
+      color: var(--gold-dark);
+      font-size: 1.1rem;
+      font-weight: 300;
+      font-family: 'Inter', sans-serif;
+      line-height: 1;
+      padding-top: 0.1rem;
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+    .service-tile.expanded .tile-toggle { transform: rotate(45deg); }
+    .service-tile .tile-arrow { display: none; }
     .services-right {
       position: sticky;
       top: 8rem;
@@ -1596,7 +1619,7 @@
 
       /* Services: single column tiles */
       .services-tiles { grid-template-columns: 1fr; }
-      .service-tile { padding: 0.9rem 1rem; font-size: 0.82rem; }
+      .service-tile { padding: 0.85rem 1rem; font-size: 0.88rem; }
       .service-tile .tile-arrow { display: none; }
       .services-info-card { padding: 2rem 1.5rem; }
 
@@ -3229,6 +3252,23 @@
     // ══════════════════════════════════════════════
     // HOW I WORK ACCORDION
     // ══════════════════════════════════════════════
+    // ══════════════════════════════════════════════
+    // SERVICE TILE ACCORDION
+    // ══════════════════════════════════════════════
+    function initServiceTiles() {
+      document.querySelectorAll('.service-tile').forEach(tile => {
+        const toggle = document.createElement('span');
+        toggle.className = 'tile-toggle';
+        toggle.textContent = '+';
+        tile.appendChild(toggle);
+        tile.addEventListener('click', () => {
+          const isOpen = tile.classList.contains('expanded');
+          document.querySelectorAll('.service-tile').forEach(t => t.classList.remove('expanded'));
+          if (!isOpen) tile.classList.add('expanded');
+        });
+      });
+    }
+
     function initPrincipleAccordion() {
       document.querySelectorAll('.how-principle').forEach(principle => {
         principle.addEventListener('click', () => {
@@ -3347,6 +3387,7 @@
     initAboutParallax();
     initLangSwitcher();
     initActiveNav();
+    initServiceTiles();
     initPrincipleAccordion();
     initTestimonials();
     initFAQ();
