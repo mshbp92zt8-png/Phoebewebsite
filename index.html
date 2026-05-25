@@ -911,19 +911,33 @@
     /* ─── WORKSHOPS ─── */
     #workshops {
       background: var(--charcoal);
+      text-align: center;
     }
-    .workshops-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-      max-width: 1200px;
+    .workshops-center {
+      max-width: 640px;
       margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .workshops-left .section-label { color: var(--gold); }
-    .workshops-left .section-title { color: var(--cream); }
-    .workshops-left .section-body {
-      color: rgba(250,248,245,0.55);
+    .workshops-center .section-label { color: var(--gold); }
+    .workshops-rule {
+      width: 60px;
+      height: 1px;
+      background: rgba(196,168,130,0.4);
+      margin: 1.2rem 0;
+    }
+    .workshops-heading {
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 1.75rem;
+    }
+    .workshops-body {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: rgba(250,248,245,0.6);
       margin-bottom: 2rem;
     }
     .location-tags {
@@ -931,6 +945,7 @@
       gap: 0.75rem;
       margin-bottom: 2.5rem;
       flex-wrap: wrap;
+      justify-content: center;
     }
     .location-tag {
       font-size: 0.75rem;
@@ -1486,11 +1501,6 @@
         grid-template-columns: 1fr;
         gap: 3rem;
       }
-      .workshops-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
       /* Services: tiles full-width, info card below */
       .services-grid {
         grid-template-columns: 1fr;
@@ -1743,7 +1753,7 @@
 
     /* ─── TESTIMONIALS ─── */
     #testimonials {
-      background: var(--charcoal);
+      background: var(--cream);
       padding: 6rem 5%;
       text-align: center;
     }
@@ -1772,7 +1782,7 @@
       font-size: clamp(1.5rem, 3vw, 2.1rem);
       font-weight: 300;
       line-height: 1.45;
-      color: var(--cream);
+      color: var(--charcoal);
       margin-bottom: 1.25rem;
     }
     .testimonial-attr {
@@ -2267,42 +2277,20 @@
 
   <!-- ─── WORKSHOPS ─── -->
   <section id="workshops">
-    <div class="workshops-grid">
-      <div class="workshops-left">
-        <p class="section-label fade-up" data-i18n="workshops-label">Experiential Group Workshop</p>
-        <h2 class="section-title fade-up" data-i18n="workshops-heading">
-          Creativity for<br>everyday life.
-        </h2>
-        <p class="section-body fade-up" data-i18n="workshops-body">
-          My workshops explore how creativity can be a meaningful part of your daily life — not as an artistic skill, but as a way of connecting with yourself, building resilience, and finding enjoyment in the everyday.
-        </p>
-        <div class="location-tags fade-up">
-          <span class="location-tag active" data-i18n="tag-online-loc">Online</span>
-          <span class="location-tag active" data-i18n="tag-inperson">In Person</span>
-        </div>
-        <a href="#contact" class="btn-primary-outline fade-up" data-i18n="workshops-cta">Find Upcoming Workshops</a>
+    <div class="workshops-center">
+      <p class="section-label fade-up" data-i18n="workshops-label">Experiential Group Workshop</p>
+      <div class="workshops-rule fade-up"></div>
+      <h2 class="workshops-heading fade-up" data-i18n="workshops-heading">
+        Creativity for Everyday Life Workshop
+      </h2>
+      <p class="workshops-body fade-up" data-i18n="workshops-body">
+        A small-group experiential workshop exploring how creativity can become a meaningful part of everyday life — not to learn painting or dancing, but to connect with yourself through creativity, build resources for wellbeing, and find a little joy in ordinary days. Open to anyone curious about living more creatively.
+      </p>
+      <div class="location-tags fade-up">
+        <span class="location-tag active" data-i18n="tag-online-loc">Online</span>
+        <span class="location-tag active" data-i18n="tag-inperson">In Person</span>
       </div>
-
-      <div class="workshop-card fade-up">
-        <div class="workshop-card-header">
-          <h3 data-i18n="workshop-card-title">Creativity &amp; Daily Life Workshops</h3>
-          <div class="workshop-modes">
-            <span class="mode-badge online" data-i18n="badge-online">Online</span>
-            <span class="mode-badge in-person" data-i18n="badge-inperson">In Person</span>
-          </div>
-        </div>
-        <p data-i18n="workshop-card-body">
-          A small-group experience designed to help you tap into creativity as a resource for wellbeing. Suitable for anyone curious about creative approaches to living more fully.
-        </p>
-        <div class="workshop-divider"></div>
-        <p class="workshop-detail" data-i18n="workshop-detail1">
-          Sessions held online via video &amp; in person &nbsp;·&nbsp; Suitable for adults &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span> welcome
-        </p>
-        <div class="workshop-divider"></div>
-        <p class="workshop-detail" data-i18n="workshop-detail2">
-          Contact for upcoming dates &nbsp;·&nbsp; phoebehsieh@bodymindot.com
-        </p>
-      </div>
+      <a href="#contact" class="btn-primary-outline fade-up" data-i18n="workshops-cta">Find Upcoming Workshops</a>
     </div>
   </section>
 
@@ -2825,8 +2813,8 @@
         'meta-first': '<strong>First step</strong> &nbsp; Free 15-min intro call',
         'info-book': 'Book a Consultation',
         'workshops-label': 'Experiential Group Workshop',
-        'workshops-heading': 'Creativity for<br>everyday life.',
-        'workshops-body': 'My workshops explore how creativity can be a meaningful part of your daily life — not as an artistic skill, but as a way of connecting with yourself, building resilience, and finding enjoyment in the everyday.',
+        'workshops-heading': 'Creativity for Everyday Life Workshop',
+        'workshops-body': 'A small-group experiential workshop exploring how creativity can become a meaningful part of everyday life — not to learn painting or dancing, but to connect with yourself through creativity, build resources for wellbeing, and find a little joy in ordinary days. Open to anyone curious about living more creatively.',
         'tag-online-loc': 'Online',
         'tag-inperson': 'In Person',
         'workshops-cta': 'Find Upcoming Workshops',
@@ -2954,8 +2942,8 @@
         'meta-first': '<strong>第一步</strong> &nbsp; 免費 15 分鐘初步通話',
         'info-book': '預約諮詢',
         'workshops-label': '體驗式小團體工作坊',
-        'workshops-heading': '把創意帶進<br>日常生活。',
-        'workshops-body': '工作坊探索的是，創意怎麼成為日常生活裡有意義的一部分——不是要你學畫畫或學才藝，而是透過創意去連結自己、建立心理韌性，在平凡的日子裡找到一點樂趣。',
+        'workshops-heading': '把創意帶進生活工作坊',
+        'workshops-body': '小團體的體驗工作坊，探索的是創意如何成為日常生活裡有意義的一部分 —不是要你學畫畫或學跳舞，而是透過創意去連結自己，建立身心健康的資源，在平凡的日子裡找到一點樂趣。 適合任何對更有創意的方式好好生活而感到好奇的人。',
         'tag-online-loc': '線上',
         'tag-inperson': '實體面對面',
         'workshops-cta': '查看近期工作坊',
