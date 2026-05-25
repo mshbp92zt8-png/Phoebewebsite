@@ -845,30 +845,32 @@
     }
     .service-tile {
       background: var(--cream);
-      padding: 0 0.9rem;
-      font-size: 0.8rem;
+      padding: 1.1rem 1.2rem;
+      font-size: 0.875rem;
       font-weight: 500;
       color: var(--text);
       letter-spacing: 0.02em;
-      line-height: 1.3;
+      line-height: 1.35;
       display: flex;
       align-items: flex-start;
-      gap: 0.55rem;
-      min-height: 2.9rem;
-      padding-top: 0.75rem;
-      padding-bottom: 0.75rem;
-      transition: background var(--transition-fast), color var(--transition-fast);
-      cursor: pointer;
+      gap: 0.7rem;
+      border-top: 3px solid var(--gold);
+      transition: background var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+      cursor: default;
+    }
+    .service-tile:hover {
+      background: var(--beige);
+      box-shadow: inset 0 0 0 1px rgba(196,168,130,0.3);
     }
     .tile-icon {
       color: var(--gold);
       flex-shrink: 0;
       display: flex;
-      padding-top: 0.05rem;
+      padding-top: 0.1rem;
     }
     .tile-icon svg {
-      width: 14px;
-      height: 14px;
+      width: 18px;
+      height: 18px;
       stroke: currentColor;
       stroke-width: 1.5;
       fill: none;
@@ -878,11 +880,6 @@
     .tile-text {
       display: flex;
       flex-direction: column;
-    }
-    .service-tile:hover .tile-icon { color: var(--charcoal); }
-    .service-tile:hover {
-      background: var(--gold);
-      color: var(--charcoal);
     }
     .service-tile .tile-arrow {
       display: none;
@@ -1599,7 +1596,7 @@
 
       /* Services: single column tiles */
       .services-tiles { grid-template-columns: 1fr; }
-      .service-tile { padding: 0.65rem 0.9rem; min-height: 2.6rem; }
+      .service-tile { padding: 0.9rem 1rem; font-size: 0.82rem; }
       .service-tile .tile-arrow { display: none; }
       .services-info-card { padding: 2rem 1.5rem; }
 
@@ -1682,27 +1679,7 @@
     .hero-curve svg { width: 100%; height: 70px; display: block; }
 
     /* ─── SERVICE TILE EXPAND ─── */
-    .service-tile { cursor: pointer; }
-    .tile-desc {
-      font-size: 0.8rem;
-      color: var(--text-light);
-      line-height: 1.6;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease, margin-top 0.35s ease, opacity 0.35s ease;
-      opacity: 0;
-      margin-top: 0;
-    }
-    .service-tile.expanded .tile-desc {
-      max-height: 120px;
-      opacity: 1;
-      margin-top: 0.5rem;
-    }
-    .service-tile.expanded {
-      background: var(--gold);
-      color: var(--charcoal);
-    }
-    .service-tile.expanded .tile-desc { color: rgba(28,24,20,0.7); }
+    .tile-desc { display: none; }
 
     /* ─── HOW I WORK ACCORDION ─── */
     .how-principle { cursor: pointer; }
@@ -3247,18 +3224,7 @@
 
 
 
-    // ══════════════════════════════════════════════
-    // SERVICE TILE EXPAND ON CLICK
-    // ══════════════════════════════════════════════
-    function initServiceTiles() {
-      document.querySelectorAll('.service-tile').forEach(tile => {
-        tile.addEventListener('click', () => {
-          const isOpen = tile.classList.contains('expanded');
-          document.querySelectorAll('.service-tile').forEach(t => t.classList.remove('expanded'));
-          if (!isOpen) tile.classList.add('expanded');
-        });
-      });
-    }
+
 
     // ══════════════════════════════════════════════
     // HOW I WORK ACCORDION
@@ -3381,7 +3347,6 @@
     initAboutParallax();
     initLangSwitcher();
     initActiveNav();
-    initServiceTiles();
     initPrincipleAccordion();
     initTestimonials();
     initFAQ();
