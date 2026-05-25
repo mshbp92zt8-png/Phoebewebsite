@@ -1642,14 +1642,6 @@
     /* ─── ACTIVE NAV INDICATOR ─── */
     .nav-links a.nav-active { color: var(--gold); }
 
-    /* ─── HERO SPOTLIGHT ─── */
-    #hero-spotlight {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      background: radial-gradient(circle 500px at 50% 50%, rgba(196,168,130,0.07) 0%, transparent 70%);
-    }
 
     /* ─── HERO WAVE DIVIDER ─── */
     .hero-curve {
@@ -2069,7 +2061,7 @@
       <source src="assets/videos/serene-ot-background-loop.webm" type="video/webm">
     </video>
     <div class="hero-overlay"></div>
-    <div id="hero-spotlight" aria-hidden="true"></div>
+
 
     <div class="hero-content">
       <div class="hero-tag" id="heroTag">
@@ -3203,24 +3195,7 @@
       sections.forEach(s => observer.observe(s));
     }
 
-    // ══════════════════════════════════════════════
-    // HERO CURSOR SPOTLIGHT
-    // ══════════════════════════════════════════════
-    function initHeroSpotlight() {
-      if (window.matchMedia('(pointer: coarse)').matches) return;
-      const hero = document.getElementById('hero');
-      const spotlight = document.getElementById('hero-spotlight');
-      if (!hero || !spotlight) return;
-      hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        spotlight.style.background = `radial-gradient(circle 550px at ${x}% ${y}%, rgba(196,168,130,0.13) 0%, transparent 70%)`;
-      });
-      hero.addEventListener('mouseleave', () => {
-        spotlight.style.background = `radial-gradient(circle 500px at 50% 50%, rgba(196,168,130,0.07) 0%, transparent 70%)`;
-      });
-    }
+
 
     // ══════════════════════════════════════════════
     // SERVICE TILE EXPAND ON CLICK
@@ -3356,7 +3331,6 @@
     initAboutParallax();
     initLangSwitcher();
     initActiveNav();
-    initHeroSpotlight();
     initServiceTiles();
     initPrincipleAccordion();
     initTestimonials();
