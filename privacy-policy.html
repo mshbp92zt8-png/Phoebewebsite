@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — BodyMindOT</title>
+  <meta name="description" content="Privacy Policy for BodyMindOT — how we collect, use, and protect your personal data in accordance with UK GDPR." />
+  <meta name="robots" content="noindex" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    @font-face {
+      font-family: 'Taipei Sans TC';
+      src: url('font/chinese/TaipeiSansTCBeta-Light.ttf') format('truetype');
+      font-weight: 300; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Taipei Sans TC';
+      src: url('font/chinese/TaipeiSansTCBeta-Regular.ttf') format('truetype');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+
+    :root {
+      --cream:      #FAF8F5;
+      --beige:      #EDE8E0;
+      --gold:       #C4A882;
+      --gold-dark:  #A8896A;
+      --charcoal:   #1C1814;
+      --text:       #2A2A2A;
+      --text-light: #6B6560;
+      --transition-fast: 0.3s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 5%;
+      background: rgba(28, 24, 20, 0.97);
+      box-shadow: 0 1px 0 rgba(196,168,130,0.15);
+    }
+    .nav-logo img { height: 32px; width: auto; }
+    .nav-back {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(250, 248, 245, 0.65);
+      transition: color var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .nav-back:hover { color: var(--gold); }
+    .nav-back svg { width: 14px; height: 14px; }
+
+    /* ─── PAGE WRAPPER ─── */
+    .policy-page {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 8rem 5% 6rem;
+    }
+
+    /* ─── HEADER ─── */
+    .policy-header {
+      border-bottom: 1px solid var(--beige);
+      padding-bottom: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .policy-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .policy-title {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 300;
+      color: var(--charcoal);
+      margin-bottom: 1rem;
+    }
+    .policy-meta {
+      font-size: 0.82rem;
+      color: var(--text-light);
+    }
+
+    /* ─── CONTENT ─── */
+    .policy-section {
+      margin-bottom: 2.75rem;
+    }
+    .policy-section h2 {
+      font-size: 1.55rem;
+      color: var(--charcoal);
+      margin-bottom: 1rem;
+    }
+    .policy-section h3 {
+      font-size: 1.15rem;
+      color: var(--charcoal);
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .policy-section p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 0.85rem;
+    }
+    .policy-section ul, .policy-section ol {
+      padding-left: 1.4rem;
+      margin-bottom: 0.85rem;
+    }
+    .policy-section li {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .policy-section a {
+      color: var(--gold-dark);
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--transition-fast);
+    }
+    .policy-section a:hover { border-bottom-color: var(--gold-dark); }
+
+    .policy-divider {
+      border: none;
+      border-top: 1px solid var(--beige);
+      margin: 0 0 2.75rem;
+    }
+
+    .highlight-box {
+      background: var(--beige);
+      border-left: 3px solid var(--gold);
+      padding: 1.1rem 1.4rem;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 1rem;
+    }
+    .highlight-box p {
+      margin-bottom: 0 !important;
+      font-size: 0.9rem !important;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--charcoal);
+      color: rgba(250, 248, 245, 0.5);
+      padding: 2.5rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo img { height: 26px; width: auto; opacity: 0.85; }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      color: rgba(250, 248, 245, 0.45);
+      transition: color var(--transition-fast);
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-links a.active { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(250, 248, 245, 0.35);
+    }
+
+    @media (max-width: 600px) {
+      .policy-page { padding: 7rem 5% 4rem; }
+      footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="assets/photos/Company Logo/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" />
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to site
+    </a>
+  </nav>
+
+  <!-- ─── CONTENT ─── -->
+  <main class="policy-page">
+
+    <header class="policy-header">
+      <p class="policy-label">Legal</p>
+      <h1 class="policy-title">Privacy Policy</h1>
+      <p class="policy-meta">Last updated: May 2026 &nbsp;·&nbsp; Effective date: 1 June 2026</p>
+    </header>
+
+    <div class="highlight-box">
+      <p>This policy explains what personal data BodyMindOT collects, why, and how it is used. It is written in accordance with the <strong>UK General Data Protection Regulation (UK GDPR)</strong> and the <strong>Data Protection Act 2018</strong>.</p>
+    </div>
+
+    <!-- 1 -->
+    <section class="policy-section">
+      <h2>1. Who We Are</h2>
+      <p>BodyMindOT is the trading name of Phoebe Hsieh, a sole practitioner and HCPC-registered Occupational Therapist providing online mental health and wellbeing consultations.</p>
+      <p><strong>Data Controller:</strong> Phoebe Hsieh (trading as BodyMindOT)<br>
+      <strong>Contact:</strong> <a href="mailto:phoebehsieh@bodymindot.com">phoebehsieh@bodymindot.com</a></p>
+      <p>If you have any questions about how your data is handled, please contact us at the email address above.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 2 -->
+    <section class="policy-section">
+      <h2>2. What Personal Data We Collect</h2>
+      <p>We may collect the following categories of personal data:</p>
+
+      <h3>Contact and enquiry data</h3>
+      <ul>
+        <li>Name</li>
+        <li>Email address</li>
+        <li>Any information you include in the message field of our contact form</li>
+      </ul>
+
+      <h3>Health data (if voluntarily provided)</h3>
+      <p>If you choose to describe health, mental health, or wellbeing concerns in your message, this constitutes <strong>special category data</strong> under UK GDPR and is handled with heightened care. We do not ask you to submit health information through the website — any such information is provided entirely at your discretion.</p>
+
+      <h3>Technical data</h3>
+      <ul>
+        <li>IP address (collected automatically by our hosting provider)</li>
+        <li>Browser type and version</li>
+        <li>Pages visited and time spent (if analytics are active)</li>
+      </ul>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 3 -->
+    <section class="policy-section">
+      <h2>3. How We Collect Your Data</h2>
+      <ul>
+        <li><strong>Contact form:</strong> when you submit an enquiry via the website</li>
+        <li><strong>Email:</strong> when you contact us directly at our email address</li>
+        <li><strong>Automatically:</strong> technical data collected by our web hosting provider when you visit the site</li>
+      </ul>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 4 -->
+    <section class="policy-section">
+      <h2>4. Legal Basis for Processing</h2>
+      <p>We process your personal data under the following lawful bases:</p>
+      <ul>
+        <li><strong>Legitimate interests (Article 6(1)(f)):</strong> to respond to enquiries you have sent to us</li>
+        <li><strong>Contract (Article 6(1)(b)):</strong> where processing is necessary to provide occupational therapy services you have requested</li>
+        <li><strong>Consent (Article 6(1)(a)):</strong> for any optional communications or marketing, where explicitly obtained</li>
+        <li><strong>Legal obligation (Article 6(1)(c)):</strong> where we are required by law to retain records</li>
+      </ul>
+      <p>For special category health data, the lawful basis is <strong>explicit consent (Article 9(2)(a))</strong> or <strong>health and social care purposes (Article 9(2)(h))</strong> where applicable.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 5 -->
+    <section class="policy-section">
+      <h2>5. How We Use Your Data</h2>
+      <ul>
+        <li>To respond to your enquiry or consultation request</li>
+        <li>To provide and manage occupational therapy services</li>
+        <li>To maintain professional records as required by HCPC standards of conduct</li>
+        <li>To improve the website and user experience (using aggregated, anonymised analytics)</li>
+      </ul>
+      <p>We will never sell your personal data, or share it with third parties for their own marketing purposes.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 6 -->
+    <section class="policy-section">
+      <h2>6. Data Retention</h2>
+      <p>We retain personal data only for as long as necessary:</p>
+      <ul>
+        <li><strong>Enquiry data (non-client):</strong> deleted within 12 months if no therapeutic relationship is established</li>
+        <li><strong>Client records:</strong> retained for a minimum of 7 years after the end of the therapeutic relationship, in line with HCPC guidance and professional standards</li>
+        <li><strong>Technical / analytics data:</strong> retained in accordance with our hosting provider's policies (typically up to 26 months)</li>
+      </ul>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 7 -->
+    <section class="policy-section">
+      <h2>7. Third Parties and Data Sharing</h2>
+      <p>We do not sell or rent your personal data. We may share data with the following categories of third parties only where necessary:</p>
+      <ul>
+        <li><strong>Email service provider:</strong> to send and receive communications (e.g. Google Workspace)</li>
+        <li><strong>Website hosting provider:</strong> who may process technical data as part of hosting the site</li>
+        <li><strong>Google Meet:</strong> used for one-to-one online consultations. Call data is processed by Google LLC under Google's privacy policy. We recommend reviewing <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a> before your first session. No session recordings are made without your explicit prior consent.</li>
+        <li><strong>Regulatory bodies:</strong> in the event of a professional fitness-to-practise investigation, we may be required to share records with the HCPC</li>
+        <li><strong>Legal or statutory obligation:</strong> where required by law, court order, or to protect the safety of you or others</li>
+      </ul>
+      <p>All third-party processors are required to handle your data securely and in accordance with UK data protection law.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 8 -->
+    <section class="policy-section">
+      <h2>8. Workshops</h2>
+      <p>BodyMindOT runs <strong>in-person group workshops</strong>. If you register for a workshop, we may collect:</p>
+      <ul>
+        <li>Name and email address for registration and joining instructions</li>
+        <li>Emergency contact details where required for the venue</li>
+        <li>Any access or support needs you choose to disclose</li>
+      </ul>
+      <p>This data is used solely to administer the workshop and is not shared with other attendees. Attendance lists may be retained for up to 12 months for record-keeping purposes.</p>
+      <p><strong>Please note:</strong> workshops are group settings. You should not share personal health information during a workshop that you would not be comfortable others in the group hearing. BodyMindOT is not able to guarantee the confidentiality of any disclosures made by participants in a group environment.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 9 (was 8) -->
+    <section class="policy-section">
+      <h2>9. International Data Transfers</h2>
+      <p>Where your data is transferred outside the UK (for example, by a third-party service provider), we ensure that appropriate safeguards are in place — such as UK adequacy regulations or Standard Contractual Clauses — to protect your data to an equivalent standard.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 10 -->
+    <section class="policy-section">
+      <h2>10. Cookies</h2>
+      <p>This website uses <strong>essential cookies only</strong> — small files placed on your device that are strictly necessary for the site to function. We do not use advertising cookies or cross-site tracking cookies.</p>
+      <p>If we introduce any non-essential cookies in future (such as analytics), we will update this policy and seek your consent via the cookie banner.</p>
+      <p>You can control cookies through your browser settings at any time. Disabling essential cookies may affect site functionality.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 11 -->
+    <section class="policy-section">
+      <h2>11. Your Rights Under UK GDPR</h2>
+      <p>You have the following rights regarding your personal data:</p>
+      <ul>
+        <li><strong>Right of access:</strong> to obtain a copy of the personal data we hold about you</li>
+        <li><strong>Right to rectification:</strong> to have inaccurate data corrected</li>
+        <li><strong>Right to erasure:</strong> to request deletion of your data, subject to legal retention obligations</li>
+        <li><strong>Right to restrict processing:</strong> to limit how we use your data in certain circumstances</li>
+        <li><strong>Right to data portability:</strong> to receive your data in a structured, machine-readable format</li>
+        <li><strong>Right to object:</strong> to processing based on legitimate interests</li>
+        <li><strong>Right to withdraw consent:</strong> where processing is based on consent, you may withdraw it at any time without affecting the lawfulness of prior processing</li>
+      </ul>
+      <p>To exercise any of these rights, contact us at <a href="mailto:phoebehsieh@bodymindot.com">phoebehsieh@bodymindot.com</a>. We will respond within one calendar month.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 12 -->
+    <section class="policy-section">
+      <h2>12. How to Complain</h2>
+      <p>If you believe your data has been handled incorrectly, please contact us in the first instance so we can resolve the matter.</p>
+      <p>You also have the right to lodge a complaint with the <strong>Information Commissioner's Office (ICO)</strong>, the UK's supervisory authority for data protection:</p>
+      <ul>
+        <li>Website: <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a></li>
+        <li>Helpline: 0303 123 1113</li>
+      </ul>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 13 -->
+    <section class="policy-section">
+      <h2>13. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. The "Last updated" date at the top of this page will reflect any changes. Continued use of the website after changes are posted constitutes acceptance of the updated policy.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 14 -->
+    <section class="policy-section">
+      <h2>14. Contact</h2>
+      <p>For any data protection queries, please contact:</p>
+      <p><strong>Phoebe Hsieh — BodyMindOT</strong><br>
+      Email: <a href="mailto:phoebehsieh@bodymindot.com">phoebehsieh@bodymindot.com</a></p>
+    </section>
+
+  </main>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <span class="footer-logo"><img src="assets/photos/Company Logo/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" /></span>
+    <nav class="footer-links" aria-label="Legal pages">
+      <a href="privacy-policy.html" class="active">Privacy Policy</a>
+      <a href="terms-of-use.html">Terms of Use</a>
+    </nav>
+    <span class="footer-copy">&copy; 2026 BodyMindOT. All rights reserved.</span>
+  </footer>
+
+</body>
+</html>

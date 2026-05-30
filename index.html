@@ -143,7 +143,7 @@
     }
 
     /* ─── NAV ─── */
-    nav {
+    #navbar {
       position: fixed;
       top: 0;
       left: 0;
@@ -155,7 +155,7 @@
       padding: 1.5rem 5%;
       transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
     }
-    nav.scrolled {
+    #navbar.scrolled {
       background: rgba(28, 24, 20, 0.97);
       padding: 1rem 5%;
       box-shadow: 0 1px 30px rgba(0,0,0,0.25);
@@ -826,7 +826,7 @@
       display: grid;
       grid-template-columns: 1fr 380px;
       gap: 4rem;
-      align-items: start;
+      align-items: stretch;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -839,8 +839,10 @@
     .services-tiles {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 1fr;
       gap: 10px;
       background: transparent;
+      align-content: stretch;
     }
     .service-tile {
       background: #F4EDE3;
@@ -862,13 +864,17 @@
     .services-right {
       position: sticky;
       top: 8rem;
-      align-self: start;
+      align-self: stretch;
     }
     .services-info-card {
       background: var(--charcoal);
       border-radius: 8px;
       padding: 2.5rem;
       color: var(--cream);
+      height: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
     }
     .services-info-card h3 {
       font-size: 1.8rem;
@@ -909,6 +915,7 @@
     .services-info-card .btn-primary {
       width: 100%;
       justify-content: center;
+      margin-top: auto;
     }
 
     /* ─── WORKSHOPS ─── */
@@ -1197,13 +1204,7 @@
     .accred-logo {
       height: 56px;
       width: auto;
-      filter: grayscale(100%);
-      opacity: 0.65;
-      transition: opacity 0.3s ease, filter 0.3s ease;
-    }
-    .accred-logo:hover {
       opacity: 1;
-      filter: grayscale(0%);
     }
 
     /* ─── CONTACT FORM ─── */
@@ -1508,7 +1509,7 @@
 
     /* Tablet (≤ 900px) */
     @media (max-width: 900px) {
-      nav { padding: 1.25rem 6%; }
+      #navbar { padding: 1.25rem 6%; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
 
@@ -1598,7 +1599,7 @@
         background: rgba(28, 24, 20, 0.78);
       }
       /* Nav: hide desktop lang-switcher pill on mobile — accessible via mobile menu */
-      nav .lang-switcher { display: none; }
+      #navbar .lang-switcher { display: none; }
 
       /* Marquee */
       .marquee-inner span { font-size: 0.65rem; padding: 0 1.5rem; }
@@ -1684,7 +1685,7 @@
     @media (max-width: 400px) {
       .hero-heading { font-size: clamp(2.4rem, 12vw, 3rem); }
       .section-title { font-size: clamp(1.9rem, 9vw, 2.5rem); }
-      nav { padding: 1rem 5%; }
+      #navbar { padding: 1rem 5%; }
       .hero-tag-text { font-size: 0.6rem; letter-spacing: 0.1em; }
       /* Fix 8: prevent long Chinese FAQ questions from being too tight */
       .faq-q { font-size: 0.95rem; }
@@ -2048,7 +2049,7 @@
     }
 
     /* ── NAV: refined dark glass on scroll ── */
-    nav.scrolled {
+    #navbar.scrolled {
       background: rgba(20, 16, 12, 0.78);
       backdrop-filter: blur(30px) saturate(2);
       -webkit-backdrop-filter: blur(30px) saturate(2);
@@ -2347,7 +2348,7 @@
 
   <!-- ─── PAGE LOAD CURTAIN (Change 3) ─── -->
   <div id="page-curtain">
-    <span id="curtain-brand"><img src="assets/photos/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" /></span>
+    <span id="curtain-brand"><img src="assets/photos/Company Logo/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" /></span>
     <div id="curtain-line"></div>
   </div>
 
@@ -2359,7 +2360,7 @@
 
 <!-- ─── NAV ─── -->
   <nav id="navbar">
-    <a href="#hero" class="nav-logo"><img src="assets/photos/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" /></a>
+    <a href="#hero" class="nav-logo"><img src="assets/photos/Company Logo/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" /></a>
     <ul class="nav-links">
       <li><a href="#about" data-i18n="nav-about">About</a></li>
       <li><a href="#services" data-i18n="nav-services">Services</a></li>
@@ -2785,15 +2786,15 @@
   <div class="accred-strip">
     <p class="accred-label" data-i18n="accred-label">Registered With</p>
     <div class="accred-logos-row">
-      <img src="assets/photos/hcpc-logo.png" alt="HCPC — Health and Care Professions Council" class="accred-logo" />
-      <img src="assets/photos/rcot-logo.png" alt="Royal College of Occupational Therapists" class="accred-logo" />
+      <img src="assets/photos/HCPC and RCOT Logo/hcpc-registered-transparent.svg" alt="HCPC — Health and Care Professions Council" class="accred-logo" />
+      <img src="assets/photos/HCPC and RCOT Logo/rcot_primary_rgb_transparent.svg" alt="Royal College of Occupational Therapists" class="accred-logo" />
     </div>
   </div>
 
   <!-- ─── FOOTER ─── -->
   <footer>
     <div class="footer-main">
-      <span class="footer-logo"><img src="assets/photos/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" /></span>
+      <span class="footer-logo"><img src="assets/photos/Company Logo/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" /></span>
       <span class="footer-credentials" data-i18n="footer-creds">HCPC Registered &nbsp;·&nbsp; Occupational Therapist &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span></span>
       <span class="footer-copy" data-i18n="footer-copy">&copy; 2026 BodyMindOT. All rights reserved.</span>
     </div>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Use — BodyMindOT</title>
+  <meta name="description" content="Terms of Use for the BodyMindOT website." />
+  <meta name="robots" content="noindex" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    @font-face {
+      font-family: 'Taipei Sans TC';
+      src: url('font/chinese/TaipeiSansTCBeta-Light.ttf') format('truetype');
+      font-weight: 300; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Taipei Sans TC';
+      src: url('font/chinese/TaipeiSansTCBeta-Regular.ttf') format('truetype');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+
+    :root {
+      --cream:      #FAF8F5;
+      --beige:      #EDE8E0;
+      --gold:       #C4A882;
+      --gold-dark:  #A8896A;
+      --charcoal:   #1C1814;
+      --text:       #2A2A2A;
+      --text-light: #6B6560;
+      --transition-fast: 0.3s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 5%;
+      background: rgba(28, 24, 20, 0.97);
+      box-shadow: 0 1px 0 rgba(196,168,130,0.15);
+    }
+    .nav-logo img { height: 32px; width: auto; }
+    .nav-back {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(250, 248, 245, 0.65);
+      transition: color var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .nav-back:hover { color: var(--gold); }
+    .nav-back svg { width: 14px; height: 14px; }
+
+    /* ─── PAGE WRAPPER ─── */
+    .policy-page {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 8rem 5% 6rem;
+    }
+
+    /* ─── HEADER ─── */
+    .policy-header {
+      border-bottom: 1px solid var(--beige);
+      padding-bottom: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .policy-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .policy-title {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 300;
+      color: var(--charcoal);
+      margin-bottom: 1rem;
+    }
+    .policy-meta {
+      font-size: 0.82rem;
+      color: var(--text-light);
+    }
+
+    /* ─── CONTENT ─── */
+    .policy-section {
+      margin-bottom: 2.75rem;
+    }
+    .policy-section h2 {
+      font-size: 1.55rem;
+      color: var(--charcoal);
+      margin-bottom: 1rem;
+    }
+    .policy-section h3 {
+      font-size: 1.15rem;
+      color: var(--charcoal);
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .policy-section p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 0.85rem;
+    }
+    .policy-section ul, .policy-section ol {
+      padding-left: 1.4rem;
+      margin-bottom: 0.85rem;
+    }
+    .policy-section li {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .policy-section a {
+      color: var(--gold-dark);
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--transition-fast);
+    }
+    .policy-section a:hover { border-bottom-color: var(--gold-dark); }
+
+    .policy-divider {
+      border: none;
+      border-top: 1px solid var(--beige);
+      margin: 0 0 2.75rem;
+    }
+
+    .highlight-box {
+      background: var(--beige);
+      border-left: 3px solid var(--gold);
+      padding: 1.1rem 1.4rem;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 1rem;
+    }
+    .highlight-box p {
+      margin-bottom: 0 !important;
+      font-size: 0.9rem !important;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--charcoal);
+      color: rgba(250, 248, 245, 0.5);
+      padding: 2.5rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo img { height: 26px; width: auto; opacity: 0.85; }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      color: rgba(250, 248, 245, 0.45);
+      transition: color var(--transition-fast);
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-links a.active { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(250, 248, 245, 0.35);
+    }
+
+    @media (max-width: 600px) {
+      .policy-page { padding: 7rem 5% 4rem; }
+      footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="assets/photos/Company Logo/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" />
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to site
+    </a>
+  </nav>
+
+  <!-- ─── CONTENT ─── -->
+  <main class="policy-page">
+
+    <header class="policy-header">
+      <p class="policy-label">Legal</p>
+      <h1 class="policy-title">Terms of Use</h1>
+      <p class="policy-meta">Last updated: May 2026 &nbsp;·&nbsp; Effective date: 1 June 2026</p>
+    </header>
+
+    <div class="highlight-box">
+      <p>By accessing or using this website, you agree to be bound by these Terms of Use. Please read them carefully. If you do not agree, please do not use this website.</p>
+    </div>
+
+    <!-- 1 -->
+    <section class="policy-section">
+      <h2>1. About This Website</h2>
+      <p>This website is operated by Phoebe Hsieh, trading as <strong>BodyMindOT</strong>, an HCPC-registered Occupational Therapist. The website provides information about occupational therapy services and facilitates initial enquiries.</p>
+      <p><strong>Contact:</strong> <a href="mailto:phoebehsieh@bodymindot.com">phoebehsieh@bodymindot.com</a></p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 2 -->
+    <section class="policy-section">
+      <h2>2. Healthcare Disclaimer</h2>
+      <p>The content on this website is provided for <strong>general informational purposes only</strong>. It does not constitute medical advice, clinical assessment, diagnosis, or treatment, and must not be relied upon as a substitute for professional healthcare advice.</p>
+      <p>If you have concerns about your physical or mental health, please consult a qualified healthcare professional or, in an emergency, contact your local emergency services or the NHS (999 / 111).</p>
+      <p><strong>One-to-one online consultations</strong> are conducted via Google Meet. By participating, you also agree to <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Google's Terms of Service</a>. Sessions are not recorded without your explicit prior consent.</p>
+      <p><strong>In-person group workshops</strong> take place at a physical venue. Workshops are educational in nature and do not constitute individual clinical treatment or assessment. Participants should not disclose personal health information they would not be comfortable sharing with the group.</p>
+      <p>A therapeutic relationship with BodyMindOT begins only once you have received written confirmation of your first individual appointment. Prior to that point, no professional duty of care exists through this website.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 3 -->
+    <section class="policy-section">
+      <h2>3. Acceptable Use</h2>
+      <p>You may use this website for lawful purposes only. You must not:</p>
+      <ul>
+        <li>Use the website in any way that violates applicable UK or international laws or regulations</li>
+        <li>Transmit any unsolicited or unauthorised advertising or promotional material</li>
+        <li>Attempt to gain unauthorised access to any part of the website or its infrastructure</li>
+        <li>Submit false, misleading, or offensive content through any contact form</li>
+        <li>Engage in any conduct that could damage, disable, or impair the website</li>
+      </ul>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 4 -->
+    <section class="policy-section">
+      <h2>4. Intellectual Property</h2>
+      <p>All content on this website — including text, images, logos, graphics, and design — is the property of BodyMindOT or its licensors and is protected by copyright and other intellectual property laws.</p>
+      <p>You may view and print content for your own personal, non-commercial use. You must not reproduce, distribute, modify, or commercially exploit any part of this website without our prior written consent.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 5 -->
+    <section class="policy-section">
+      <h2>5. Accuracy of Information</h2>
+      <p>We take reasonable care to ensure the information on this website is accurate and up to date. However, we make no warranty that the content is complete, current, or error-free. We reserve the right to update or correct information at any time without notice.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 6 -->
+    <section class="policy-section">
+      <h2>6. Links to Third-Party Websites</h2>
+      <p>This website may contain links to external websites for your convenience. These links do not signify our endorsement of those sites. We have no control over the content or availability of external sites and accept no responsibility for them or for any loss or damage that may arise from your use of them.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 7 -->
+    <section class="policy-section">
+      <h2>7. Limitation of Liability</h2>
+      <p>To the fullest extent permitted by law, BodyMindOT excludes all liability for any loss or damage — whether direct, indirect, or consequential — arising from:</p>
+      <ul>
+        <li>Your use of, or inability to use, this website</li>
+        <li>Reliance on any information contained on this website</li>
+        <li>Any interruption, suspension, or discontinuation of the website</li>
+      </ul>
+      <p>Nothing in these Terms limits our liability for death or personal injury caused by negligence, fraud, or any other matter where exclusion of liability is not permitted by law.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 8 -->
+    <section class="policy-section">
+      <h2>8. Privacy</h2>
+      <p>Your use of this website is also governed by our <a href="privacy-policy.html">Privacy Policy</a>, which is incorporated into these Terms by reference. By using this website, you consent to the data practices described in that policy.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 9 -->
+    <section class="policy-section">
+      <h2>9. Governing Law</h2>
+      <p>These Terms of Use are governed by and construed in accordance with the laws of <strong>England and Wales</strong>. Any disputes arising from your use of this website shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 10 -->
+    <section class="policy-section">
+      <h2>10. Changes to These Terms</h2>
+      <p>We reserve the right to amend these Terms of Use at any time. The "Last updated" date at the top of this page will reflect any changes. Continued use of the website after updates are posted constitutes your acceptance of the revised Terms.</p>
+    </section>
+
+    <hr class="policy-divider" />
+
+    <!-- 11 -->
+    <section class="policy-section">
+      <h2>11. Contact</h2>
+      <p>If you have any questions about these Terms, please contact:</p>
+      <p><strong>Phoebe Hsieh — BodyMindOT</strong><br>
+      Email: <a href="mailto:phoebehsieh@bodymindot.com">phoebehsieh@bodymindot.com</a></p>
+    </section>
+
+  </main>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <span class="footer-logo"><img src="assets/photos/Company Logo/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" /></span>
+    <nav class="footer-links" aria-label="Legal pages">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-use.html" class="active">Terms of Use</a>
+    </nav>
+    <span class="footer-copy">&copy; 2026 BodyMindOT. All rights reserved.</span>
+  </footer>
+
+</body>
+</html>
