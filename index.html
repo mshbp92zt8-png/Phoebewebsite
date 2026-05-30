@@ -830,10 +830,12 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-    .services-left .section-label,
-    .services-left .section-title {
-      margin-bottom: 2rem;
+    .services-header {
+      max-width: 1200px;
+      margin: 0 auto 2.5rem;
     }
+    .services-header .section-label { margin-bottom: 1.25rem; }
+    .services-header .section-title { margin-bottom: 0; }
     .services-tiles {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -860,6 +862,7 @@
     .services-right {
       position: sticky;
       top: 8rem;
+      align-self: start;
     }
     .services-info-card {
       background: var(--charcoal);
@@ -1328,12 +1331,25 @@
     /* ─── FOOTER ─── */
     footer {
       background: #100E0C;
-      padding: 2rem 5%;
+      padding: 2.5rem 5% 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .footer-main {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 0.75rem 2rem;
+      padding-bottom: 1.25rem;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(250,248,245,0.07);
+      padding-top: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .footer-logo img {
       height: 34px;
@@ -1351,15 +1367,20 @@
     }
     .footer-legal {
       display: flex;
-      gap: 1.25rem;
+      align-items: center;
+      gap: 0.85rem;
     }
     .footer-legal a {
       font-size: 0.72rem;
       letter-spacing: 0.05em;
-      color: rgba(250,248,245,0.2);
+      color: rgba(250,248,245,0.25);
       transition: color 0.3s ease;
     }
     .footer-legal a:hover { color: rgba(196,168,130,0.7); }
+    .footer-legal-sep {
+      color: rgba(250,248,245,0.15);
+      font-size: 0.72rem;
+    }
 
     /* ─── BACK TO TOP (Change 7) ─── */
     #back-to-top {
@@ -1625,7 +1646,8 @@
       }
 
       /* Footer */
-      footer { padding: 2rem 5%; gap: 0.5rem; }
+      footer { padding: 2rem 5% 1.5rem; }
+      .footer-main { gap: 0.5rem 1rem; }
       .footer-credentials { display: none; }
 
       /* Back to top / float contact: adjust on mobile */
@@ -2538,13 +2560,14 @@
 
   <!-- ─── SERVICES ─── -->
   <section id="services">
+    <div class="services-header">
+      <p class="section-label fade-up" data-i18n="services-label">Individual Services</p>
+      <h2 class="section-title fade-up" data-i18n="services-heading">
+        Online 1:1 Occupational Therapy<br>Coaching Consultations.
+      </h2>
+    </div>
     <div class="services-grid">
-      <div class="services-left">
-        <p class="section-label fade-up" data-i18n="services-label">Individual Services</p>
-        <h2 class="section-title fade-up" data-i18n="services-heading">
-          Online 1:1 Occupational Therapy<br>Coaching Consultations.
-        </h2>
-        <div class="services-tiles fade-up">
+      <div class="services-tiles fade-up">
           <div class="service-tile"><span data-i18n="tile-routines">Routines &amp; Sustainable Living</span></div>
           <div class="service-tile"><span data-i18n="tile-emotional">Emotional Regulation</span></div>
           <div class="service-tile"><span data-i18n="tile-overseas">Overseas Adjustment</span></div>
@@ -2556,7 +2579,6 @@
           <div class="service-tile"><span data-i18n="tile-parenting">Parenting &amp; Family Functioning</span></div>
           <div class="service-tile"><span data-i18n="tile-values">Value Clarification</span></div>
         </div>
-      </div>
 
       <div class="services-right fade-up">
         <div class="services-info-card">
@@ -2634,19 +2656,19 @@
       <div class="testimonial-track" id="testimonialTrack">
         <div class="testimonial-slide active">
           <blockquote class="testimonial-quote" data-i18n="t1-quote">"Phoebe created such an open and supportive space where I felt truly held."</blockquote>
-          <p class="testimonial-attr" data-i18n="t1-attr">— Client</p>
+          <p class="testimonial-attr" data-i18n="t1-attr">Client</p>
         </div>
         <div class="testimonial-slide">
           <blockquote class="testimonial-quote" data-i18n="t2-quote">"Phoebe is warm, gentle, and non-judgemental, which helped me feel safe enough to express freely without worrying about how I come across."</blockquote>
-          <p class="testimonial-attr" data-i18n="t2-attr">— Client</p>
+          <p class="testimonial-attr" data-i18n="t2-attr">Client</p>
         </div>
         <div class="testimonial-slide">
           <blockquote class="testimonial-quote" data-i18n="t3-quote">"I really appreciated how the workshop was created as a non-judgemental space. The guidance and imagination-based movement exploration helped me feel more connected to both my body and emotional state."</blockquote>
-          <p class="testimonial-attr" data-i18n="t3-attr">— Workshop Participant</p>
+          <p class="testimonial-attr" data-i18n="t3-attr">Workshop Participant</p>
         </div>
         <div class="testimonial-slide">
           <blockquote class="testimonial-quote" data-i18n="t4-quote">"I like the combination of movement, music, and the calming environment in the workshop. It is made easier to release tension and feel more physically and emotionally open."</blockquote>
-          <p class="testimonial-attr" data-i18n="t4-attr">— Workshop Participant</p>
+          <p class="testimonial-attr" data-i18n="t4-attr">Workshop Participant</p>
         </div>
       </div>
       <div class="testimonial-progress" id="testimonialDots">
@@ -2770,13 +2792,18 @@
 
   <!-- ─── FOOTER ─── -->
   <footer>
-    <span class="footer-logo"><img src="assets/photos/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" /></span>
-    <span class="footer-credentials" data-i18n="footer-creds">HCPC Registered &nbsp;·&nbsp; Occupational Therapist &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span></span>
-    <nav class="footer-legal" aria-label="Legal pages">
-      <a href="privacy-policy.html">Privacy Policy</a>
-      <a href="terms-of-use.html">Terms of Use</a>
-    </nav>
-    <span class="footer-copy" data-i18n="footer-copy">&copy; 2026 BodyMindOT. All rights reserved.</span>
+    <div class="footer-main">
+      <span class="footer-logo"><img src="assets/photos/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" /></span>
+      <span class="footer-credentials" data-i18n="footer-creds">HCPC Registered &nbsp;·&nbsp; Occupational Therapist &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span></span>
+      <span class="footer-copy" data-i18n="footer-copy">&copy; 2026 BodyMindOT. All rights reserved.</span>
+    </div>
+    <div class="footer-bottom">
+      <nav class="footer-legal" aria-label="Legal pages">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <span class="footer-legal-sep">·</span>
+        <a href="terms-of-use.html">Terms of Use</a>
+      </nav>
+    </div>
   </footer>
 
   <!-- ─── BACK TO TOP (Change 7) ─── -->
@@ -3196,13 +3223,13 @@
         'cookie-text': 'We use essential cookies to ensure the site works. <a href="#" id="cookie-accept">Accept</a>',
         'testimonials-label': 'Kind Words',
         't1-quote': '&#8220;Phoebe created such an open and supportive space where I felt truly held.&#8221;',
-        't1-attr': '— Client',
+        't1-attr': 'Client',
         't2-quote': '&#8220;Phoebe is warm, gentle, and non-judgemental, which helped me feel safe enough to express freely without worrying about how I come across.&#8221;',
-        't2-attr': '— Client',
+        't2-attr': 'Client',
         't3-quote': '&#8220;I really appreciated how the workshop was created as a non-judgemental space. The guidance and imagination-based movement exploration helped me feel more connected to both my body and emotional state.&#8221;',
-        't3-attr': '— Workshop Participant',
+        't3-attr': 'Workshop Participant',
         't4-quote': '&#8220;I like the combination of movement, music, and the calming environment in the workshop. It is made easier to release tension and feel more physically and emotionally open.&#8221;',
-        't4-attr': '— Workshop Participant',
+        't4-attr': 'Workshop Participant',
         'faq-label': 'Common Questions',
         'faq-heading': 'Everything you<br>need to know.',
         'faq1-q': 'What is occupational therapy?<span class="faq-icon">+</span>',
@@ -3349,13 +3376,13 @@
         'cookie-text': '我們使用必要的 Cookie 讓網站正常運作。<a href="#" id="cookie-accept">好的</a>',
         'testimonials-label': '真實回饋',
         't1-quote': '「Phoebe 創造了一個非常開放且充滿支持感的空間，讓我真正感受到被接住。」',
-        't1-attr': '— 個案',
+        't1-attr': '個案',
         't2-quote': '「Phoebe 很溫暖、溫柔且不帶批判，讓我能安心自在地表達自己，而不用擔心別人會如何看待我。」',
-        't2-attr': '— 個案',
+        't2-attr': '個案',
         't3-quote': '「我很喜歡這個工作坊被設計成一個沒有批評、沒有對錯的空間。透過引導詞與想像力的帶領，我能更自由地探索自己的身體，也感受到身體狀態和心理狀態其實是緊密相連的。」',
-        't3-attr': '— 工作坊學員',
+        't3-attr': '工作坊學員',
         't4-quote': '「我喜歡在工作坊中結合肢體、音樂與舒適的環境，讓我的身體更舒展，情緒上也更能放鬆與打開。」',
-        't4-attr': '— 工作坊學員',
+        't4-attr': '工作坊學員',
         'faq-label': '常見問題',
         'faq-heading': '你可能想知道的<br>一切。',
         'faq1-q': '什麼是職能治療？<span class="faq-icon">+</span>',
