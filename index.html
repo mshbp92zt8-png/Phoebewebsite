@@ -10,7 +10,7 @@
   <meta property="og:title" content="BodyMindOT — Occupational Therapist" />
   <meta property="og:description" content="HCPC-registered occupational therapist providing online mental health and wellbeing consultations for Mandarin-speaking adults abroad and English speakers." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/photos/Phoebe photo.jpeg" />
+  <meta property="og:image" content="https://bodymindot.com/assets/photos/Phoebe%20photo.jpeg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="BodyMindOT — Occupational Therapist" />
   <meta name="twitter:description" content="HCPC-registered OT offering online mental health consultations in English and Mandarin." />
@@ -2051,6 +2051,13 @@
       cursor: not-allowed;
       transform: none !important;
     }
+    .honeypot-field {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
 
     /* ─── ACCREDITATION STRIP PROPER CSS ─── */
     .accred-strip {
@@ -2770,8 +2777,8 @@
         Fill in the form below and I'll be in touch soon. Fields marked with * are required.
       </p>
 
-      <!-- Replace action with your form handler endpoint (e.g. Formspree) -->
-      <form class="contact-form fade-up" id="contactForm" action="#" method="post">
+      <form class="contact-form fade-up" id="contactForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="post">
+        <p class="honeypot-field"><label>Don't fill this out: <input name="_gotcha" /></label></p>
         <div class="form-row">
           <div class="form-group">
             <label for="cf-name" data-i18n="form-name-label">Full Name *</label>
@@ -2827,6 +2834,7 @@
         <h3 class="success-heading">Message sent.</h3>
         <p class="success-body">Thank you for reaching out. I'll be in touch within 2–3 working days.</p>
       </div>
+      <p id="form-error" style="display:none;color:#c0392b;margin-top:1rem;font-size:0.9rem;">Something went wrong — please try again or email <a href="mailto:phoebehsieh@bodymindot.com">phoebehsieh@bodymindot.com</a> directly.</p>
     </div>
   </section>
 
@@ -2868,7 +2876,7 @@
 
   <!-- ─── COOKIE BANNER (Change 17) ─── -->
   <div id="cookie-banner">
-    <p data-i18n="cookie-text">We use essential cookies to ensure the site works. <a href="#" id="cookie-accept">Accept</a></p>
+    <p data-i18n="cookie-text">We use local storage to save your language preference. <a href="#" id="cookie-accept">OK</a></p>
   </div>
 
 
@@ -3269,7 +3277,7 @@
         'contact-note': 'HCPC Registered Occupational Therapist',
         'footer-creds': 'HCPC Registered &nbsp;·&nbsp; Occupational Therapist &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span>',
         'footer-copy': '&copy; 2026 BodyMindOT. All rights reserved.',
-        'cookie-text': 'We use essential cookies to ensure the site works. <a href="#" id="cookie-accept">Accept</a>',
+        'cookie-text': 'We use local storage to save your language preference. <a href="#" id="cookie-accept">OK</a>',
         'testimonials-label': 'Kind Words',
         't1-quote': '&#8220;Phoebe created such an open and supportive space where I felt truly held.&#8221;',
         't1-attr': 'Client',
@@ -3674,7 +3682,7 @@
         field.addEventListener('input', () => { if (field.classList.contains('error')) validateField(field); });
       });
 
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
         let valid = true;
         form.querySelectorAll('input[required], select[required]').forEach(field => {
@@ -3682,13 +3690,27 @@
         });
         if (!valid) return;
         const btn = form.querySelector('.form-submit-btn');
+        const originalText = btn.textContent;
         btn.textContent = 'Sending…';
         btn.disabled = true;
-        setTimeout(() => {
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: new FormData(form)
+          });
+          if (!res.ok) throw new Error('Submit failed');
           form.style.display = 'none';
+          const errEl = document.getElementById('form-error');
+          if (errEl) errEl.style.display = 'none';
           const success = document.getElementById('form-success');
           if (success) success.classList.add('visible');
-        }, 1200);
+        } catch {
+          btn.textContent = originalText;
+          btn.disabled = false;
+          const errEl = document.getElementById('form-error');
+          if (errEl) errEl.style.display = 'block';
+        }
       });
     }
 
