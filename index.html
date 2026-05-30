@@ -1549,12 +1549,12 @@
         gap: 1rem;
       }
       .hero-ctas .btn-primary { justify-content: center; }
-      .hero-ctas .btn-ghost { text-align: center; padding-bottom: 4px; }
+      .hero-ctas .btn-ghost { text-align: center; padding-bottom: 4px; align-self: center; width: auto; }
       /* Hide illustration + watermark on small mobile — cleaner hero */
       .hero-illustration { display: none !important; }
       .hero-watermark { display: none; }
       /* Hero takes only the content height on mobile, no empty gap */
-      #hero { min-height: auto; padding-bottom: 4.5rem; }
+      #hero { min-height: auto; padding-bottom: 2rem; }
       /* HCPC tag: hide decorative line, allow wrap */
       .hero-tag-line { display: none; }
       .hero-tag { gap: 0; }
@@ -1618,7 +1618,7 @@
       /* Back to top / float contact: adjust on mobile */
       #back-to-top { bottom: 1.25rem; right: 1.25rem; }
       #float-contact { bottom: 1.25rem; left: 1.25rem; }
-      #cookie-banner { white-space: normal; text-align: center; width: 90%; }
+      #cookie-banner { white-space: normal; text-align: center; width: 90%; bottom: 5rem; }
 
       /* Accreditation logos: tighter row on small screens */
       .accred-logos-row { gap: 1rem; }
@@ -1635,6 +1635,14 @@
 
       /* Contact alt text: email wraps on narrow screens */
       .contact-alt { word-break: break-word; overflow-wrap: break-word; }
+
+      /* Fix 3: remove forced line break in hero subtitle */
+      .hero-sub br { display: none; }
+      /* Fix 2: reduce wave curve height — removes dead cream space */
+      .hero-curve svg { height: 40px; }
+      /* Fix 5: testimonial track tall enough for longest quote */
+      .testimonial-track { min-height: 220px; }
+      .testimonial-quote { font-size: 1.35rem; }
     }
 
     /* Small mobile (≤ 400px) */
@@ -1643,6 +1651,8 @@
       .section-title { font-size: clamp(1.9rem, 9vw, 2.5rem); }
       nav { padding: 1rem 5%; }
       .hero-tag-text { font-size: 0.6rem; letter-spacing: 0.1em; }
+      /* Fix 8: prevent long Chinese FAQ questions from being too tight */
+      .faq-q { font-size: 0.95rem; }
     }
 
     /* ─── ACTIVE NAV INDICATOR ─── */
@@ -1747,7 +1757,7 @@
     }
     @media (max-width: 600px) {
       .process-inner { flex-direction: column; align-items: center; }
-      .process-step { max-width: 280px; }
+      .process-step { max-width: 100%; width: 100%; }
       .process-arrow { transform: rotate(90deg); padding-top: 0; }
     }
 
@@ -2250,6 +2260,13 @@
         border-radius: 16px;
       }
       .process-step { padding: 1.5rem 1rem; }
+      /* Fix 9: reduce blur intensity on mobile for better scroll performance */
+      .who-card { backdrop-filter: blur(10px) saturate(1.2); -webkit-backdrop-filter: blur(10px) saturate(1.2); }
+      .service-tile { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+      .process-step { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+      .faq-item { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+      .services-info-card { backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4); }
+      .contact-form-wrapper { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
     }
   </style>
 
