@@ -1967,6 +1967,290 @@
         transition-duration: 0.01ms !important;
       }
     }
+
+    /* ═══════════════════════════════════════════════
+       GLASSMORPHISM / APPLE-STYLE DESIGN UPGRADE
+       ═══════════════════════════════════════════════ */
+
+    :root {
+      --glass-light: rgba(252, 250, 247, 0.76);
+      --glass-dark: rgba(20, 16, 12, 0.74);
+      --glass-border-light: rgba(255, 255, 255, 0.72);
+      --glass-border-dark: rgba(255, 255, 255, 0.1);
+      --glass-shadow-light: 0 4px 24px rgba(0,0,0,0.07), 0 1px 0 rgba(255,255,255,0.85) inset;
+      --glass-shadow-dark: 0 16px 48px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.07) inset;
+      --radius-card: 20px;
+    }
+
+    /* ── NAV: refined dark glass on scroll ── */
+    nav.scrolled {
+      background: rgba(20, 16, 12, 0.78);
+      backdrop-filter: blur(30px) saturate(2);
+      -webkit-backdrop-filter: blur(30px) saturate(2);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      box-shadow: 0 1px 40px rgba(0,0,0,0.4);
+      padding: 1rem 5%;
+    }
+
+    /* ── ABOUT: original background preserved ── */
+    .about-photo-wrap img {
+      border-radius: 16px;
+    }
+    .about-photo-deco {
+      border-radius: 20px;
+    }
+
+    /* ── WHO CARDS: light glass ── */
+    .who-card {
+      background: var(--glass-light);
+      backdrop-filter: blur(22px) saturate(1.6);
+      -webkit-backdrop-filter: blur(22px) saturate(1.6);
+      border: 1px solid var(--glass-border-light);
+      border-radius: var(--radius-card);
+      box-shadow: var(--glass-shadow-light);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s ease, background 0.3s ease;
+    }
+    .who-card:hover {
+      background: rgba(252, 250, 247, 0.96);
+      transform: translateY(-10px) scale(1.015);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.13), 0 1px 0 rgba(255,255,255,1) inset;
+    }
+
+    /* ── SERVICES: glass tiles ── */
+    .service-tile {
+      background: rgba(252, 250, 247, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.72);
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05), 0 1px 0 rgba(255,255,255,0.72) inset;
+      transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .service-tile:hover {
+      background: rgba(252, 250, 247, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.09), 0 1px 0 rgba(255,255,255,1) inset;
+    }
+    .services-info-card {
+      background: var(--glass-dark);
+      backdrop-filter: blur(32px) saturate(1.8);
+      -webkit-backdrop-filter: blur(32px) saturate(1.8);
+      border: 1px solid var(--glass-border-dark);
+      border-radius: var(--radius-card);
+      box-shadow: var(--glass-shadow-dark);
+    }
+
+    /* ── PROCESS STRIP: glass steps ── */
+    .process-step {
+      background: rgba(252, 250, 247, 0.72);
+      backdrop-filter: blur(18px) saturate(1.5);
+      -webkit-backdrop-filter: blur(18px) saturate(1.5);
+      border: 1px solid rgba(255,255,255,0.72);
+      border-radius: 18px;
+      padding: 1.75rem 1.25rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05), 0 1px 0 rgba(255,255,255,0.8) inset;
+    }
+
+    /* ── WORKSHOPS: aurora glow ── */
+    #workshops { position: relative; overflow: hidden; }
+    #workshops::before {
+      content: '';
+      position: absolute;
+      top: -40%; left: -15%;
+      width: 75%; height: 90%;
+      background: radial-gradient(ellipse, rgba(196,168,130,0.1) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    #workshops::after {
+      content: '';
+      position: absolute;
+      bottom: -25%; right: -10%;
+      width: 55%; height: 65%;
+      background: radial-gradient(ellipse, rgba(130,170,210,0.05) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    #workshops .workshops-center { position: relative; z-index: 1; }
+    .workshop-card {
+      backdrop-filter: blur(26px) saturate(1.6);
+      -webkit-backdrop-filter: blur(26px) saturate(1.6);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-card);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.28), 0 1px 0 rgba(255,255,255,0.07) inset;
+    }
+
+    /* ── TESTIMONIALS: original background preserved ── */
+
+    /* ── FAQ: glass accordion ── */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-top: none;
+      margin-top: 2.5rem;
+    }
+    .faq-item {
+      background: rgba(252, 250, 247, 0.74);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.72) !important;
+      border-radius: 14px;
+      padding: 0 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04), 0 1px 0 rgba(255,255,255,0.78) inset;
+      transition: box-shadow 0.3s ease, background 0.3s ease;
+    }
+    .faq-item:first-child { border-top: 1px solid rgba(255,255,255,0.72) !important; }
+    .faq-item:hover { background: rgba(252, 250, 247, 0.92); }
+    .faq-item.open {
+      background: rgba(252, 250, 247, 0.92);
+      box-shadow: 0 4px 22px rgba(0,0,0,0.08), 0 1px 0 rgba(255,255,255,1) inset;
+    }
+    .faq-q { border: none; }
+
+    /* ── CONTACT: glass card ── */
+    #contact {
+      position: relative;
+      overflow: hidden;
+    }
+    #contact::before {
+      content: '';
+      position: absolute;
+      top: -30%; left: -10%;
+      width: 65%; height: 70%;
+      background: radial-gradient(ellipse, rgba(196,168,130,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .contact-form-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      background: rgba(255, 253, 250, 0.04);
+      backdrop-filter: blur(24px) saturate(1.6);
+      -webkit-backdrop-filter: blur(24px) saturate(1.6);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 3.5rem;
+      box-shadow: 0 20px 64px rgba(0,0,0,0.32), 0 1px 0 rgba(255,255,255,0.06) inset;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: rgba(255,248,245,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      background: rgba(255,248,245,0.12);
+      border-color: rgba(196,168,130,0.55);
+      box-shadow: 0 0 0 3px rgba(196,168,130,0.1);
+    }
+
+    /* ── BUTTONS: Apple gradient + spring ── */
+    .btn-primary {
+      background: linear-gradient(140deg, #CDB38E 0%, #C4A882 45%, #B89470 100%);
+      box-shadow: 0 4px 18px rgba(196,168,130,0.45), 0 1px 0 rgba(255,255,255,0.22) inset;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(140deg, #D8BE9E 0%, #CEB48F 45%, #C4A882 100%);
+      box-shadow: 0 10px 32px rgba(196,168,130,0.55), 0 1px 0 rgba(255,255,255,0.3) inset;
+      transform: translateY(-3px) scale(1.025);
+    }
+
+    /* ── CREDENTIAL TAGS: glass pills ── */
+    .credential-tag {
+      background: rgba(196,168,130,0.1);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(196,168,130,0.28);
+      box-shadow: 0 2px 8px rgba(196,168,130,0.08);
+      transition: background 0.25s ease, transform 0.2s ease;
+    }
+    .credential-tag:hover {
+      background: rgba(196,168,130,0.18);
+      transform: translateY(-1px);
+    }
+
+    /* ── TRAINING PILLS: glass ── */
+    .training-pill {
+      background: rgba(237,232,224,0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.65);
+      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    }
+
+    /* ── LANGUAGE STRIP: original background preserved ── */
+
+    /* ── MARQUEE: original gold preserved ── */
+
+    /* ── ACCREDITATION STRIP: original background preserved ── */
+
+    /* ── MOBILE NAV: glass ── */
+    .nav-mobile {
+      background: rgba(20, 16, 12, 0.96);
+      backdrop-filter: blur(32px) saturate(1.8);
+      -webkit-backdrop-filter: blur(32px) saturate(1.8);
+    }
+
+    /* ── SCROLL PROGRESS ── */
+    #scroll-progress {
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold), #E2C9A0);
+      height: 2px;
+      box-shadow: 0 0 10px rgba(196,168,130,0.45);
+    }
+
+    /* ── COOKIE BANNER: glass ── */
+    #cookie-banner {
+      background: rgba(20, 16, 12, 0.84);
+      backdrop-filter: blur(24px) saturate(1.6);
+      -webkit-backdrop-filter: blur(24px) saturate(1.6);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+
+    /* ── BACK TO TOP: glass ── */
+    #back-to-top {
+      background: rgba(196,168,130,0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 4px 20px rgba(196,168,130,0.42);
+    }
+    #back-to-top:hover {
+      background: rgba(168,137,106,0.88);
+    }
+
+    /* ── FLOAT CONTACT: glass ── */
+    #float-contact {
+      background: rgba(196,168,130,0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 4px 20px rgba(196,168,130,0.45);
+    }
+    #float-contact:hover {
+      background: rgba(168,137,106,0.9);
+    }
+
+    /* ── CONTACT FORM WRAPPER: mobile ── */
+    @media (max-width: 768px) {
+      .contact-form-wrapper {
+        padding: 2.5rem 1.75rem;
+        border-radius: 20px;
+      }
+    }
+    @media (max-width: 600px) {
+      .contact-form-wrapper {
+        padding: 2rem 1.25rem;
+        border-radius: 16px;
+      }
+      .process-step { padding: 1.5rem 1rem; }
+    }
   </style>
 
   <!-- ─── STRUCTURED DATA JSON-LD (Change 14) ─── -->
@@ -2270,7 +2554,7 @@
       <div class="process-step fade-up">
         <div class="process-num">03</div>
         <h3 class="process-title" data-i18n="step3-title">Ongoing support</h3>
-        <p class="process-body" data-i18n="step3-body">Regular sessions at your pace, with practical strategies to use between appointments.</p>
+        <p class="process-body" data-i18n="step3-body">Regular sessions with practical strategies. I value your voice and feelings.</p>
       </div>
     </div>
   </div>
@@ -2810,7 +3094,7 @@
         'step2-title': 'First session',
         'step2-body': 'We explore what matters to you and begin mapping a path toward your goals.',
         'step3-title': 'Ongoing support',
-        'step3-body': 'Regular sessions at your pace, with practical strategies to use between appointments.',
+        'step3-body': 'Regular sessions with practical strategies. I value your voice and feelings.',
         'workshops-label': 'Experiential Group Workshop',
         'workshops-heading': 'Creativity for Everyday Life Workshop',
         'workshops-body': 'A small-group experiential workshop exploring how creativity can become a meaningful part of everyday life — not to learn painting or dancing, but to connect with yourself through creativity, build resources for wellbeing, and find a little joy in ordinary days. Open to anyone curious about living more creatively.',
