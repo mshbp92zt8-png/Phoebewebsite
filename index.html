@@ -1817,24 +1817,41 @@
       text-transform: uppercase;
       color: var(--gold);
     }
-    .testimonial-dots {
+    /* ─── TESTIMONIAL PROGRESS SCROLL ─── */
+    .testimonial-progress {
       display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 0.6rem;
-      margin-top: 2rem;
+      gap: 8px;
+      margin-top: 2.5rem;
     }
-    .t-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: rgba(196,168,130,0.3);
+    .t-seg {
+      position: relative;
+      width: 56px;
+      height: 3px;
+      background: rgba(196,168,130,0.22);
       border: none;
+      border-radius: 2px;
+      overflow: hidden;
       cursor: pointer;
-      transition: background 0.3s ease, transform 0.3s ease;
       padding: 0;
+      transition: background 0.3s ease;
     }
-    .t-dot.active {
+    .t-seg:hover { background: rgba(196,168,130,0.38); }
+    .t-seg-fill {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      width: 0%;
       background: var(--gold);
-      transform: scale(1.35);
+      border-radius: 2px;
+    }
+    .t-seg.active .t-seg-fill {
+      animation: tSegFill 8s linear forwards;
+    }
+    @keyframes tSegFill {
+      from { width: 0%; }
+      to   { width: 100%; }
     }
 
     /* ─── LANGUAGE STRIP UPGRADE ─── */
@@ -2632,11 +2649,11 @@
           <p class="testimonial-attr" data-i18n="t4-attr">— Workshop Participant</p>
         </div>
       </div>
-      <div class="testimonial-dots" id="testimonialDots">
-        <button class="t-dot active" aria-label="Testimonial 1"></button>
-        <button class="t-dot" aria-label="Testimonial 2"></button>
-        <button class="t-dot" aria-label="Testimonial 3"></button>
-        <button class="t-dot" aria-label="Testimonial 4"></button>
+      <div class="testimonial-progress" id="testimonialDots">
+        <button class="t-seg active" aria-label="Testimonial 1"><span class="t-seg-fill"></span></button>
+        <button class="t-seg" aria-label="Testimonial 2"><span class="t-seg-fill"></span></button>
+        <button class="t-seg" aria-label="Testimonial 3"><span class="t-seg-fill"></span></button>
+        <button class="t-seg" aria-label="Testimonial 4"><span class="t-seg-fill"></span></button>
       </div>
     </div>
   </section>
@@ -3479,19 +3496,36 @@
     // ══════════════════════════════════════════════
     function initTestimonials() {
       const slides = document.querySelectorAll('.testimonial-slide');
-      const dots   = document.querySelectorAll('.t-dot');
+      const segs   = document.querySelectorAll('.t-seg');
       if (!slides.length) return;
       let current = 0;
       let timer;
+
+      function resetFill(seg) {
+        const fill = seg.querySelector('.t-seg-fill');
+        if (!fill) return;
+        fill.style.animation = 'none';
+        fill.offsetWidth; // force reflow to restart animation
+        fill.style.animation = '';
+      }
+
       function goTo(n) {
         slides[current].classList.remove('active');
-        dots[current].classList.remove('active');
+        segs[current].classList.remove('active');
         current = (n + slides.length) % slides.length;
         slides[current].classList.add('active');
-        dots[current].classList.add('active');
+        resetFill(segs[current]);
+        segs[current].classList.add('active');
       }
-      function startTimer() { timer = setInterval(() => goTo(current + 1), 5500); }
-      dots.forEach((dot, i) => dot.addEventListener('click', () => { clearInterval(timer); goTo(i); startTimer(); }));
+
+      function startTimer() { timer = setInterval(() => goTo(current + 1), 8000); }
+
+      segs.forEach((seg, i) => seg.addEventListener('click', () => {
+        clearInterval(timer);
+        goTo(i);
+        startTimer();
+      }));
+
       startTimer();
     }
 
