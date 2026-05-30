@@ -1349,6 +1349,17 @@
       font-size: 0.72rem;
       color: rgba(250,248,245,0.2);
     }
+    .footer-legal {
+      display: flex;
+      gap: 1.25rem;
+    }
+    .footer-legal a {
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: rgba(250,248,245,0.2);
+      transition: color 0.3s ease;
+    }
+    .footer-legal a:hover { color: rgba(196,168,130,0.7); }
 
     /* ─── BACK TO TOP (Change 7) ─── */
     #back-to-top {
@@ -1554,7 +1565,9 @@
       .hero-illustration { display: none !important; }
       .hero-watermark { display: none; }
       /* Hero takes only the content height on mobile, no empty gap */
-      #hero { min-height: auto; padding-bottom: 2rem; }
+      #hero { min-height: auto; padding-bottom: 4rem; }
+      /* Scroll hint hidden on mobile — overlaps CTAs and redundant on touch */
+      .hero-scroll-hint { display: none; }
       /* HCPC tag: hide decorative line, allow wrap */
       .hero-tag-line { display: none; }
       .hero-tag { gap: 0; }
@@ -2740,6 +2753,10 @@
   <footer>
     <span class="footer-logo"><img src="assets/photos/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" /></span>
     <span class="footer-credentials" data-i18n="footer-creds">HCPC Registered &nbsp;·&nbsp; Occupational Therapist &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span></span>
+    <nav class="footer-legal" aria-label="Legal pages">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-use.html">Terms of Use</a>
+    </nav>
     <span class="footer-copy" data-i18n="footer-copy">&copy; 2026 BodyMindOT. All rights reserved.</span>
   </footer>
 
