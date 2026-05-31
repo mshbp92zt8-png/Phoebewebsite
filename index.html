@@ -2431,6 +2431,100 @@
       .services-info-card { backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4); }
       .contact-form-wrapper { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
     }
+
+    /* ─── WCAG 2.1 AA COMPLIANCE ─── */
+
+    /* Focus indicators — visible for keyboard and switch access */
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    .lang-btn:focus-visible,
+    .btn-primary:focus-visible,
+    .btn-primary-outline:focus-visible,
+    .nav-cta:focus-visible,
+    .form-submit-btn:focus-visible,
+    #back-to-top:focus-visible,
+    #float-contact:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 100px;
+    }
+
+    @media (max-width: 900px) {
+      /* Nav logo: min 44px touch height */
+      .nav-logo {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+      }
+
+      /* Nav links: min 44px touch height */
+      .nav-links a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+      }
+      /* Shrink strip padding since links carry the height now */
+      .nav-links {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      /* Lang buttons: min 44px touch height */
+      .lang-btn {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Hero CTAs: min 44px */
+      .btn-primary,
+      .btn-primary-outline {
+        min-height: 44px;
+      }
+      .btn-ghost {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      /* Footer legal links: expand tap area */
+      .footer-legal a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 0.4rem;
+      }
+
+      /* Contact email link in contact-alt */
+      .contact-alt a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0 0.25rem;
+      }
+
+      /* Cookie banner OK link */
+      #cookie-banner a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        min-width: 44px;
+        padding: 0 0.5rem;
+        vertical-align: middle;
+      }
+    }
+
+    /* Testimonial dots: expand hit area to 44×44 on mobile */
+    @media (max-width: 768px) {
+      .t-seg::after {
+        top: -17px; bottom: -17px; left: -17px; right: -17px;
+      }
+    }
   </style>
 
   <!-- ─── STRUCTURED DATA JSON-LD (Change 14) ─── -->
