@@ -164,6 +164,7 @@
     .nav-logo {
       display: flex;
       align-items: center;
+      margin-top: 0.4rem;
     }
     .nav-logo img {
       height: 52px;
@@ -344,17 +345,9 @@
       position: relative;
       z-index: 2;
       max-width: 700px;
-      padding-top: 6rem;
+      padding-top: 3.5rem;
     }
-    .hero-tag {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      transition: opacity 0.8s ease 0.1s;
-    }
-    .hero-tag.visible { opacity: 1; }
+    .hero-tag { display: none; }
     .hero-tag-line {
       width: 40px;
       height: 1px;
@@ -1561,6 +1554,7 @@
         display: flex;
         align-items: center;
         padding: 0.75rem 0;
+        margin-top: 0;
       }
       .nav-logo img { height: 60px; }
       .lang-switcher {
@@ -1667,8 +1661,7 @@
       #hero { min-height: auto; padding-bottom: 4rem; }
       /* Scroll hint hidden on mobile — overlaps CTAs and redundant on touch */
       .hero-scroll-hint { display: none; }
-      /* HCPC tag: hidden on mobile — nav already conveys credentials */
-      .hero-tag { display: none; }
+      /* HCPC tag hidden on mobile */
       /* Subtitle: larger and heavier on mobile for readability */
       .hero-sub { font-size: 1.05rem; font-weight: 400; }
       /* Hero overlay: uniform dark on mobile since content spans full width */
