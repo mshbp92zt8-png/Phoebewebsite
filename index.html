@@ -1548,9 +1548,35 @@
 
     /* Tablet (≤ 900px) */
     @media (max-width: 900px) {
-      #navbar { padding: 1.25rem 6%; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
+      /* Two-row inline nav: logo+lang top, links bottom — no hamburger tap needed */
+      #navbar {
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 0.9rem 6% 0;
+        row-gap: 0;
+      }
+      .nav-logo { order: 1; flex: 1; }
+      .lang-switcher { order: 2; display: flex !important; }
+      .hamburger { display: none; }
+      .nav-links {
+        order: 3;
+        display: flex !important;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+        gap: 1.5rem;
+        padding: 0.55rem 0 0.65rem;
+        border-top: 1px solid rgba(250, 248, 245, 0.1);
+        margin-top: 0.5rem;
+      }
+      .nav-links::-webkit-scrollbar { display: none; }
+      .nav-links li { flex-shrink: 0; }
+      .nav-links a { font-size: 0.75rem; white-space: nowrap; }
+      /* "Book a Consultation" is too wide for the inline strip on tablet/mobile */
+      .nav-links .nav-cta { display: none; }
+      /* Raise scroll-margin-top to account for taller two-row navbar (~90px) */
+      section, #language { scroll-margin-top: 100px; }
 
       section { padding: 5rem 6%; }
       #contact { padding: 6rem 6%; }
@@ -1612,7 +1638,7 @@
       #language { padding: 3rem 5%; }
 
       /* Hero */
-      .hero-content { padding-top: 5rem; }
+      .hero-content { padding-top: 6.5rem; }
       .hero-heading { font-size: clamp(2.8rem, 13vw, 4.5rem); line-height: 1.05; }
       .hero-sub { font-size: 0.9rem; }
       .hero-ctas {
@@ -1629,17 +1655,12 @@
       #hero { min-height: auto; padding-bottom: 4rem; }
       /* Scroll hint hidden on mobile — overlaps CTAs and redundant on touch */
       .hero-scroll-hint { display: none; }
-      /* HCPC tag: hide decorative line, allow wrap */
-      .hero-tag-line { display: none; }
-      .hero-tag { gap: 0; }
-      .hero-tag-text { font-size: 0.65rem; letter-spacing: 0.12em; }
+      /* HCPC tag: hidden on mobile — nav already conveys credentials */
+      .hero-tag { display: none; }
       /* Hero overlay: uniform dark on mobile since content spans full width */
       .hero-overlay {
         background: rgba(28, 24, 20, 0.78);
       }
-      /* Nav: hide desktop lang-switcher pill on mobile — accessible via mobile menu */
-      #navbar .lang-switcher { display: none; }
-
       /* Marquee */
       .marquee-inner span { font-size: 0.65rem; padding: 0 1.5rem; }
 
