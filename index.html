@@ -700,6 +700,21 @@
     }
     .cv-item:first-of-type { padding-top: 0; }
     .cv-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .cv-items-row {
+      display: flex;
+      gap: 0;
+    }
+    .cv-items-row .cv-item {
+      flex: 1;
+      border-bottom: none;
+      border-right: 1px solid var(--beige);
+      padding: 1rem 1rem 0 0;
+    }
+    .cv-items-row .cv-item:last-child {
+      border-right: none;
+      padding-left: 1rem;
+      padding-right: 0;
+    }
     .cv-institution {
       font-size: 0.9rem;
       font-weight: 500;
@@ -761,6 +776,22 @@
       .about-cv, .about-training {
         grid-template-columns: 1fr;
         gap: 2.5rem;
+      }
+      .cv-items-row {
+        flex-direction: column;
+      }
+      .cv-items-row .cv-item {
+        border-right: none;
+        border-bottom: 1px solid var(--beige);
+        padding: 1rem 0;
+      }
+      .cv-items-row .cv-item:first-child {
+        padding-top: 0;
+      }
+      .cv-items-row .cv-item:last-child {
+        border-bottom: none;
+        padding-left: 0;
+        padding-bottom: 0;
       }
     }
 
@@ -949,6 +980,14 @@
       line-height: 1.9;
       color: rgba(250,248,245,0.6);
       margin-bottom: 2rem;
+    }
+    .workshop-photo {
+      width: 100%;
+      max-width: 640px;
+      border-radius: 12px;
+      object-fit: cover;
+      margin-bottom: 2.5rem;
+      border: 1px solid rgba(196,168,130,0.15);
     }
     .location-tags {
       display: flex;
@@ -1202,7 +1241,7 @@
       flex-wrap: wrap;
     }
     .accred-logo {
-      height: 56px;
+      height: 80px;
       width: auto;
       opacity: 1;
     }
@@ -1658,7 +1697,7 @@
 
       /* Accreditation logos: tighter row on small screens */
       .accred-logos-row { gap: 1rem; }
-      .accred-logo { height: 44px; }
+      .accred-logo { height: 60px; }
 
       /* About photo: don't over-crop on small screens */
       .about-photo-wrap img { height: auto; max-height: 380px; }
@@ -2546,12 +2585,14 @@
         </div>
       </div>
       <div class="cv-block">
-        <p class="cv-block-label" data-i18n="cv-community-label">Community Involvement</p>
-        <div class="cv-item">
-          <p class="cv-institution" data-i18n="comm1-inst">Mind Mental Health Charity, London</p>
-        </div>
-        <div class="cv-item">
-          <p class="cv-institution" data-i18n="comm2-inst">Rushy Green Primary School, London</p>
+        <p class="cv-block-label" data-i18n="cv-community-label">Community Involvement Experience</p>
+        <div class="cv-items-row">
+          <div class="cv-item">
+            <p class="cv-institution" data-i18n="comm1-inst">Mind Mental Health Charity, London</p>
+          </div>
+          <div class="cv-item">
+            <p class="cv-institution" data-i18n="comm2-inst">Rushy Green Primary School, London</p>
+          </div>
         </div>
       </div>
     </div>
@@ -2698,6 +2739,7 @@
       <p class="workshops-body fade-up" data-i18n="workshops-body">
         A small-group experiential workshop exploring how creativity can become a meaningful part of everyday life — not to learn painting or dancing, but to connect with yourself through creativity, build resources for wellbeing, and find a little joy in ordinary days. Experiential workshop: Open to anyone curious about finding a different touch to daily life.
       </p>
+      <img src="assets/photos/Workshop Photo - 1.jpeg" alt="Experiential Group Workshop" class="workshop-photo fade-up" />
       <div class="location-tags fade-up">
         <span class="location-tag active" data-i18n="tag-online-loc">Online</span>
         <span class="location-tag active" data-i18n="tag-inperson">In Person</span>
@@ -3318,7 +3360,7 @@
         'exp1-role': 'Senior Occupational Therapist',
         'exp2-inst': 'National Cheng Kung University Hospital, Taiwan',
         'exp2-role': 'Occupational Therapist — Rehabilitation &amp; Children\'s Development',
-        'cv-community-label': 'Community Involvement',
+        'cv-community-label': 'Community Involvement Experience',
         'comm1-inst': 'Mind Mental Health Charity, London',
         'comm2-inst': 'Rushy Green Primary School, London',
         'cv-training-label': 'Professional Development',
@@ -3474,7 +3516,7 @@
         'exp1-role': '資深職能治療師',
         'exp2-inst': '台灣國立成功大學醫學院附設醫院',
         'exp2-role': '職能治療師 — 復健部及兒童發展中心',
-        'cv-community-label': '社區經驗',
+        'cv-community-label': '社區參與經驗',
         'comm1-inst': '倫敦Mind 成人健康非營利組織',
         'comm2-inst': '英國倫敦Rushy Green小學',
         'cv-training-label': '專業發展',
@@ -3482,7 +3524,7 @@
         'train2': '系統取向與家庭導向方法',
         'train3': '感覺調節',
         'train4': '神經多樣性導向實踐',
-        'train5': '文化能力與跨文化心理健康',
+        'train5': '跨文化與文化適應心理健康',
         'train6': '風險評估與管理',
         'train7': '台灣醫事人員畢業後一般醫學訓練 (PGY)',
         'train8': '創意作為治療媒介',
