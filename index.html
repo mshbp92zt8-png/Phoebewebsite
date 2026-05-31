@@ -393,7 +393,7 @@
     }
     .hero-sub {
       font-size: 0.95rem;
-      color: rgba(250,248,245,0.55);
+      color: var(--cream);
       margin-bottom: 2.5rem;
       font-weight: 300;
       letter-spacing: 0.02em;
@@ -1551,12 +1551,24 @@
       /* Two-row inline nav: logo+lang top, links bottom — no hamburger tap needed */
       #navbar {
         flex-wrap: wrap;
-        align-items: center;
-        padding: 0.9rem 6% 0;
+        align-items: stretch;
+        padding: 0 6%;
         row-gap: 0;
       }
-      .nav-logo { order: 1; flex: 1; display: flex; align-items: center; }
-      .lang-switcher { order: 2; display: flex !important; align-items: center; align-self: center; }
+      .nav-logo {
+        order: 1;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 0;
+      }
+      .nav-logo img { height: 60px; }
+      .lang-switcher {
+        order: 2;
+        display: flex !important;
+        align-items: center;
+        align-self: center;
+      }
       .hamburger { display: none; }
       .nav-links {
         order: 3;
@@ -1566,9 +1578,9 @@
         -webkit-overflow-scrolling: touch;
         width: 100%;
         gap: 1.5rem;
-        padding: 0.55rem 0 0.65rem;
+        align-items: center;
+        padding: 0.5rem 0 0.6rem;
         border-top: 1px solid rgba(250, 248, 245, 0.1);
-        margin-top: 0.5rem;
       }
       .nav-links::-webkit-scrollbar { display: none; }
       .nav-links li { flex-shrink: 0; }
@@ -1637,8 +1649,8 @@
       #contact { padding: 5rem 5%; }
       #language { padding: 3rem 5%; }
 
-      /* Hero */
-      .hero-content { padding-top: 6.5rem; }
+      /* Hero — extra padding for taller two-row mobile nav (~145px) */
+      .hero-content { padding-top: 12rem; }
       .hero-heading { font-size: clamp(2.8rem, 13vw, 4.5rem); line-height: 1.05; }
       .hero-sub { font-size: 0.9rem; }
       .hero-ctas {
@@ -1657,6 +1669,8 @@
       .hero-scroll-hint { display: none; }
       /* HCPC tag: hidden on mobile — nav already conveys credentials */
       .hero-tag { display: none; }
+      /* Subtitle: larger and heavier on mobile for readability */
+      .hero-sub { font-size: 1.05rem; font-weight: 400; }
       /* Hero overlay: uniform dark on mobile since content spans full width */
       .hero-overlay {
         background: rgba(28, 24, 20, 0.78);
