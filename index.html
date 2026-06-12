@@ -1911,8 +1911,22 @@
       margin-top: 2.5rem;
     }
     .t-arrow {
-      display: none; /* hidden on desktop */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(196,168,130,0.5);
+      background: transparent;
+      color: var(--gold-dark);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
     }
+    .t-arrow:hover { background: var(--gold); color: var(--charcoal); border-color: var(--gold); }
+    .t-arrow:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
     .testimonial-progress {
       display: flex;
       align-items: center;
