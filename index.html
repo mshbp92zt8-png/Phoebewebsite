@@ -828,50 +828,87 @@
       max-width: 1200px;
       margin: 0 auto 3.5rem;
     }
-    .who-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    /* Who I Work With — hover accordion */
+    .who-accordion {
+      max-width: 760px;
+      margin: 0 auto 3.5rem;
+    }
+    .who-item {
+      border-bottom: 1px solid rgba(196, 168, 130, 0.3);
+      cursor: pointer;
+      outline: none;
+    }
+    .who-item:first-child {
+      border-top: 1px solid rgba(196, 168, 130, 0.3);
+    }
+    .who-item-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      padding: 1.35rem 0.5rem;
     }
-    .who-card {
-      background: var(--cream);
-      border-radius: 6px;
-      padding: 2.5rem 2rem 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-    }
-    .who-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-    }
-    .who-card-num {
-      position: absolute;
-      top: 1rem;
-      right: 1.5rem;
+    .who-item-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 4.5rem;
-      font-weight: 300;
-      color: rgba(196, 168, 130, 0.18);
-      line-height: 1;
-      user-select: none;
-    }
-    .who-card-icon {
-      font-size: 1.6rem;
-      margin-bottom: 1.25rem;
-    }
-    .who-card h3 {
-      font-size: 1.5rem;
+      font-size: 1.65rem;
       font-weight: 400;
-      margin-bottom: 0.75rem;
       color: var(--charcoal);
+      transition: color 0.3s ease;
     }
-    .who-card p {
-      font-size: 0.925rem;
-      line-height: 1.8;
+    .who-item:hover .who-item-title,
+    .who-item:focus-within .who-item-title {
+      color: var(--gold-dark);
+    }
+    .who-item-icon {
+      position: relative;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .who-item-icon::before,
+    .who-item-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--gold);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .who-item-icon::before {
+      top: 50%; left: 0;
+      width: 100%; height: 2px;
+      transform: translateY(-50%);
+    }
+    .who-item-icon::after {
+      left: 50%; top: 0;
+      width: 2px; height: 100%;
+      transform: translateX(-50%);
+    }
+    /* plus → minus when open */
+    .who-item:hover .who-item-icon::after,
+    .who-item:focus-within .who-item-icon::after {
+      transform: translateX(-50%) scaleY(0);
+    }
+    .who-item-desc {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .who-item:hover .who-item-desc,
+    .who-item:focus-within .who-item-desc {
+      max-height: 200px;
+    }
+    .who-item-desc p {
+      padding: 0 0.5rem 1.4rem;
+      font-size: 1rem;
+      line-height: 1.75;
       color: var(--text-light);
+      max-width: 60ch;
+    }
+    /* touch devices have no hover — show all descriptions as a clean list */
+    @media (hover: none) {
+      .who-item { cursor: default; }
+      .who-item-desc { max-height: none; }
+      .who-item-icon { display: none; }
+      .who-item-desc p { padding-top: 0; }
     }
 
     /* ─── SERVICES ─── */
@@ -2605,8 +2642,7 @@
       padding-top: 2rem;
     }
 
-    /* Services: who-cards margin inside services */
-    #services .who-cards { margin-bottom: 3.5rem; }
+    /* Services: who section spacing */
     #services .who-header { margin-bottom: 2rem; }
 
     /* Process inline within services */
@@ -2875,24 +2911,51 @@
         Support tailored<br>to your world.
       </h2>
       <p class="section-body fade-up" data-i18n="who-body">
-        Whether you're navigating the pressures of study, career, or family life, I offer a space to reflect, re-centre, and take steps toward your goals.
+        I work with you if you're navigating any of the following:
       </p>
     </div>
-    <div class="who-cards" style="max-width:1200px;margin:0 auto 3.5rem;">
-      <div class="who-card fade-up">
-        <div class="who-card-num">01</div>
-        <h3 data-i18n="card1-title">Students</h3>
-        <p data-i18n="card1-body">Adjusting to a new country, managing academic pressure, or finding balance between study and life — I support students through transitions and the unique challenges of being away from home.</p>
+    <div class="who-accordion fade-up">
+      <div class="who-item" tabindex="0">
+        <div class="who-item-head">
+          <span class="who-item-title" data-i18n="who1-title">Students</span>
+          <span class="who-item-icon" aria-hidden="true"></span>
+        </div>
+        <div class="who-item-desc"><p data-i18n="who1-desc">Studying abroad or adjusting to life in a new country.</p></div>
       </div>
-      <div class="who-card fade-up">
-        <div class="who-card-num">02</div>
-        <h3 data-i18n="card2-title">Working Professionals</h3>
-        <p data-i18n="card2-body">Feeling stretched thin, burned out, or disconnected from your sense of purpose? I help working adults recalibrate their routines, manage stress, and create a sustainable work-life rhythm.</p>
+      <div class="who-item" tabindex="0">
+        <div class="who-item-head">
+          <span class="who-item-title" data-i18n="who2-title">Life Transitions</span>
+          <span class="who-item-icon" aria-hidden="true"></span>
+        </div>
+        <div class="who-item-desc"><p data-i18n="who2-desc">Starting university, graduating, changing careers, or moving through a major life change.</p></div>
       </div>
-      <div class="who-card fade-up">
-        <div class="who-card-num">03</div>
-        <h3 data-i18n="card3-title">Parents</h3>
-        <p data-i18n="card3-body">Being a parent — caring for children and family — is no small thing. Life is always in motion. This is a space to breathe and talk through the challenges of parenting and caring for others, including navigating cultural differences and how to adapt.</p>
+      <div class="who-item" tabindex="0">
+        <div class="who-item-head">
+          <span class="who-item-title" data-i18n="who3-title">Working Professionals</span>
+          <span class="who-item-icon" aria-hidden="true"></span>
+        </div>
+        <div class="who-item-desc"><p data-i18n="who3-desc">Experiencing burnout or feeling overwhelmed by stress.</p></div>
+      </div>
+      <div class="who-item" tabindex="0">
+        <div class="who-item-head">
+          <span class="who-item-title" data-i18n="who4-title">Relationships</span>
+          <span class="who-item-icon" aria-hidden="true"></span>
+        </div>
+        <div class="who-item-desc"><p data-i18n="who4-desc">Navigating challenges in relationships or with the people around you.</p></div>
+      </div>
+      <div class="who-item" tabindex="0">
+        <div class="who-item-head">
+          <span class="who-item-title" data-i18n="who5-title">New Parents</span>
+          <span class="who-item-icon" aria-hidden="true"></span>
+        </div>
+        <div class="who-item-desc"><p data-i18n="who5-desc">Raising children while living abroad.</p></div>
+      </div>
+      <div class="who-item" tabindex="0">
+        <div class="who-item-head">
+          <span class="who-item-title" data-i18n="who6-title">Living Abroad</span>
+          <span class="who-item-icon" aria-hidden="true"></span>
+        </div>
+        <div class="who-item-desc"><p data-i18n="who6-desc">Wanting to manage stress and build better wellbeing and balance while living overseas.</p></div>
       </div>
     </div>
 
@@ -3441,13 +3504,19 @@
         'accred-label': 'Registered With',
         'who-label': 'Who I Work With',
         'who-heading': 'Support tailored<br>to your world.',
-        'who-body': 'Whether you\'re navigating the pressures of study, career, or family life — I offer a space to reflect, re-centre, and take steps toward your goals.',
-        'card1-title': 'Students',
-        'card1-body': 'Adjusting to a new country, managing academic pressure, or finding balance between study and life — I support students through transitions and the unique challenges of being away from home.',
-        'card2-title': 'Working Professionals',
-        'card2-body': 'Feeling stretched thin, burned out, or disconnected from your sense of purpose? I help working adults recalibrate their routines, manage stress, and create a sustainable work-life rhythm.',
-        'card3-title': 'Parents',
-        'card3-body': 'Being a parent — caring for children and family — is no small thing. Life is always in motion. This is a space to breathe and talk through the challenges of parenting and caring for others, including navigating cultural differences and how to adapt.',
+        'who-body': 'I work with you if you\'re navigating any of the following:',
+        'who1-title': 'Students',
+        'who1-desc': 'Studying abroad or adjusting to life in a new country.',
+        'who2-title': 'Life Transitions',
+        'who2-desc': 'Starting university, graduating, changing careers, or moving through a major life change.',
+        'who3-title': 'Working Professionals',
+        'who3-desc': 'Experiencing burnout or feeling overwhelmed by stress.',
+        'who4-title': 'Relationships',
+        'who4-desc': 'Navigating challenges in relationships or with the people around you.',
+        'who5-title': 'New Parents',
+        'who5-desc': 'Raising children while living abroad.',
+        'who6-title': 'Living Abroad',
+        'who6-desc': 'Wanting to manage stress and build better wellbeing and balance while living overseas.',
         'services-label': 'Individual Services',
         'services-heading': 'Online 1:1 Occupational Therapy<br>Coaching Consultations.',
         'tile-stress': 'Stress Management',
@@ -3584,7 +3653,7 @@
         'hero-cta2': '了解服務',
         'about-label': '關於我',
         'about-heading': '嗨，我是 Phoebe，<br>陪你找回<br>日常生活的活力。',
-        'about-intro': '當生活中的壓力、情緒困擾或人生轉變讓你感到卡住時，你不需要獨自面對。<br><br>我是英國 HCPC 註冊職能治療師（Occupational Therapist），專長於心理健康與生活功能支持。我相信心理狀態、身體感受與日常生活彼此影響，而真正的改變往往始於重新理解自己與生活的關係。<br><br>透過線上一對一教練式諮詢，我陪伴居住在英國的成年人，面對情緒壓力、工作倦怠、人生轉換、海外生活適應，以及日常生活失衡所帶來的挑戰。<br><br>我們將一起探索適合你的方法，建立更穩定的生活節奏、提升心理韌性，並找回對生活的掌控感與方向感。',
+        'about-intro': '當生活中的壓力、情緒困擾或人生轉變讓你感到卡住時，你不需要獨自面對。<br><br>我是英國 HCPC 註冊職能治療師（Occupational Therapist），專長於心理健康與生活功能支持。我相信心理狀態、身體感受與日常生活彼此影響，而真正的改變往往從重新理解自己與生活開始。<br><br>透過線上一對一教練式諮詢，我陪伴居住在英國的成年人，面對情緒壓力、工作倦怠、人生轉換、海外生活適應，以及日常生活失衡所帶來的挑戰。<br><br>我們將一起探索適合你的方法，建立更穩定的生活節奏、提升心理韌性，並找回對生活的掌控感與方向感。',
         'about-bilingual': '我同時接受英文及中文的個案，提供雙語空間讓你自在地表達自己。<br><strong>I also work with English-speaking clients.</strong>',
         'tag-hcpc': 'HCPC 認證',
         'tag-ot': '職能治療師',
@@ -3596,13 +3665,19 @@
         'accred-label': '認證機構',
         'who-label': '我的服務對象',
         'who-heading': '量身打造<br>適合你的支持。',
-        'who-body': '不管你正在面對學業、工作還是家庭的壓力——這裡有個空間，讓你暫停一下、重新整理，然後一步一步朝著你的目標前進。',
-        'card1-title': '學生',
-        'card1-body': '剛到新的國家、面對學業壓力，或者想在學習和生活之間找到平衡——我陪你走過這些轉變，還有離開家鄉生活所帶來的各種挑戰。',
-        'card2-title': '上班族',
-        'card2-body': '覺得快撐不住了、已經倦怠，或是不知道自己在忙什麼？我幫助在職的大人重新調整日常節奏、管理壓力，找到可以長期維持的工作與生活平衡。',
-        'card3-title': '爸爸媽媽',
-        'card3-body': '身為爸爸媽媽照顧孩子與家庭不容易，生活總是不停的運轉。這裡有個喘息的空間讓你聊聊育兒與照顧他人的挑戰，同時面對文化差異的壓力以及如何轉變。',
+        'who-body': '我陪伴正在經歷以下挑戰的你：',
+        'who1-title': '學生',
+        'who1-desc': '海外求學或適應異地生活的學生。',
+        'who2-title': '人生轉換期',
+        'who2-desc': '處於升學、畢業、轉職或人生轉換期的人。',
+        'who3-title': '職場專業人士',
+        'who3-desc': '感到工作倦怠、壓力過載的專業人士。',
+        'who4-title': '感情與人際關係',
+        'who4-desc': '受到感情或人際關係困擾的人。',
+        'who5-title': '新手父母',
+        'who5-desc': '在海外育兒的新手父母。',
+        'who6-title': '海外遊子',
+        'who6-desc': '希望調適壓力、提升身心健康與生活平衡的海外遊子。',
         'services-label': '個人服務',
         'services-heading': '線上一對一<br>職能治療教練式諮詢。',
         'tile-stress': '壓力管理',
