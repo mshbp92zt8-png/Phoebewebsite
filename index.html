@@ -319,13 +319,26 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to right,
-        rgba(28, 24, 20, 0.85) 0%,
-        rgba(28, 24, 20, 0.85) 55%,
-        rgba(28, 24, 20, 0.55) 100%
-      );
+      background:
+        radial-gradient(70% 90% at 26% 42%, rgba(196, 168, 130, 0.10), transparent 62%),
+        linear-gradient(
+          to right,
+          rgba(28, 24, 20, 0.85) 0%,
+          rgba(28, 24, 20, 0.85) 55%,
+          rgba(28, 24, 20, 0.55) 100%
+        );
       z-index: 1;
+    }
+    /* fine film grain for filmic depth on the flat charcoal */
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.5;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
     }
     .hero-watermark {
       position: absolute;
@@ -347,42 +360,59 @@
       max-width: 700px;
       padding-top: 3.5rem;
     }
-    .hero-tag { display: none; }
-    .hero-tag-line {
-      width: 40px;
-      height: 1px;
-      background: var(--gold);
-      flex-shrink: 0;
+    .hero-tag {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      margin-bottom: 2rem;
     }
     .hero-tag-text {
       font-size: 0.72rem;
       font-weight: 500;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--gold);
     }
     .hero-heading {
-      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-size: clamp(3.75rem, 9vw, 8rem);
       font-weight: 300;
       color: var(--cream);
-      margin-bottom: 2rem;
-      line-height: 1.05;
+      margin-bottom: 2.5rem;
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      /* lift the type cleanly off the video behind it */
+      text-shadow: 0 2px 28px rgba(0, 0, 0, 0.35);
     }
     .hero-heading .line {
       display: block;
-      overflow: hidden;
     }
     .hero-heading .line span {
       display: block;
-      transform: translateY(110%);
-      transition: transform var(--transition);
-    }
-    .hero-heading .line span.visible {
-      transform: translateY(0);
     }
     .hero-heading em {
       font-style: italic;
-      color: var(--gold);
+      font-weight: 400;
+      letter-spacing: -0.005em;
+      color: var(--gold); /* fallback */
+      background: linear-gradient(
+        105deg,
+        #E2C795 0%,
+        #ECB87B 16%,
+        #E0A567 32%,
+        #D2A9B6 48%,
+        #A6CD9C 66%,
+        #EAB372 84%,
+        #E2C795 100%
+      );
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: accent-flow 9s ease-in-out infinite;
+    }
+    @keyframes accent-flow {
+      0%, 100% { background-position: 0% 50%; }
+      50%      { background-position: 100% 50%; }
     }
     .hero-sub {
       font-size: 0.95rem;
@@ -391,25 +421,11 @@
       font-weight: 300;
       letter-spacing: 0.02em;
       line-height: 1.8;
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.8s ease 1s, transform 0.8s ease 1s;
-    }
-    .hero-sub.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
     .hero-ctas {
       display: flex;
       align-items: center;
       gap: 2rem;
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.8s ease 1.2s, transform 0.8s ease 1.2s;
-    }
-    .hero-ctas.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
     .btn-primary {
       display: inline-flex;
@@ -1458,7 +1474,16 @@
       justify-content: center;
       z-index: 500;
       box-shadow: 0 4px 20px rgba(196,168,130,0.4);
-      transition: transform 0.3s ease, background 0.3s ease;
+      transition: transform 0.3s ease, background 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+      /* hidden over the hero so it doesn't collide with the hero CTAs */
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    #float-contact.visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
     }
     #float-contact:hover {
       background: var(--gold-dark);
@@ -1645,7 +1670,8 @@
 
       /* Hero — extra padding for taller two-row mobile nav (~145px) */
       .hero-content { padding-top: 12rem; }
-      .hero-heading { font-size: clamp(2.8rem, 13vw, 4.5rem); line-height: 1.05; }
+      .hero-tag { display: none; }
+      .hero-heading { font-size: clamp(2.8rem, 13vw, 4.5rem); line-height: 1.1; letter-spacing: -0.02em; }
       .hero-sub { font-size: 0.9rem; }
       .hero-ctas {
         flex-direction: column;
@@ -2684,9 +2710,9 @@
       </div>
 
       <h1 class="hero-heading">
-        <span class="line"><span id="line1" data-i18n="hero-line1">Occupational</span></span>
-        <span class="line"><span id="line2" data-i18n="hero-line2"><em>Therapy</em> for</span></span>
-        <span class="line"><span id="line3" data-i18n="hero-line3">your life.</span></span>
+        <span class="line"><span id="line1" data-i18n="hero-line1">Leading a</span></span>
+        <span class="line"><span id="line2" data-i18n="hero-line2"><em>fulfilling</em></span></span>
+        <span class="line"><span id="line3" data-i18n="hero-line3">life.</span></span>
       </h1>
 
       <p class="hero-sub" id="heroSub" data-i18n="hero-sub">
@@ -2731,7 +2757,10 @@
           Hi, I'm Phoebe,<br>your OT for a more<br>fulfilling daily life.
         </h2>
         <p class="about-intro fade-up" data-i18n="about-intro">
-          I am an HCPC-registered occupational therapist specialising in mental health and wellbeing. Through online one-to-one consultations, I support adults in navigating life's challenges, whether that's burnout, adjustment to living abroad, managing stress, or finding a sustainable rhythm in your everyday.
+          When stress, emotional challenges, or major life changes leave you feeling stuck, overwhelmed, or unsure of what to do next, you do not have to navigate it alone.<br><br>
+          I am a UK HCPC-registered Occupational Therapist with a special interest in mental health and the connection between mind, body, and daily life. I believe that how we think, feel, and live each day are closely connected, and that lasting change often starts with taking the time to better understand ourselves and what truly matters to us.<br><br>
+          Through one-to-one online coaching-informed consultations, I support adults living in the UK who may be experiencing stress, burnout, life transitions, adjusting to life abroad, relationship challenges, or simply feeling that life has become harder to manage than it used to be.<br><br>
+          Together, we can explore what is getting in the way, identify what supports your wellbeing, and find practical ways to create a life that feels more balanced, meaningful, and sustainable.
         </p>
         <p class="about-bilingual fade-up" data-i18n="about-bilingual">
           I work with both English-speaking and Mandarin-speaking clients, offering a bilingual space where you can express yourself fully.<br>
@@ -3297,38 +3326,17 @@
     }
 
     // ══════════════════════════════════════════════
-    // MAGNETIC BUTTONS (Change 6)
-    // ══════════════════════════════════════════════
-    function initMagnetic() {
-      if (window.matchMedia('(pointer: coarse)').matches) return;
-
-      document.querySelectorAll('.btn-primary, .nav-cta').forEach(btn => {
-        btn.addEventListener('mousemove', (e) => {
-          const rect = btn.getBoundingClientRect();
-          const dx = e.clientX - (rect.left + rect.width  / 2);
-          const dy = e.clientY - (rect.top  + rect.height / 2);
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 60) {
-            btn.style.transition = 'transform 0.2s ease';
-            btn.style.transform  = `translate(${dx * 0.3}px, ${dy * 0.3}px)`;
-          }
-        });
-
-        btn.addEventListener('mouseleave', () => {
-          btn.style.transition = 'transform 0.4s ease';
-          btn.style.transform  = '';
-        });
-      });
-    }
-
-    // ══════════════════════════════════════════════
     // BACK TO TOP (Change 7)
     // ══════════════════════════════════════════════
     function initBackToTop() {
       const btn = document.getElementById('back-to-top');
+      const floatContact = document.getElementById('float-contact');
 
       window.addEventListener('scroll', () => {
-        btn.classList.toggle('visible', window.scrollY > 400);
+        const scrolled = window.scrollY > 400;
+        btn.classList.toggle('visible', scrolled);
+        // reveal the floating email button only once past the hero
+        floatContact.classList.toggle('visible', window.scrollY > window.innerHeight * 0.6);
       }, { passive: true });
 
       btn.addEventListener('click', () => {
@@ -3414,15 +3422,15 @@
         'nav-contact': 'Contact',
         'nav-book': 'Book a Consultation',
         'hero-tag': 'HCPC Registered &nbsp;·&nbsp; Occupational Therapist',
-        'hero-line1': 'Occupational',
-        'hero-line2': '<em>Therapy</em> for',
-        'hero-line3': 'your life.',
+        'hero-line1': 'Leading a',
+        'hero-line2': '<em>fulfilling</em>',
+        'hero-line3': 'life.',
         'hero-sub': 'Online mental wellbeing &amp; OT coaching consultations<br>in English and Mandarin &nbsp;·&nbsp; 中文',
         'hero-cta1': 'Book a Consultation',
         'hero-cta2': 'Explore Services',
         'about-label': 'About',
         'about-heading': 'Hi, I\'m Phoebe —<br>your OT for a more<br>fulfilling daily life.',
-        'about-intro': 'I am an HCPC-registered occupational therapist specialising in mental wellbeing and the body-mind connection. Through online one-to-one OT coaching consultations, I support adults navigating life\'s challenges — whether that\'s burnout, adjusting to life in the UK, managing stress, or finding a more sustainable rhythm in your everyday.',
+        'about-intro': 'When stress, emotional challenges, or major life changes leave you feeling stuck, overwhelmed, or unsure of what to do next, you do not have to navigate it alone.<br><br>I am a UK HCPC-registered Occupational Therapist with a special interest in mental health and the connection between mind, body, and daily life. I believe that how we think, feel, and live each day are closely connected, and that lasting change often starts with taking the time to better understand ourselves and what truly matters to us.<br><br>Through one-to-one online coaching-informed consultations, I support adults living in the UK who may be experiencing stress, burnout, life transitions, adjusting to life abroad, relationship challenges, or simply feeling that life has become harder to manage than it used to be.<br><br>Together, we can explore what is getting in the way, identify what supports your wellbeing, and find practical ways to create a life that feels more balanced, meaningful, and sustainable.',
         'about-bilingual': 'I work with both English-speaking and Mandarin-speaking clients, offering a bilingual space where you can express yourself fully.<br><strong><span lang="zh-Hant">我提供中英雙語諮詢服務，歡迎中文使用者。</span></strong>',
         'tag-hcpc': 'HCPC Registered',
         'tag-ot': 'Occupational Therapist',
@@ -3570,15 +3578,15 @@
         'nav-contact': '聯絡',
         'nav-book': '預約諮詢',
         'hero-tag': 'HCPC 認證 &nbsp;·&nbsp; 職能治療師',
-        'hero-line1': '職能',
-        'hero-line2': '<em>治療</em>，為了',
-        'hero-line3': '你的生活。',
+        'hero-line1': '活出',
+        'hero-line2': '<em>充實</em>的',
+        'hero-line3': '人生。',
         'hero-sub': '線上身心健康諮詢<br>中文 &amp; English，都可以聊 &nbsp;·&nbsp; 找到屬於你的節奏',
         'hero-cta1': '預約諮詢',
         'hero-cta2': '了解服務',
         'about-label': '關於我',
         'about-heading': '嗨，我是 Phoebe，<br>陪你找回<br>日常生活的活力。',
-        'about-intro': '我是 HCPC 認證的職能治療師，幫助你找到可以面對日常生活挑戰的方式，在心理健康和身心連結方面提供支持。透過線上一對一教練式諮詢，我幫助大人應對各種生活挑戰，不管是情緒調節、工作倦怠、適應日常生活，或是想找到一個比較舒服的日常節奏。',
+        'about-intro': '當生活中的壓力、情緒困擾或人生轉變讓你感到卡住時，你不需要獨自面對。<br><br>我是英國 HCPC 註冊職能治療師（Occupational Therapist），專長於心理健康與生活功能支持。我相信心理狀態、身體感受與日常生活彼此影響，而真正的改變往往始於重新理解自己與生活的關係。<br><br>透過線上一對一教練式諮詢，我陪伴居住在英國的成年人，面對情緒壓力、工作倦怠、人生轉換、海外生活適應，以及日常生活失衡所帶來的挑戰。<br><br>我們將一起探索適合你的方法，建立更穩定的生活節奏、提升心理韌性，並找回對生活的掌控感與方向感。',
         'about-bilingual': '我同時接受英文及中文的個案，提供雙語空間讓你自在地表達自己。<br><strong>I also work with English-speaking clients.</strong>',
         'tag-hcpc': 'HCPC 認證',
         'tag-ot': '職能治療師',
@@ -3966,7 +3974,6 @@
     }
 
     initTilt();
-    initMagnetic();
     initStagger();
     initProgressBar();
     initBackToTop();
