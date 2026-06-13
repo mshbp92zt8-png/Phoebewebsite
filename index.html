@@ -828,9 +828,9 @@
       max-width: 1200px;
       margin: 0 auto 3.5rem;
     }
-    /* Who I Work With — hover accordion */
+    /* Who I Work With — accordion (hover on desktop, tap to open on mobile) */
     .who-accordion {
-      max-width: 760px;
+      max-width: 820px;
       margin: 0 auto 3.5rem;
     }
     .who-item {
@@ -843,27 +843,35 @@
     }
     .who-item-head {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 1.5rem;
       padding: 1.35rem 0.5rem;
     }
+    .who-item-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
     .who-item-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.65rem;
+      font-size: 1.5rem;
       font-weight: 400;
+      line-height: 1.3;
       color: var(--charcoal);
       transition: color 0.3s ease;
     }
-    .who-item:hover .who-item-title,
-    .who-item:focus-within .who-item-title {
-      color: var(--gold-dark);
+    .who-item-teaser {
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: var(--text-light);
     }
     .who-item-icon {
       position: relative;
       width: 16px;
       height: 16px;
       flex-shrink: 0;
+      margin-top: 0.5em;
     }
     .who-item-icon::before,
     .who-item-icon::after {
@@ -882,33 +890,25 @@
       width: 2px; height: 100%;
       transform: translateX(-50%);
     }
-    /* plus → minus when open */
-    .who-item:hover .who-item-icon::after,
-    .who-item:focus-within .who-item-icon::after {
-      transform: translateX(-50%) scaleY(0);
-    }
     .who-item-desc {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .who-item:hover .who-item-desc,
-    .who-item:focus-within .who-item-desc {
-      max-height: 200px;
+      transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .who-item-desc p {
-      padding: 0 0.5rem 1.4rem;
+      padding: 0.25rem 0.5rem 1.4rem;
       font-size: 1rem;
       line-height: 1.75;
       color: var(--text-light);
-      max-width: 60ch;
+      max-width: 62ch;
     }
-    /* touch devices have no hover — show all descriptions as a clean list */
-    @media (hover: none) {
-      .who-item { cursor: default; }
-      .who-item-desc { max-height: none; }
-      .who-item-icon { display: none; }
-      .who-item-desc p { padding-top: 0; }
+    /* open state — toggled by click / tap */
+    .who-item.open .who-item-desc { max-height: 360px; }
+    .who-item.open .who-item-title { color: var(--gold-dark); }
+    .who-item.open .who-item-icon::after { transform: translateX(-50%) scaleY(0); }
+    /* subtle affordance: title warms on hover, but only click opens */
+    @media (hover: hover) {
+      .who-item:hover .who-item-title { color: var(--gold-dark); }
     }
 
     /* ─── SERVICES ─── */
@@ -2917,45 +2917,63 @@
     <div class="who-accordion fade-up">
       <div class="who-item" tabindex="0">
         <div class="who-item-head">
-          <span class="who-item-title" data-i18n="who1-title">Students</span>
+          <span class="who-item-text">
+            <span class="who-item-title" data-i18n="who1-title">Students studying &amp; adjusting abroad</span>
+            <span class="who-item-teaser" data-i18n="who1-teaser">Settling into a new culture, language, and way of studying</span>
+          </span>
           <span class="who-item-icon" aria-hidden="true"></span>
         </div>
-        <div class="who-item-desc"><p data-i18n="who1-desc">Studying abroad or adjusting to life in a new country.</p></div>
+        <div class="who-item-desc"><p data-i18n="who1-desc">Facing academic pressure, cultural differences, relationships, or uncertainty about the future — feeling anxious, isolated, or unsupported, and hoping to find a rhythm and direction that fit you better.</p></div>
       </div>
       <div class="who-item" tabindex="0">
         <div class="who-item-head">
-          <span class="who-item-title" data-i18n="who2-title">Life Transitions</span>
+          <span class="who-item-text">
+            <span class="who-item-title" data-i18n="who2-title">People in a life or career transition</span>
+            <span class="who-item-teaser" data-i18n="who2-teaser">Unsure about your next step</span>
+          </span>
           <span class="who-item-icon" aria-hidden="true"></span>
         </div>
-        <div class="who-item-desc"><p data-i18n="who2-desc">Starting university, graduating, changing careers, or moving through a major life change.</p></div>
+        <div class="who-item-desc"><p data-i18n="who2-desc">Whether you're graduating, changing jobs, moving abroad, or rethinking your direction — when you feel lost, stuck, or unable to decide, we can untangle your thoughts and next steps together.</p></div>
       </div>
       <div class="who-item" tabindex="0">
         <div class="who-item-head">
-          <span class="who-item-title" data-i18n="who3-title">Working Professionals</span>
+          <span class="who-item-text">
+            <span class="who-item-title" data-i18n="who3-title">Professionals facing burnout</span>
+            <span class="who-item-teaser" data-i18n="who3-teaser">Working hard, yet feeling more and more drained</span>
+          </span>
           <span class="who-item-icon" aria-hidden="true"></span>
         </div>
-        <div class="who-item-desc"><p data-i18n="who3-desc">Experiencing burnout or feeling overwhelmed by stress.</p></div>
+        <div class="who-item-desc"><p data-i18n="who3-desc">After a long stretch in a high-pressure environment you've lost motivation and energy — it may even be affecting your sleep, health, or relationships — and you want to rebuild a balance between work and life.</p></div>
       </div>
       <div class="who-item" tabindex="0">
         <div class="who-item-head">
-          <span class="who-item-title" data-i18n="who4-title">Relationships</span>
+          <span class="who-item-text">
+            <span class="who-item-title" data-i18n="who4-title">People navigating relationship difficulties</span>
+            <span class="who-item-teaser" data-i18n="who4-teaser">Relationship struggles are spilling into your life</span>
+          </span>
           <span class="who-item-icon" aria-hidden="true"></span>
         </div>
-        <div class="who-item-desc"><p data-i18n="who4-desc">Navigating challenges in relationships or with the people around you.</p></div>
+        <div class="who-item-desc"><p data-i18n="who4-desc">Whether it's a breakup, conflict, a long-distance relationship, or repeating the same patterns — I'll help you process your emotions, understand your needs, and rebuild a sense of stability.</p></div>
       </div>
       <div class="who-item" tabindex="0">
         <div class="who-item-head">
-          <span class="who-item-title" data-i18n="who5-title">New Parents</span>
+          <span class="who-item-text">
+            <span class="who-item-title" data-i18n="who5-title">New parents raising children abroad</span>
+            <span class="who-item-teaser" data-i18n="who5-teaser">Caring for your child and yourself at once isn't easy</span>
+          </span>
           <span class="who-item-icon" aria-hidden="true"></span>
         </div>
-        <div class="who-item-desc"><p data-i18n="who5-desc">Raising children while living abroad.</p></div>
+        <div class="who-item-desc"><p data-i18n="who5-desc">Without family support nearby, you're juggling parenting, your relationship, and daily life all at once — and want a more sustainable way of living that suits your family.</p></div>
       </div>
       <div class="who-item" tabindex="0">
         <div class="who-item-head">
-          <span class="who-item-title" data-i18n="who6-title">Living Abroad</span>
+          <span class="who-item-text">
+            <span class="who-item-title" data-i18n="who6-title">People living abroad seeking balance</span>
+            <span class="who-item-teaser" data-i18n="who6-teaser">Life looks stable, but inside you're constantly tired</span>
+          </span>
           <span class="who-item-icon" aria-hidden="true"></span>
         </div>
-        <div class="who-item-desc"><p data-i18n="who6-desc">Wanting to manage stress and build better wellbeing and balance while living overseas.</p></div>
+        <div class="who-item-desc"><p data-i18n="who6-desc">The stress, loneliness, and identity questions that build up over years of adjusting to life abroad may be quietly affecting your wellbeing and quality of life.</p></div>
       </div>
     </div>
 
@@ -3391,6 +3409,22 @@
     // ══════════════════════════════════════════════
     // BACK TO TOP (Change 7)
     // ══════════════════════════════════════════════
+    // Who I Work With — click / tap to expand (keyboard accessible)
+    function initWhoAccordion() {
+      document.querySelectorAll('.who-item').forEach(item => {
+        item.setAttribute('role', 'button');
+        item.setAttribute('aria-expanded', 'false');
+        const toggle = () => {
+          const open = item.classList.toggle('open');
+          item.setAttribute('aria-expanded', open ? 'true' : 'false');
+        };
+        item.addEventListener('click', toggle);
+        item.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        });
+      });
+    }
+
     function initBackToTop() {
       const btn = document.getElementById('back-to-top');
       const floatContact = document.getElementById('float-contact');
@@ -3505,18 +3539,24 @@
         'who-label': 'Who I Work With',
         'who-heading': 'Support tailored<br>to your world.',
         'who-body': 'I work with you if you\'re navigating any of the following:',
-        'who1-title': 'Students',
-        'who1-desc': 'Studying abroad or adjusting to life in a new country.',
-        'who2-title': 'Life Transitions',
-        'who2-desc': 'Starting university, graduating, changing careers, or moving through a major life change.',
-        'who3-title': 'Working Professionals',
-        'who3-desc': 'Experiencing burnout or feeling overwhelmed by stress.',
-        'who4-title': 'Relationships',
-        'who4-desc': 'Navigating challenges in relationships or with the people around you.',
-        'who5-title': 'New Parents',
-        'who5-desc': 'Raising children while living abroad.',
-        'who6-title': 'Living Abroad',
-        'who6-desc': 'Wanting to manage stress and build better wellbeing and balance while living overseas.',
+        'who1-title': 'Students studying &amp; adjusting abroad',
+        'who1-teaser': 'Settling into a new culture, language, and way of studying',
+        'who1-desc': 'Facing academic pressure, cultural differences, relationships, or uncertainty about the future — feeling anxious, isolated, or unsupported, and hoping to find a rhythm and direction that fit you better.',
+        'who2-title': 'People in a life or career transition',
+        'who2-teaser': 'Unsure about your next step',
+        'who2-desc': 'Whether you\'re graduating, changing jobs, moving abroad, or rethinking your direction — when you feel lost, stuck, or unable to decide, we can untangle your thoughts and next steps together.',
+        'who3-title': 'Professionals facing burnout',
+        'who3-teaser': 'Working hard, yet feeling more and more drained',
+        'who3-desc': 'After a long stretch in a high-pressure environment you\'ve lost motivation and energy — it may even be affecting your sleep, health, or relationships — and you want to rebuild a balance between work and life.',
+        'who4-title': 'People navigating relationship difficulties',
+        'who4-teaser': 'Relationship struggles are spilling into your life',
+        'who4-desc': 'Whether it\'s a breakup, conflict, a long-distance relationship, or repeating the same patterns — I\'ll help you process your emotions, understand your needs, and rebuild a sense of stability.',
+        'who5-title': 'New parents raising children abroad',
+        'who5-teaser': 'Caring for your child and yourself at once isn\'t easy',
+        'who5-desc': 'Without family support nearby, you\'re juggling parenting, your relationship, and daily life all at once — and want a more sustainable way of living that suits your family.',
+        'who6-title': 'People living abroad seeking balance',
+        'who6-teaser': 'Life looks stable, but inside you\'re constantly tired',
+        'who6-desc': 'The stress, loneliness, and identity questions that build up over years of adjusting to life abroad may be quietly affecting your wellbeing and quality of life.',
         'services-label': 'Individual Services',
         'services-heading': 'Online 1:1 Occupational Therapy<br>Coaching Consultations.',
         'tile-stress': 'Stress Management',
@@ -3666,18 +3706,24 @@
         'who-label': '我的服務對象',
         'who-heading': '量身打造<br>適合你的支持。',
         'who-body': '我陪伴正在經歷以下挑戰的你：',
-        'who1-title': '學生',
-        'who1-desc': '海外求學或適應異地生活的學生。',
-        'who2-title': '人生轉換期',
-        'who2-desc': '處於升學、畢業、轉職或人生轉換期的人。',
-        'who3-title': '職場專業人士',
-        'who3-desc': '感到工作倦怠、壓力過載的專業人士。',
-        'who4-title': '感情與人際關係',
-        'who4-desc': '受到感情或人際關係困擾的人。',
-        'who5-title': '新手父母',
-        'who5-desc': '在海外育兒的新手父母。',
-        'who6-title': '海外遊子',
-        'who6-desc': '希望調適壓力、提升身心健康與生活平衡的海外遊子。',
+        'who1-title': '海外求學與適應中的學生',
+        'who1-teaser': '正在適應新的文化、語言與學習環境',
+        'who1-desc': '面對課業壓力、文化差異、人際關係或未來規劃的挑戰，感到焦慮、孤單或缺乏支持，希望找到更適合自己的生活節奏與方向。',
+        'who2-title': '處於人生或職涯轉換期的人',
+        'who2-teaser': '對下一步感到不確定',
+        'who2-desc': '無論是畢業、轉職、移居海外，或重新思考人生方向，當你感到迷惘、卡關或難以做決定時，可以一起梳理想法與行動方向。',
+        'who3-title': '感到工作倦怠的專業人士',
+        'who3-teaser': '工作很努力，卻越來越疲憊',
+        'who3-desc': '長期處於高壓環境，失去動力與熱情，甚至影響睡眠、健康或人際關係，希望重新找回工作與生活的平衡。',
+        'who4-title': '經歷感情或關係困擾的人',
+        'who4-teaser': '關係中的困難正在影響你的生活',
+        'who4-desc': '無論是失戀、衝突、遠距離關係，或反覆陷入相似的關係模式，陪伴你整理情緒、理解需求，並重新建立穩定感。',
+        'who5-title': '在海外育兒的新手父母',
+        'who5-teaser': '同時照顧孩子與自己並不容易',
+        'who5-desc': '在缺乏家庭支援的環境中，面對育兒、伴侶關係與生活安排的挑戰，希望找到更可持續且適合家庭的生活方式。',
+        'who6-title': '希望找回平衡的海外遊子',
+        'who6-teaser': '生活看似穩定，內心卻一直很累',
+        'who6-desc': '長期適應異地生活所累積的壓力、孤單感與身份認同挑戰，可能正默默影響著你的身心健康與生活品質。',
         'services-label': '個人服務',
         'services-heading': '線上一對一<br>職能治療教練式諮詢。',
         'tile-stress': '壓力管理',
@@ -4049,6 +4095,7 @@
     initTilt();
     initStagger();
     initProgressBar();
+    initWhoAccordion();
     initBackToTop();
     initCookieBanner();
     initAboutParallax();
