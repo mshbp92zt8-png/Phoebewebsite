@@ -623,15 +623,25 @@
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 5rem;
+      grid-template-areas:
+        "photo content"
+        "meta  content";
+      column-gap: 5rem;
+      row-gap: 2.25rem;
       align-items: start;
       max-width: 1200px;
       margin: 0 auto;
     }
-    .about-media {
+    .about-photo-wrap { grid-area: photo; }
+    .about-content    { grid-area: content; }
+    .about-meta       { grid-area: meta; }
+    .about-meta {
       display: flex;
       flex-direction: column;
       gap: 2rem;
+    }
+    .about-meta .about-bilingual {
+      margin-bottom: 0;
     }
     .about-photo-wrap {
       position: relative;
@@ -1636,6 +1646,10 @@
         grid-template-columns: 1fr;
         gap: 3rem;
       }
+      /* stack: photo → bio → bilingual + credentials */
+      .about-grid {
+        grid-template-areas: "photo" "content" "meta";
+      }
       /* Services: tiles full-width, info card below */
       .services-grid {
         grid-template-columns: 1fr;
@@ -1676,7 +1690,8 @@
 
       /* Hero — extra padding for taller two-row mobile nav (~145px) */
       .hero-content { padding-top: 12rem; }
-      .hero-tag { display: none; }
+      .hero-tag { margin-bottom: 1.5rem; }
+      .hero-tag-text { font-size: 0.62rem; letter-spacing: 0.16em; }
       .hero-heading { font-size: clamp(2.8rem, 13vw, 4.5rem); line-height: 1.1; letter-spacing: -0.02em; }
       .hero-sub { font-size: 0.9rem; }
       .hero-ctas {
@@ -2712,7 +2727,7 @@
 
     <div class="hero-content">
       <div class="hero-tag" id="heroTag">
-        <span class="hero-tag-text" data-i18n="hero-tag">HCPC Registered &nbsp;·&nbsp; Occupational Therapist</span>
+        <span class="hero-tag-text" data-i18n="hero-tag">UK HCPC Registered &nbsp;·&nbsp; Occupational Therapist</span>
       </div>
 
       <h1 class="hero-heading">
@@ -2751,16 +2766,10 @@
   <!-- ─── ABOUT ─── -->
   <section id="about">
     <div class="about-grid">
-      <div class="about-media">
-        <div class="about-photo-wrap fade-up">
-          <div class="about-photo-deco"></div>
-          <!-- Change 15: lazy load, explicit dimensions -->
-          <img src="assets/photos/Phoebe photo.jpeg" alt="BodyMindOT — Occupational Therapist" loading="lazy" width="600" height="540" />
-        </div>
-        <p class="about-bilingual fade-up" data-i18n="about-bilingual">
-          I work with both English-speaking and Mandarin-speaking clients, offering a bilingual space where you can express yourself fully.<br>
-          <strong><span lang="zh-Hant">我提供中英雙語諮詢服務，歡迎中文使用者。</span></strong>
-        </p>
+      <div class="about-photo-wrap fade-up">
+        <div class="about-photo-deco"></div>
+        <!-- Change 15: lazy load, explicit dimensions -->
+        <img src="assets/photos/Phoebe photo.jpeg" alt="BodyMindOT — Occupational Therapist" loading="lazy" width="600" height="540" />
       </div>
       <div class="about-content">
         <p class="section-label fade-up" data-i18n="about-label">About</p>
@@ -2773,6 +2782,12 @@
           Through one-to-one online coaching-informed consultations, I support adults living in the UK who may be experiencing stress, burnout, life transitions, adjusting to life abroad, relationship challenges, or simply feeling that life has become harder to manage than it used to be.<br><br>
           Together, we can explore what is getting in the way, identify what supports your wellbeing, and find practical ways to create a life that feels more balanced, meaningful, and sustainable.
         </p>
+      </div>
+      <div class="about-meta">
+        <p class="about-bilingual fade-up" data-i18n="about-bilingual">
+          I work with both English-speaking and Mandarin-speaking clients, offering a bilingual space where you can express yourself fully.<br>
+          <strong><span lang="zh-Hant">我提供中英雙語諮詢服務，歡迎中文使用者。</span></strong>
+        </p>
         <div class="credential-tags fade-up">
           <span class="credential-tag" data-i18n="tag-hcpc">HCPC Registered</span>
           <span class="credential-tag" data-i18n="tag-ot">Occupational Therapist</span>
@@ -2782,7 +2797,6 @@
           <span class="credential-tag" data-i18n="tag-workshops">Workshops</span>
           <span class="credential-tag" data-i18n="tag-lang">English &amp; <span lang="zh-Hant">中文</span></span>
         </div>
-
       </div>
     </div>
 
@@ -3407,7 +3421,7 @@
         'nav-workshops': 'Workshops',
         'nav-contact': 'Contact',
         'nav-book': 'Book a Consultation',
-        'hero-tag': 'HCPC Registered &nbsp;·&nbsp; Occupational Therapist',
+        'hero-tag': 'UK HCPC Registered &nbsp;·&nbsp; Occupational Therapist',
         'hero-line1': 'Leading a',
         'hero-line2': '<em>fulfilling life.</em>',
         'hero-sub': 'Online mental wellbeing &amp; OT coaching consultations<br>in English and Mandarin &nbsp;·&nbsp; 中文',
@@ -3562,7 +3576,7 @@
         'nav-workshops': '工作坊',
         'nav-contact': '聯絡',
         'nav-book': '預約諮詢',
-        'hero-tag': 'HCPC 認證 &nbsp;·&nbsp; 職能治療師',
+        'hero-tag': '英國 HCPC 認證 &nbsp;·&nbsp; 職能治療師',
         'hero-line1': '活出',
         'hero-line2': '<em>充實的人生。</em>',
         'hero-sub': '線上身心健康諮詢<br>中文 &amp; English，都可以聊 &nbsp;·&nbsp; 找到屬於你的節奏',
