@@ -396,19 +396,20 @@
       color: var(--gold); /* fallback */
       background: linear-gradient(
         105deg,
-        #E2C795 0%,
-        #ECB87B 16%,
-        #E0A567 32%,
-        #D2A9B6 48%,
-        #A6CD9C 66%,
-        #EAB372 84%,
-        #E2C795 100%
+        #E9C26F 0%,
+        #F2A53F 13%,
+        #E97C2E 27%,
+        #D86FA0 42%,
+        #B66FC0 55%,
+        #5FAE63 70%,
+        #F0A235 86%,
+        #E9C26F 100%
       );
-      background-size: 300% 100%;
+      background-size: 360% 100%;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: accent-flow 9s ease-in-out infinite;
+      animation: accent-flow 7s ease-in-out infinite;
     }
     @keyframes accent-flow {
       0%, 100% { background-position: 0% 50%; }
@@ -623,9 +624,14 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 5rem;
-      align-items: center;
+      align-items: start;
       max-width: 1200px;
       margin: 0 auto;
+    }
+    .about-media {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
     }
     .about-photo-wrap {
       position: relative;
@@ -2711,8 +2717,7 @@
 
       <h1 class="hero-heading">
         <span class="line"><span id="line1" data-i18n="hero-line1">Leading a</span></span>
-        <span class="line"><span id="line2" data-i18n="hero-line2"><em>fulfilling</em></span></span>
-        <span class="line"><span id="line3" data-i18n="hero-line3">life.</span></span>
+        <span class="line"><span id="line2" data-i18n="hero-line2"><em>fulfilling life.</em></span></span>
       </h1>
 
       <p class="hero-sub" id="heroSub" data-i18n="hero-sub">
@@ -2746,10 +2751,16 @@
   <!-- ─── ABOUT ─── -->
   <section id="about">
     <div class="about-grid">
-      <div class="about-photo-wrap fade-up">
-        <div class="about-photo-deco"></div>
-        <!-- Change 15: lazy load, explicit dimensions -->
-        <img src="assets/photos/Phoebe photo.jpeg" alt="BodyMindOT — Occupational Therapist" loading="lazy" width="600" height="540" />
+      <div class="about-media">
+        <div class="about-photo-wrap fade-up">
+          <div class="about-photo-deco"></div>
+          <!-- Change 15: lazy load, explicit dimensions -->
+          <img src="assets/photos/Phoebe photo.jpeg" alt="BodyMindOT — Occupational Therapist" loading="lazy" width="600" height="540" />
+        </div>
+        <p class="about-bilingual fade-up" data-i18n="about-bilingual">
+          I work with both English-speaking and Mandarin-speaking clients, offering a bilingual space where you can express yourself fully.<br>
+          <strong><span lang="zh-Hant">我提供中英雙語諮詢服務，歡迎中文使用者。</span></strong>
+        </p>
       </div>
       <div class="about-content">
         <p class="section-label fade-up" data-i18n="about-label">About</p>
@@ -2761,10 +2772,6 @@
           I am a UK HCPC-registered Occupational Therapist with a special interest in mental health and the connection between mind, body, and daily life. I believe that how we think, feel, and live each day are closely connected, and that lasting change often starts with taking the time to better understand ourselves and what truly matters to us.<br><br>
           Through one-to-one online coaching-informed consultations, I support adults living in the UK who may be experiencing stress, burnout, life transitions, adjusting to life abroad, relationship challenges, or simply feeling that life has become harder to manage than it used to be.<br><br>
           Together, we can explore what is getting in the way, identify what supports your wellbeing, and find practical ways to create a life that feels more balanced, meaningful, and sustainable.
-        </p>
-        <p class="about-bilingual fade-up" data-i18n="about-bilingual">
-          I work with both English-speaking and Mandarin-speaking clients, offering a bilingual space where you can express yourself fully.<br>
-          <strong><span lang="zh-Hant">我提供中英雙語諮詢服務，歡迎中文使用者。</span></strong>
         </p>
         <div class="credential-tags fade-up">
           <span class="credential-tag" data-i18n="tag-hcpc">HCPC Registered</span>
@@ -3159,8 +3166,6 @@
         }, { once: true });
       }, 800);
 
-      // Hero animation fires after curtain lifts (800ms wait + 900ms anim = 1700ms total)
-      setTimeout(animateHero, 1700);
     });
 
     // ══════════════════════════════════════════════
@@ -3194,25 +3199,6 @@
         hamburger.classList.remove('active');
       });
     });
-
-    // ══════════════════════════════════════════════
-    // HERO TEXT ANIMATION
-    // ══════════════════════════════════════════════
-    function animateHero() {
-      const tag   = document.getElementById('heroTag');
-      const line1 = document.getElementById('line1');
-      const line2 = document.getElementById('line2');
-      const line3 = document.getElementById('line3');
-      const sub   = document.getElementById('heroSub');
-      const ctas  = document.getElementById('heroCtas');
-
-      setTimeout(() => { tag.classList.add('visible'); }, 200);
-      setTimeout(() => { line1.classList.add('visible'); }, 400);
-      setTimeout(() => { line2.classList.add('visible'); }, 580);
-      setTimeout(() => { line3.classList.add('visible'); }, 760);
-      setTimeout(() => { sub.classList.add('visible'); }, 1000);
-      setTimeout(() => { ctas.classList.add('visible'); }, 1200);
-    }
 
     // ══════════════════════════════════════════════
     // SMOOTH SCROLL — lerp-based (Change 2)
@@ -3423,8 +3409,7 @@
         'nav-book': 'Book a Consultation',
         'hero-tag': 'HCPC Registered &nbsp;·&nbsp; Occupational Therapist',
         'hero-line1': 'Leading a',
-        'hero-line2': '<em>fulfilling</em>',
-        'hero-line3': 'life.',
+        'hero-line2': '<em>fulfilling life.</em>',
         'hero-sub': 'Online mental wellbeing &amp; OT coaching consultations<br>in English and Mandarin &nbsp;·&nbsp; 中文',
         'hero-cta1': 'Book a Consultation',
         'hero-cta2': 'Explore Services',
@@ -3579,8 +3564,7 @@
         'nav-book': '預約諮詢',
         'hero-tag': 'HCPC 認證 &nbsp;·&nbsp; 職能治療師',
         'hero-line1': '活出',
-        'hero-line2': '<em>充實</em>的',
-        'hero-line3': '人生。',
+        'hero-line2': '<em>充實的人生。</em>',
         'hero-sub': '線上身心健康諮詢<br>中文 &amp; English，都可以聊 &nbsp;·&nbsp; 找到屬於你的節奏',
         'hero-cta1': '預約諮詢',
         'hero-cta2': '了解服務',
