@@ -982,6 +982,8 @@
       flex-direction: column;
       align-items: center;
     }
+    /* ZH body copy needs ~43 full-width glyphs per line to fit in three lines */
+    html[lang="zh-Hant"] .workshops-center { max-width: 700px; }
     .workshops-center .section-label { color: var(--gold); }
     .workshops-rule {
       width: 60px;
@@ -2531,7 +2533,13 @@
       border-bottom: 1px solid rgba(250,248,245,0.07);
       margin-bottom: 0;
     }
-    .footer-accred .accred-logo { height: 72px; opacity: 0.6; }
+    .footer-accred .accred-logo {
+      height: 84px;
+      opacity: 1;
+      background: var(--cream);
+      padding: 0.75rem 1.1rem;
+      border-radius: 10px;
+    }
   </style>
 
   <!-- ─── STRUCTURED DATA JSON-LD (Change 14) ─── -->
