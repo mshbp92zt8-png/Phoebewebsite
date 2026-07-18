@@ -1,12 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="180" viewBox="0 0 720 180" role="img" aria-labelledby="title desc">
   <title id="title">BodyMindOT horizontal logo</title>
-  <desc id="desc">A warm gold circular seedling mark beside a refined serif BodyMindOT wordmark.</desc>
-  <g fill="none" stroke="#C4A882" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="92" cy="90" r="42"/>
-    <path d="M92 121C91.5 104.5 92.8 86.2 104 68"/>
-    <path d="M93 98C82 85.5 76 74.8 73 59"/>
-    <path d="M92.8 95.5C103.8 91.8 113.8 83.8 119 72"/>
-    <path d="M92 100C83.2 98.6 75 93.2 69 84"/>
+  <desc id="desc">A warm gold rising-sun mark, reflected in still water within a thin ring, beside a refined serif BodyMindOT wordmark.</desc>
+  <g transform="translate(10,18) scale(0.8)">
+    <circle cx="90" cy="90" r="62" fill="none" stroke="#C4A882" stroke-width="2.75"/>
+    <path d="M68 98 A22 22 0 0 1 112 98 Z" fill="#C4A882"/>
+    <g fill="none" stroke="#C4A882" stroke-width="2.9" stroke-linecap="round">
+      <path d="M42 98 L60 98"/>
+      <path d="M120 98 L138 98"/>
+    </g>
+    <g fill="none" stroke="#C4A882" stroke-width="2.75" stroke-linecap="round">
+      <path d="M114.25 84 L122.04 79.5"/>
+      <path d="M104 73.75 L108.5 65.96"/>
+      <path d="M90 70 L90 61"/>
+      <path d="M76 73.75 L71.5 65.96"/>
+      <path d="M65.75 84 L57.96 79.5"/>
+    </g>
+    <g fill="none" stroke="#A8896A" stroke-linecap="round">
+      <path d="M78 108 L102 108" stroke-width="2.65"/>
+      <path d="M83 116 L97 116" stroke-width="2.4"/>
+      <path d="M87.5 123 L92.5 123" stroke-width="2.15"/>
+    </g>
   </g>
   <text x="168" y="108" font-family="Cormorant Garamond, Garamond, Georgia, serif" font-size="72" font-weight="300" letter-spacing="0" fill="#1C1814">BodyMind<tspan fill="#C4A882">OT</tspan></text>
 </svg>

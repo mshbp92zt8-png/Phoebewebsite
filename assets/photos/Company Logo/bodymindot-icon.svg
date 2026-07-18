@@ -1,11 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180" role="img" aria-labelledby="title desc">
   <title id="title">BodyMindOT icon</title>
-  <desc id="desc">A warm gold thin circular mark containing a delicate seedling line.</desc>
-  <g fill="none" stroke="#C4A882" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="90" cy="90" r="50"/>
-    <path d="M90 128C89.4 108 91 86.8 104 66"/>
-    <path d="M91 101C78 86.5 71.2 74.2 68 55"/>
-    <path d="M90.8 98.5C104 94 116 84.5 122 70"/>
-    <path d="M90 104C79 102.2 69.2 95.5 62.5 84.5"/>
+  <desc id="desc">A warm gold rising sun with radiating light, reflected in still water, held within a thin circular ring.</desc>
+  <!-- ring -->
+  <circle cx="90" cy="90" r="62" fill="none" stroke="#C4A882" stroke-width="2.2"/>
+  <!-- sun -->
+  <path d="M68 98 A22 22 0 0 1 112 98 Z" fill="#C4A882"/>
+  <!-- horizon -->
+  <g fill="none" stroke="#C4A882" stroke-width="2.3" stroke-linecap="round">
+    <path d="M42 98 L60 98"/>
+    <path d="M120 98 L138 98"/>
+  </g>
+  <!-- rays -->
+  <g fill="none" stroke="#C4A882" stroke-width="2.2" stroke-linecap="round">
+    <path d="M114.25 84 L122.04 79.5"/>
+    <path d="M104 73.75 L108.5 65.96"/>
+    <path d="M90 70 L90 61"/>
+    <path d="M76 73.75 L71.5 65.96"/>
+    <path d="M65.75 84 L57.96 79.5"/>
+  </g>
+  <!-- reflection in still water -->
+  <g fill="none" stroke="#A8896A" stroke-linecap="round">
+    <path d="M78 108 L102 108" stroke-width="2.1"/>
+    <path d="M83 116 L97 116" stroke-width="1.9"/>
+    <path d="M87.5 123 L92.5 123" stroke-width="1.7"/>
   </g>
 </svg>
