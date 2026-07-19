@@ -1764,7 +1764,17 @@
       /* Back to top / float contact: adjust on mobile */
       #back-to-top { bottom: 1.25rem; right: 1.25rem; }
       #float-contact { bottom: 1.25rem; left: 1.25rem; }
-      #cookie-banner { white-space: normal; text-align: center; width: 90%; bottom: 5rem; }
+      #cookie-banner {
+        white-space: normal;
+        text-align: center;
+        width: calc(100% - 1.5rem);
+        max-width: 22rem;
+        bottom: 4.5rem;
+        padding: 0.6rem 1rem;
+        font-size: 0.7rem;
+        line-height: 1.35;
+        border-radius: 14px;
+      }
 
       /* Accreditation logos: tighter row on small screens */
       .accred-logos-row { gap: 1rem; }
