@@ -1529,9 +1529,12 @@
       bottom: 1.5rem;
       left: 50%;
       transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
       background: var(--charcoal);
-      color: rgba(250,248,245,0.7);
-      padding: 0.9rem 1.75rem;
+      color: rgba(250,248,245,0.72);
+      padding: 0.7rem 0.7rem 0.7rem 1.6rem;
       border-radius: 100px;
       font-size: 0.78rem;
       letter-spacing: 0.04em;
@@ -1540,11 +1543,28 @@
       box-shadow: 0 4px 30px rgba(0,0,0,0.3);
       transition: opacity 0.4s ease, transform 0.4s ease;
     }
+    #cookie-banner p { margin: 0; }
+    #cookie-banner.hide { opacity: 0; transform: translateX(-50%) translateY(20px); }
     #cookie-banner a {
       color: var(--gold);
       text-decoration: underline;
       cursor: pointer;
     }
+    /* "OK" is a solid gold pill button */
+    #cookie-banner #cookie-accept {
+      flex-shrink: 0;
+      padding: 0.55rem 1.35rem;
+      background: var(--gold);
+      color: var(--charcoal);
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s ease;
+    }
+    #cookie-banner #cookie-accept:hover { background: #E2C9A0; }
 
     /* ─── LANGUAGE SWITCHER ─── */
     .lang-switcher {
@@ -1775,16 +1795,23 @@
       #back-to-top { bottom: 1.25rem; right: 1.25rem; }
       #float-contact { bottom: 1.25rem; left: 1.25rem; }
       #cookie-banner {
+        left: 0.75rem;
+        right: 0.75rem;
+        bottom: 0.75rem;
+        transform: none;
+        width: auto;
+        max-width: none;
         white-space: normal;
-        text-align: center;
-        width: calc(100% - 1.5rem);
-        max-width: 22rem;
-        bottom: 4.5rem;
-        padding: 0.6rem 1rem;
-        font-size: 0.7rem;
-        line-height: 1.35;
-        border-radius: 14px;
+        text-align: left;
+        gap: 0.9rem;
+        padding: 0.7rem 0.7rem 0.7rem 1.05rem;
+        font-size: 0.72rem;
+        line-height: 1.4;
+        border-radius: 16px;
       }
+      #cookie-banner p { flex: 1; }
+      #cookie-banner.hide { transform: translateY(20px); }
+      #cookie-banner #cookie-accept { padding: 0.62rem 1.15rem; }
 
       /* Accreditation logos: tighter row on small screens */
       .accred-logos-row { gap: 1rem; }
@@ -2511,14 +2538,13 @@
         padding: 0 0.25rem;
       }
 
-      /* Cookie banner OK link */
-      #cookie-banner a {
+      /* Cookie banner OK button: full 44px tap target */
+      #cookie-banner #cookie-accept {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         min-height: 44px;
         min-width: 44px;
-        padding: 0 0.5rem;
         vertical-align: middle;
       }
     }
@@ -3105,7 +3131,8 @@
 
   <!-- ─── COOKIE BANNER (Change 17) ─── -->
   <div id="cookie-banner">
-    <p data-i18n="cookie-text">We use essential local storage to remember your language preference. See our <a href="cookie-policy.html">Cookie Policy</a> &nbsp;·&nbsp; <a href="#" id="cookie-accept">OK</a></p>
+    <p data-i18n="cookie-text">We use essential local storage to remember your language preference. See our <a href="cookie-policy.html">Cookie Policy</a>.</p>
+    <a href="#" id="cookie-accept" data-i18n="cookie-ok">OK</a>
   </div>
 
 
@@ -3337,8 +3364,7 @@
       acceptBtn.addEventListener('click', (e) => {
         e.preventDefault();
         localStorage.setItem('cookie-ok', '1');
-        banner.style.opacity  = '0';
-        banner.style.transform = 'translateX(-50%) translateY(20px)';
+        banner.classList.add('hide');
         setTimeout(() => banner.remove(), 400);
       });
     }
@@ -3476,7 +3502,8 @@
         'contact-note': 'HCPC Registered Occupational Therapist',
         'footer-creds': 'HCPC Registered &nbsp;·&nbsp; Occupational Therapist &nbsp;·&nbsp; English &amp; <span lang="zh-Hant">中文</span>',
         'footer-copy': '&copy; 2026 BodyMindOT. All rights reserved.',
-        'cookie-text': 'We use essential local storage to remember your language preference. See our <a href="cookie-policy.html">Cookie Policy</a> &nbsp;·&nbsp; <a href="#" id="cookie-accept">OK</a>',
+        'cookie-text': 'We use essential local storage to remember your language preference. See our <a href="cookie-policy.html">Cookie Policy</a>.',
+        'cookie-ok': 'OK',
         'testimonials-label': 'Kind Words',
         't1-quote': '&#8220;Phoebe created such an open and supportive space where I felt truly held.&#8221;',
         't1-attr': 'Workshop Participant',
@@ -3633,7 +3660,8 @@
         'contact-note': 'HCPC 認證職能治療師',
         'footer-creds': 'HCPC 認證 &nbsp;·&nbsp; 職能治療師 &nbsp;·&nbsp; 英文及中文',
         'footer-copy': '&copy; 2025 BodyMindOT。保留所有權利。',
-        'cookie-text': '我們僅使用必要的本機儲存空間來記住你的語言偏好。請參閱我們的 <a href="cookie-policy.html">Cookie 政策</a> &nbsp;·&nbsp; <a href="#" id="cookie-accept">好的</a>',
+        'cookie-text': '我們僅使用必要的本機儲存空間來記住你的語言偏好。請參閱我們的 <a href="cookie-policy.html">Cookie 政策</a>。',
+        'cookie-ok': '好的',
         'testimonials-label': '真實回饋',
         't1-quote': '「Phoebe 創造了一個開放和支持的空間，讓我感覺到被接住。」',
         't1-attr': '工作坊參與者',
@@ -3720,8 +3748,7 @@
           const banner = document.getElementById('cookie-banner');
           if (banner) {
             localStorage.setItem('cookie-ok', '1');
-            banner.style.opacity = '0';
-            banner.style.transform = 'translateX(-50%) translateY(20px)';
+            banner.classList.add('hide');
             setTimeout(() => banner.remove(), 400);
           }
         });
