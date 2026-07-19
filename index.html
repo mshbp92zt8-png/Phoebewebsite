@@ -304,6 +304,10 @@
       align-items: center;
       overflow: hidden;
       padding: 0 5%;
+      /* Contain the grain blend-mode so it mixes only against the hero
+         layers (not the recomposited page), preventing an iOS Safari
+         color flash on fast scroll. */
+      isolation: isolate;
     }
     .hero-video {
       position: absolute;
@@ -315,6 +319,12 @@
       z-index: 0;
       opacity: 0;
       transition: opacity 1.2s ease;
+      /* Pin to a stable GPU layer so iOS Safari doesn't re-decode/flash
+         the video when it scrolls out of view and back. */
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
     .hero-video.loaded { opacity: 1; }
     .hero-overlay {
