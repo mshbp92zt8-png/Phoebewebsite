@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <script>document.documentElement.classList.add('js')</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BodyMindOT London</title>
+  <title>BodyMindOT — Occupational Therapist · London | English & 中文</title>
   <meta name="description" content="HCPC-registered occupational therapist providing online mental health and wellbeing consultations for Mandarin-speaking adults abroad and English speakers." />
 
   <!-- ─── OG / TWITTER META (Change 13) ─── -->
@@ -14,6 +15,14 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="BodyMindOT — Occupational Therapist" />
   <meta name="twitter:description" content="HCPC-registered OT offering online mental health consultations in English and Mandarin." />
+
+  <!-- ─── CANONICAL / ICONS / MANIFEST ─── -->
+  <link rel="canonical" href="https://bodymindot.com/" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#1C1814" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -81,6 +90,29 @@
     a {
       text-decoration: none;
       color: inherit;
+    }
+
+    /* ─── SKIP LINK (a11y) ─── */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      z-index: 10000;
+      padding: 0.85rem 1.4rem;
+      background: var(--charcoal);
+      color: var(--gold);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      border-radius: 0 0 6px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+    }
+    .skip-link:focus {
+      left: 0;
+      top: 0;
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
     }
 
     /* ─── TYPOGRAPHY ─── */
@@ -203,98 +235,6 @@
       color: var(--charcoal) !important;
     }
 
-    /* ─── HAMBURGER — morphing animation (Change 8) ─── */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 8px;
-      min-width: 44px;
-      min-height: 44px;
-      align-items: center;
-      justify-content: center;
-    }
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 1.5px;
-      background: var(--cream);
-      transition: transform 0.3s ease, opacity 0.3s ease;
-      transform-origin: center;
-    }
-    .hamburger.active span:nth-child(1) {
-      transform: translateY(6.5px) rotate(45deg);
-    }
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-      transform: scaleX(0);
-    }
-    .hamburger.active span:nth-child(3) {
-      transform: translateY(-6.5px) rotate(-45deg);
-    }
-    .nav-mobile {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--charcoal);
-      z-index: 200;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(1.25rem, 5vh, 2.2rem);
-      overflow-y: auto;
-      padding: 5rem 2rem 3rem;
-    }
-    .nav-mobile.open {
-      display: flex;
-    }
-    .nav-mobile a {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      color: var(--cream);
-      letter-spacing: 0.05em;
-      transition: color var(--transition-fast);
-      text-align: center;
-    }
-    .nav-mobile a:hover {
-      color: var(--gold);
-    }
-    .nav-mobile a.mobile-cta {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: var(--gold);
-      color: var(--charcoal);
-      padding: 0.9rem 2.5rem;
-      border-radius: 100px;
-      margin-top: 0.5rem;
-    }
-    .nav-mobile a.mobile-cta:hover {
-      background: var(--gold-dark);
-      color: var(--charcoal);
-    }
-    .nav-mobile-close {
-      position: absolute;
-      top: 1.5rem;
-      right: 5%;
-      font-size: 2rem;
-      color: var(--cream);
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      z-index: 201;
-      min-width: 44px;
-      min-height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-    }
-
     /* ─── HERO ─── */
     #hero {
       position: relative;
@@ -396,9 +336,38 @@
     }
     .hero-heading .line {
       display: block;
+      /* mask for the line-rise entrance; padding keeps italic ascenders/descenders unclipped */
+      overflow: hidden;
+      padding: 0.14em 0.12em;
+      margin: -0.14em -0.12em;
     }
     .hero-heading .line span {
       display: block;
+    }
+    /* ─── HERO HEADING ENTRANCE — staggered line mask reveal (JS-gated) ─── */
+    html.js .hero-heading .line span {
+      transform: translateY(115%);
+      opacity: 0;
+      animation: hero-line-rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    html.js .hero-heading .line:nth-child(1) span { animation-delay: 1.15s; }
+    html.js .hero-heading .line:nth-child(2) span { animation-delay: 1.32s; }
+    @keyframes hero-line-rise {
+      to { transform: translateY(0); opacity: 1; }
+    }
+    /* hero cascade: tag → heading lines → sub → CTAs */
+    html.js .hero-tag,
+    html.js .hero-sub,
+    html.js .hero-ctas {
+      opacity: 0;
+      transform: translateY(14px);
+      animation: hero-fade-in 0.9s ease forwards;
+    }
+    html.js .hero-tag  { animation-delay: 1.0s; }
+    html.js .hero-sub  { animation-delay: 1.8s; }
+    html.js .hero-ctas { animation-delay: 2.0s; }
+    @keyframes hero-fade-in {
+      to { opacity: 1; transform: translateY(0); }
     }
     .hero-heading em {
       font-style: italic;
@@ -407,20 +376,22 @@
       color: var(--gold); /* fallback */
       background: linear-gradient(
         105deg,
-        #E9C26F 0%,
-        #F2A53F 13%,
-        #E97C2E 27%,
-        #D86FA0 42%,
-        #B66FC0 55%,
-        #5FAE63 70%,
-        #F0A235 86%,
-        #E9C26F 100%
+        #F0CB79 0%,
+        #F9E3A6 18%,
+        #FFFDF4 38%,
+        #F9E3A6 58%,
+        #F0CB79 76%,
+        #F6D88F 90%,
+        #F0CB79 100%
       );
       background-size: 360% 100%;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: accent-flow 7s ease-in-out infinite;
+      animation: accent-flow 3.8s ease-in-out infinite;
+      /* NOTE: never animate `filter` (or add will-change/transform) on this element —
+         combined with background-clip:text it breaks the clip in Chrome and the
+         gradient paints as a solid box behind the text. */
     }
     @keyframes accent-flow {
       0%, 100% { background-position: 0% 50%; }
@@ -443,19 +414,21 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: var(--gold);
-      color: var(--charcoal);
+      background: linear-gradient(180deg, #8F6834, #7A5730);
+      color: #FFFFFF;
       padding: 0.85rem 2rem;
       border-radius: 100px;
       font-size: 0.82rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      transition: background var(--transition-fast), transform var(--transition-fast);
+      box-shadow: 0 2px 18px rgba(233, 194, 111, 0.28);
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
     }
     .btn-primary:hover {
-      background: var(--gold-dark);
+      background: linear-gradient(180deg, #9A7038, #855F33);
       transform: translateY(-2px);
+      box-shadow: 0 4px 24px rgba(233, 194, 111, 0.42);
     }
     .btn-ghost {
       font-size: 0.82rem;
@@ -615,11 +588,15 @@
 
     /* ─── FADE-UP SCROLL REVEAL ─── */
     .fade-up {
+      opacity: 1;
+      transform: none;
+    }
+    html.js .fade-up {
       opacity: 0;
       transform: translateY(32px);
       transition: opacity 0.75s ease, transform 0.75s ease;
     }
-    .fade-up.visible {
+    html.js .fade-up.visible {
       opacity: 1;
       transform: translateY(0);
     }
@@ -1369,6 +1346,33 @@
       background: #1C1814;
       color: var(--cream);
     }
+    .form-consent {
+      margin-top: 0.25rem;
+    }
+    .form-consent label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: normal;
+      text-transform: none;
+      color: rgba(250,248,245,0.55);
+      line-height: 1.5;
+      cursor: pointer;
+    }
+    .form-consent input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      margin-top: 0.15rem;
+      flex-shrink: 0;
+      accent-color: var(--gold);
+      cursor: pointer;
+    }
+    .form-consent a {
+      color: var(--gold);
+      text-decoration: underline;
+    }
     .form-submit-btn {
       background: var(--gold);
       color: var(--charcoal);
@@ -1594,26 +1598,6 @@
       color: var(--charcoal);
     }
     .lang-btn:hover:not(.active) { color: var(--cream); }
-    .lang-switcher-mobile {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-top: 0.5rem;
-    }
-    .lang-btn-mobile {
-      background: none;
-      border: none;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      color: rgba(250,248,245,0.45);
-      cursor: pointer;
-      padding: 0.5rem;
-      transition: color var(--transition-fast);
-    }
-    .lang-btn-mobile.active { color: var(--gold); }
-    .lang-sep-mobile { color: rgba(250,248,245,0.2); }
 
     /* ─── RESPONSIVE ─── */
 
@@ -1641,7 +1625,6 @@
         align-items: center;
         align-self: center;
       }
-      .hamburger { display: none; }
       .nav-links {
         order: 3;
         display: flex !important;
@@ -2192,7 +2175,9 @@
 
     /* ─── PREFERS REDUCED MOTION ─── */
     @media (prefers-reduced-motion: reduce) {
-      .fade-up { opacity: 1; transform: none; transition: none; }
+      html.js .fade-up { opacity: 1; transform: none; transition: none; }
+      html.js .hero-heading .line span { animation: none; transform: none; opacity: 1; }
+      html.js .hero-tag, html.js .hero-sub, html.js .hero-ctas { animation: none; transform: none; opacity: 1; }
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
@@ -2356,14 +2341,14 @@
       box-shadow: 0 0 0 3px rgba(196,168,130,0.1);
     }
 
-    /* ── BUTTONS: Apple gradient + spring ── */
+    /* ── BUTTONS: Apple gradient + spring (deep bronze, white text) ── */
     .btn-primary {
-      background: linear-gradient(140deg, #CDB38E 0%, #C4A882 45%, #B89470 100%);
+      background: linear-gradient(140deg, #9A7038 0%, #8F6834 45%, #7A5730 100%);
       box-shadow: 0 4px 18px rgba(196,168,130,0.45), 0 1px 0 rgba(255,255,255,0.22) inset;
       transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .btn-primary:hover {
-      background: linear-gradient(140deg, #D8BE9E 0%, #CEB48F 45%, #C4A882 100%);
+      background: linear-gradient(140deg, #A67B40 0%, #9A7038 45%, #8A6234 100%);
       box-shadow: 0 10px 32px rgba(196,168,130,0.55), 0 1px 0 rgba(255,255,255,0.3) inset;
       transform: translateY(-3px) scale(1.025);
     }
@@ -2396,13 +2381,6 @@
     /* ── MARQUEE: original gold preserved ── */
 
     /* ── ACCREDITATION STRIP: original background preserved ── */
-
-    /* ── MOBILE NAV: glass ── */
-    .nav-mobile {
-      background: rgba(20, 16, 12, 0.96);
-      backdrop-filter: blur(32px) saturate(1.8);
-      -webkit-backdrop-filter: blur(32px) saturate(1.8);
-    }
 
     /* ── SCROLL PROGRESS ── */
     #scroll-progress {
@@ -2629,6 +2607,9 @@
 </head>
 <body>
 
+  <!-- Skip link — first focusable element for keyboard / screen-reader users -->
+  <a class="skip-link" href="#main" data-i18n="skip-link">Skip to main content</a>
+
   <!-- ─── PAGE LOAD CURTAIN (Change 3) ─── -->
   <div id="page-curtain">
     <span id="curtain-brand"><img src="assets/photos/Company Logo/bodymindot-inverted-horizontal.svg" alt="BodyMindOT" /></span>
@@ -2655,27 +2636,10 @@
       <button class="lang-btn active" data-lang="en">EN</button>
       <button class="lang-btn" data-lang="zh">中</button>
     </div>
-    <div class="hamburger" id="hamburger" aria-label="Open menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
   </nav>
 
-  <!-- Mobile nav -->
-  <div class="nav-mobile" id="mobileNav">
-    <button class="nav-mobile-close" id="mobileClose">&times;</button>
-    <a href="#about" class="mobile-link" data-i18n="nav-about">About</a>
-    <a href="#services" class="mobile-link" data-i18n="nav-services">Services</a>
-    <a href="#workshops" class="mobile-link" data-i18n="nav-workshops">Workshops</a>
-    <a href="#contact" class="mobile-link" data-i18n="nav-contact">Contact</a>
-    <a href="#contact" class="mobile-link mobile-cta" data-i18n="nav-book">Book your first call</a>
-    <div class="lang-switcher-mobile" id="langSwitcherMobile">
-      <button class="lang-btn-mobile active" data-lang="en">English</button>
-      <span class="lang-sep-mobile">·</span>
-      <button class="lang-btn-mobile" data-lang="zh">中文</button>
-    </div>
-  </div>
+  <!-- ─── MAIN LANDMARK (skip-link target) ─── -->
+  <main id="main" tabindex="-1">
 
   <!-- ─── HERO ─── -->
   <section id="hero">
@@ -3075,6 +3039,12 @@
           <label for="cf-message" data-i18n="form-message-label">How can I help? *</label>
           <textarea id="cf-message" name="message" data-i18n-ph="msg-ph" placeholder="If you'd like a free 15-minute intro call, just say so and let me know a few times that suit you. Or tell me a little about what you're looking for…" required></textarea>
         </div>
+        <div class="form-group form-consent">
+          <label for="cf-consent">
+            <input type="checkbox" id="cf-consent" name="consent" required />
+            <span data-i18n="form-consent">I have read the <a href="privacy-policy.html">Privacy Policy</a> and consent to my details being used to respond to my enquiry.</span>
+          </label>
+        </div>
         <button type="submit" class="form-submit-btn" data-i18n="form-submit">Send Message</button>
       </form>
 
@@ -3083,7 +3053,7 @@
       </p>
       <p class="contact-note fade-up" data-i18n="contact-note">HCPC Registered Occupational Therapist</p>
 
-      <div id="form-success">
+      <div id="form-success" role="status" aria-live="polite">
         <div class="success-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="20 6 9 17 4 12"/>
@@ -3092,9 +3062,11 @@
         <h3 class="success-heading" data-i18n="form-success-heading">Message sent.</h3>
         <p class="success-body" data-i18n="form-success-body">Thank you for reaching out. I'll be in touch within 1–2 working days.</p>
       </div>
-      <p id="form-error" data-i18n="form-error-text" style="display:none;color:#c0392b;margin-top:1rem;font-size:0.9rem;">Something went wrong — please try again or email <a href="mailto:phoebehsieh@bodymindot.com">phoebehsieh@bodymindot.com</a> directly.</p>
+      <p id="form-error" data-i18n="form-error-text" role="alert" aria-live="assertive" style="display:none;color:#c0392b;margin-top:1rem;font-size:0.9rem;">Something went wrong — please try again or email <a href="mailto:phoebehsieh@bodymindot.com">phoebehsieh@bodymindot.com</a> directly.</p>
     </div>
   </section>
+
+  </main>
 
   <!-- ─── FOOTER ─── -->
   <footer>
@@ -3161,30 +3133,6 @@
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 50);
     }, { passive: true });
-
-    // ══════════════════════════════════════════════
-    // HAMBURGER / MOBILE NAV (Change 8: morphing hamburger)
-    // ══════════════════════════════════════════════
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobileNav');
-    const mobileClose = document.getElementById('mobileClose');
-
-    hamburger.addEventListener('click', () => {
-      const isOpen = mobileNav.classList.toggle('open');
-      hamburger.classList.toggle('active', isOpen);
-    });
-
-    mobileClose.addEventListener('click', () => {
-      mobileNav.classList.remove('open');
-      hamburger.classList.remove('active');
-    });
-
-    document.querySelectorAll('.mobile-link').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileNav.classList.remove('open');
-        hamburger.classList.remove('active');
-      });
-    });
 
     // ══════════════════════════════════════════════
     // SMOOTH SCROLL — lerp-based (Change 2)
@@ -3398,6 +3346,8 @@
     // ══════════════════════════════════════════════
     const TRANSLATIONS = {
       en: {
+        'skip-link': 'Skip to main content',
+        'form-consent': 'I have read the <a href="privacy-policy.html">Privacy Policy</a> and consent to my details being used to respond to my enquiry.',
         'nav-about': 'About',
         'nav-services': 'Services',
         'nav-workshops': 'Workshops',
@@ -3556,6 +3506,8 @@
         'org6': 'National Cheng Kung University Hospital, Taiwan',
       },
       zh: {
+        'skip-link': '跳至主要內容',
+        'form-consent': '我已閱讀<a href="privacy-policy.html">隱私政策</a>，並同意將我的個人資料用於回覆我的諮詢。',
         'nav-about': '關於我',
         'nav-services': '服務',
         'nav-workshops': '工作坊',
@@ -3783,12 +3735,18 @@
     // ══════════════════════════════════════════════
     function initActiveNav() {
       const sections = document.querySelectorAll('#about, #services, #workshops, #how, #contact');
-      const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+      const navLinks = document.querySelectorAll('.nav-links a[href^="#"]:not(.nav-cta)');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             navLinks.forEach(link => {
-              link.classList.toggle('nav-active', link.getAttribute('href') === '#' + entry.target.id);
+              const isActive = link.getAttribute('href') === '#' + entry.target.id;
+              link.classList.toggle('nav-active', isActive);
+              if (isActive) {
+                link.setAttribute('aria-current', 'page');
+              } else {
+                link.removeAttribute('aria-current');
+              }
             });
           }
         });

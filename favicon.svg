@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="BodyMindOT">
+  <rect width="64" height="64" rx="14" fill="#1C1814"/>
+  <!-- horizon -->
+  <line x1="16" y1="42" x2="48" y2="42" stroke="#C4A882" stroke-width="3" stroke-linecap="round"/>
+  <!-- rising sun (semicircle sitting on horizon) -->
+  <path d="M23 42a9 9 0 0 1 18 0Z" fill="#C4A882"/>
+  <!-- rays -->
+  <g stroke="#C4A882" stroke-width="3" stroke-linecap="round">
+    <line x1="32" y1="18" x2="32" y2="25"/>
+    <line x1="18.5" y1="23.5" x2="23" y2="28"/>
+    <line x1="45.5" y1="23.5" x2="41" y2="28"/>
+  </g>
+</svg>
